@@ -39,26 +39,29 @@ function HeroBanner() {
         />
         <div className="absolute bottom-0 left-0 right-0 z-10 bg-[#32373c]">
           <div className="max-w-7xl mx-auto px-4 py-14 relative">
-            <div className="flex items-center justify-center gap-3 sm:gap-5 flex-wrap" data-testid="hero-bar">
-              <span className="text-xs tracking-[0.25em] uppercase text-white/60 font-light border border-white/20 rounded-full px-4 py-1" data-testid="badge-established">Est. 1982</span>
-              <span className="text-lg sm:text-xl font-bold text-white tracking-wide" data-testid="text-hero-title">Dublin's #1 <span className="text-primary">Print Shop</span></span>
-              <span className="hidden sm:inline text-primary text-lg">&#9679;</span>
-              <span className="hidden sm:inline text-white/90 text-sm font-semibold tracking-wide uppercase">Same Day</span>
-              <span className="hidden sm:inline text-primary text-lg">&#9679;</span>
-              <span className="hidden sm:inline text-white/90 text-sm font-semibold tracking-wide uppercase">Click & Collect</span>
-              <div className="flex items-center gap-3 ml-2">
+            <div className="flex flex-col items-center gap-4" data-testid="hero-bar">
+              <div className="flex items-center gap-3">
+                <div className="h-px w-8 bg-primary" />
+                <span className="text-primary text-xs tracking-[0.3em] uppercase font-medium" data-testid="badge-established">Est. 1982</span>
+                <div className="h-px w-8 bg-primary" />
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-bold text-white" data-testid="text-hero-title">Dublin's #1 <span className="text-primary">Print Shop</span></h2>
+              <div className="flex items-center gap-4 text-white/70 text-sm tracking-wider uppercase">
+                <span className="hidden sm:inline">Same Day</span>
+                <span className="hidden sm:inline text-primary/50">|</span>
+                <span className="hidden sm:inline">Click & Collect</span>
+              </div>
+              <div className="flex items-center gap-3 mt-1">
                 <Button
-                  size="sm"
-                  className="rounded-full px-6 font-semibold shadow-lg shadow-primary/30"
+                  className="px-8 font-semibold"
                   onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
                   data-testid="button-hero-order"
                 >
                   Order Now
                 </Button>
                 <Button
-                  size="sm"
                   variant="outline"
-                  className="rounded-full px-6 font-semibold border-white/40 text-white hover:bg-white/20"
+                  className="px-8 font-semibold border-white/30 text-white hover:bg-white/10"
                   onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
                   data-testid="button-hero-contact"
                 >
