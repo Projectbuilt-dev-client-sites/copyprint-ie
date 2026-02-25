@@ -72,6 +72,13 @@ Business Cards, Flyers and Leaflets, Posters, Roller Banners, Business Stationer
 
 ## API
 - `POST /api/contact` - Contact form submission (in-memory storage)
+- `POST /api/artwork-submit` - Artwork upload form (name, email, phone, fileName) saved to DB; email notification via SendGrid when SENDGRID_API_KEY is set (sends to copyprintdublin@gmail.com)
+
+## Email Notifications
+- SendGrid package installed (`@sendgrid/mail`)
+- Email module: `server/email.ts`
+- Currently logs to console (no SENDGRID_API_KEY configured yet)
+- To enable: set SENDGRID_API_KEY secret and verify sender email in SendGrid dashboard
 
 ## Contact Details
 - Phone: 01 677 4234
