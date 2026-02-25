@@ -54,7 +54,7 @@ export default function LocalServicePage() {
 
   return (
     <div>
-      <section className="relative bg-white py-16 md:py-24 overflow-hidden">
+      <section className="relative bg-[#32373c] py-16 md:py-24 overflow-hidden">
         {heroImage && (
           <div className="absolute inset-0">
             <img
@@ -63,21 +63,21 @@ export default function LocalServicePage() {
               className="w-full h-full object-cover"
               data-testid="img-hero"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/60 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
           </div>
         )}
-        <div className="relative max-w-4xl mx-auto px-4 text-left">
-          <div className="flex items-center gap-2 text-gray-500 text-sm mb-4">
-            <Link href="/" className="hover:text-gray-900 transition-colors" data-testid="breadcrumb-home">Home</Link>
+        <div className="relative max-w-4xl mx-auto px-4">
+          <div className="flex items-center gap-2 text-white/50 text-sm mb-4">
+            <Link href="/" className="hover:text-white transition-colors" data-testid="breadcrumb-home">Home</Link>
             <span>/</span>
-            <Link href={`/services/${service.parentSlug}`} className="hover:text-gray-900 transition-colors" data-testid="breadcrumb-service">{service.name}</Link>
+            <Link href={`/services/${service.parentSlug}`} className="hover:text-white transition-colors" data-testid="breadcrumb-service">{service.name}</Link>
             <span>/</span>
-            <span className="text-gray-700">{area.name}</span>
+            <span className="text-white/80">{area.name}</span>
           </div>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 max-w-2xl" data-testid="text-local-h1">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 max-w-2xl" data-testid="text-local-h1">
             {content.h1}
           </h1>
-          <p className="text-gray-600 text-lg max-w-xl mb-8" data-testid="text-local-intro">
+          <p className="text-white/80 text-lg max-w-xl mb-8" data-testid="text-local-intro">
             {content.intro}
           </p>
           <div className="flex flex-wrap gap-3">
@@ -89,7 +89,7 @@ export default function LocalServicePage() {
               Get a Quote <ArrowRight className="w-4 h-4" />
             </Button>
             <a href="tel:016774234">
-              <Button variant="outline" className="border-gray-300 text-gray-700 hover:bg-gray-100 gap-2" data-testid="button-local-call">
+              <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 gap-2" data-testid="button-local-call">
                 <Phone className="w-4 h-4" /> 01 677 4234
               </Button>
             </a>
