@@ -149,13 +149,24 @@ export default function LocalServicePage() {
         </div>
       </section>
 
-      <section id="local-contact" className="py-16 bg-[#32373c]">
-        <div className="max-w-4xl mx-auto px-4 text-center">
+      <section id="local-contact" className="relative py-16 md:py-20 overflow-hidden">
+        {heroImage && (
+          <div className="absolute inset-0">
+            <img
+              src={heroImage}
+              alt={`Order ${service.name} in ${area.name}`}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
+          </div>
+        )}
+        {!heroImage && <div className="absolute inset-0 bg-[#32373c]" />}
+        <div className="relative max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-4" data-testid="text-cta-heading">
             Order {service.name} in {area.name}
           </h2>
-          <p className="text-white/70 mb-8 max-w-xl mx-auto" data-testid="text-cta-body">
-            {content.cta}
+          <p className="text-white/80 mb-8 max-w-xl mx-auto" data-testid="text-cta-body">
+            Ready to order {service.name.toLowerCase()} from Dublin's best print shop? Get in touch now for a free quote. Call 01 677 4234 or WhatsApp us.
           </p>
           <div className="flex flex-wrap justify-center gap-4 mb-8">
             <a href="tel:016774234">
