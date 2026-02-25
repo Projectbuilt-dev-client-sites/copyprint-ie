@@ -1,7 +1,8 @@
 import { useParams, Link } from "wouter";
 import { dublinAreas, localServices } from "@/lib/dublin-areas";
 import { generateLocalContent } from "@/lib/spintax";
-import { CheckCircle, ArrowRight, Phone, MessageCircle, MapPin } from "lucide-react";
+import { areaData } from "@/lib/dublin-locations";
+import { CheckCircle, ArrowRight, Phone, MessageCircle, MapPin, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
 
@@ -34,6 +35,7 @@ export default function LocalServicePage() {
 
   const seed = `${area.slug}-${service.slug}`;
   const content = generateLocalContent(area.name, service.name, seed);
+  const locationData = areaData[area.slug] || null;
 
   const nearbyAreas = dublinAreas
     .filter(item => item.slug !== area.slug)
@@ -142,6 +144,50 @@ export default function LocalServicePage() {
           </div>
         </div>
       </section>
+
+      {locationData && (
+        <section className="py-16 bg-white">
+          <div className="max-w-4xl mx-auto px-4">
+            <h2 className="text-xl font-bold text-gray-900 mb-6" data-testid="text-map-heading">
+              Find Us Near {area.name}
+            </h2>
+
+            <div className="rounded-xl overflow-hidden border border-gray-200 mb-10">
+              <iframe
+                title={`Map of ${area.name}, Dublin`}
+                src={`https://www.openstreetmap.org/export/embed.html?bbox=${locationData.lng - 0.015},${locationData.lat - 0.01},${locationData.lng + 0.015},${locationData.lat + 0.01}&layer=mapnik&marker=${locationData.lat},${locationData.lng}`}
+                width="100%"
+                height="350"
+                style={{ border: 0 }}
+                loading="lazy"
+                data-testid="map-embed"
+              />
+            </div>
+
+            <h3 className="text-lg font-bold text-gray-900 mb-4" data-testid="text-attractions-heading">
+              What's On in {area.name}
+            </h3>
+            <p className="text-gray-600 text-sm mb-6">
+              Explore local landmarks and attractions near our printing service area in {area.name}.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {locationData.attractions.map((attraction, idx) => (
+                <a
+                  key={idx}
+                  href={attraction.url}
+                  target="_blank"
+                  rel={attraction.doFollow ? "noopener" : "noopener noreferrer nofollow"}
+                  className="flex items-center gap-3 p-4 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 hover:text-gray-900 hover:border-gray-400 transition-all group"
+                  data-testid={`link-attraction-${idx}`}
+                >
+                  <ExternalLink className="w-4 h-4 shrink-0 text-gray-400 group-hover:text-gray-600 transition-colors" />
+                  <span>{attraction.name}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4">
