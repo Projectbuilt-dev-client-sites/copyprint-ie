@@ -424,7 +424,7 @@ function AboutSection() {
                 <Package className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <span className="text-white font-semibold text-sm">Local or Nationwide Delivery</span>
+                <span className="text-white font-semibold text-sm">Local or Nationwide or International Delivery</span>
                 <p className="text-white/50 text-xs mt-0.5">We deliver anywhere in Ireland</p>
               </div>
             </div>
