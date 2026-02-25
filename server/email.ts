@@ -1,51 +1,97 @@
+import nodemailer from "nodemailer";
 import type { InsertArtwork } from "@shared/schema";
+import path from "path";
 
 const NOTIFY_EMAIL = "copyprintdublin@gmail.com";
 
-export async function sendArtworkNotification(data: InsertArtwork): Promise<void> {
-  const sgMail = await getSendGridClient();
-  if (!sgMail) {
-    console.log("[email] SendGrid not configured, logging artwork submission instead:");
+function getTransporter() {
+  const gmailUser = process.env.GMAIL_USER || NOTIFY_EMAIL;
+  const gmailPass = process.env.GMAIL_APP_PASSWORD;
+
+  if (!gmailPass) {
+    return null;
+  }
+
+  return nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: gmailUser,
+      pass: gmailPass,
+    },
+  });
+}
+
+export async function sendArtworkNotification(
+  data: InsertArtwork,
+  filePath?: string
+): Promise<void> {
+  const transporter = getTransporter();
+
+  if (!transporter) {
+    console.log("[email] Gmail not configured (set GMAIL_APP_PASSWORD). Logging submission:");
     console.log(`[email] Name: ${data.name}, Email: ${data.email}, Phone: ${data.phone}, File: ${data.fileName || "none"}`);
     return;
   }
 
+  const attachments: { filename: string; path: string }[] = [];
+  if (filePath && data.fileName) {
+    attachments.push({
+      filename: data.fileName,
+      path: filePath,
+    });
+  }
+
   const msg = {
+    from: `"Copyprint.ie Website" <${process.env.GMAIL_USER || NOTIFY_EMAIL}>`,
     to: NOTIFY_EMAIL,
-    from: NOTIFY_EMAIL,
+    replyTo: data.email,
     subject: `New Artwork Upload - ${data.name}`,
-    text: `New artwork submission from the Copyprint.ie shop:\n\nName: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone}\nFile: ${data.fileName || "Not uploaded yet"}\n\nPlease follow up with the customer.`,
+    text: [
+      "New artwork submission from the Copyprint.ie shop:",
+      "",
+      `Name: ${data.name}`,
+      `Email: ${data.email}`,
+      `Phone: ${data.phone}`,
+      `File: ${data.fileName || "Not uploaded"}`,
+      "",
+      "Please follow up with the customer.",
+    ].join("\n"),
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <div style="background: #32373c; padding: 20px; text-align: center;">
           <h2 style="color: white; margin: 0;">New Artwork Submission</h2>
+          <p style="color: #9ca3af; margin: 4px 0 0; font-size: 13px;">Copyprint.ie Shop</p>
         </div>
         <div style="padding: 24px; border: 1px solid #e5e7eb; border-top: none;">
           <table style="width: 100%; border-collapse: collapse;">
-            <tr><td style="padding: 8px 0; font-weight: bold; width: 100px;">Name:</td><td style="padding: 8px 0;">${data.name}</td></tr>
-            <tr><td style="padding: 8px 0; font-weight: bold;">Email:</td><td style="padding: 8px 0;"><a href="mailto:${data.email}">${data.email}</a></td></tr>
-            <tr><td style="padding: 8px 0; font-weight: bold;">Phone:</td><td style="padding: 8px 0;"><a href="tel:${data.phone}">${data.phone}</a></td></tr>
-            <tr><td style="padding: 8px 0; font-weight: bold;">File:</td><td style="padding: 8px 0;">${data.fileName || "Not uploaded yet"}</td></tr>
+            <tr>
+              <td style="padding: 10px 0; font-weight: bold; width: 90px; vertical-align: top; color: #374151;">Name:</td>
+              <td style="padding: 10px 0; color: #111827;">${data.name}</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 0; font-weight: bold; vertical-align: top; color: #374151;">Email:</td>
+              <td style="padding: 10px 0;"><a href="mailto:${data.email}" style="color: #f97316;">${data.email}</a></td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 0; font-weight: bold; vertical-align: top; color: #374151;">Phone:</td>
+              <td style="padding: 10px 0;"><a href="tel:${data.phone}" style="color: #f97316;">${data.phone}</a></td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 0; font-weight: bold; vertical-align: top; color: #374151;">File:</td>
+              <td style="padding: 10px 0; color: #111827;">${data.fileName ? `${data.fileName} (attached)` : "Not uploaded — customer may email separately"}</td>
+            </tr>
           </table>
           <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 16px 0;" />
-          <p style="color: #6b7280; font-size: 14px;">Please follow up with the customer about their artwork.</p>
+          <p style="color: #6b7280; font-size: 13px; margin: 0;">Please follow up with this customer about their print order.</p>
+        </div>
+        <div style="background: #f9fafb; padding: 12px 24px; border: 1px solid #e5e7eb; border-top: none; text-align: center;">
+          <p style="color: #9ca3af; font-size: 11px; margin: 0;">Sent automatically from copyprint.ie</p>
         </div>
       </div>
     `,
+    attachments,
   };
 
-  await sgMail.send(msg);
-  console.log(`[email] Artwork notification sent to ${NOTIFY_EMAIL} for ${data.name}`);
-}
-
-async function getSendGridClient() {
-  try {
-    const sgMail = await import("@sendgrid/mail");
-    const apiKey = process.env.SENDGRID_API_KEY;
-    if (!apiKey) return null;
-    sgMail.default.setApiKey(apiKey);
-    return sgMail.default;
-  } catch {
-    return null;
-  }
+  await transporter.sendMail(msg);
+  console.log(`[email] Artwork notification sent to ${NOTIFY_EMAIL} for ${data.name}${attachments.length ? " (with attachment)" : ""}`);
 }

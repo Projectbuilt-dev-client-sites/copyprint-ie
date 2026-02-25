@@ -6,6 +6,23 @@ import { ZodError } from "zod";
 import { sendArtworkNotification } from "./email";
 import { getUncachableStripeClient, getStripePublishableKey } from "./stripeClient";
 import pg from "pg";
+import multer from "multer";
+import path from "path";
+import fs from "fs";
+
+const uploadDir = path.join(process.cwd(), "uploads");
+if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
+
+const upload = multer({
+  storage: multer.diskStorage({
+    destination: (_req, _file, cb) => cb(null, uploadDir),
+    filename: (_req, file, cb) => {
+      const uniqueName = `${Date.now()}-${file.originalname}`;
+      cb(null, uniqueName);
+    },
+  }),
+  limits: { fileSize: 50 * 1024 * 1024 },
+});
 
 const serviceRoutes = [
   "/", "/services/business-cards", "/services/flyers-leaflets", "/services/stickers-labels",
@@ -95,11 +112,17 @@ export async function registerRoutes(
     }
   });
 
-  app.post("/api/artwork-submit", async (req, res) => {
+  app.post("/api/artwork-submit", upload.single("artwork"), async (req, res) => {
     try {
-      const data = insertArtworkSchema.parse(req.body);
+      const data = insertArtworkSchema.parse({
+        name: req.body.name,
+        email: req.body.email,
+        phone: req.body.phone,
+        fileName: req.file?.originalname || req.body.fileName || null,
+      });
       const submission = await storage.createArtworkSubmission(data);
-      sendArtworkNotification(data).catch((err) =>
+      const filePath = req.file?.path;
+      sendArtworkNotification(data, filePath).catch((err) =>
         console.error("Failed to send artwork email:", err)
       );
       res.json({ success: true, id: submission.id });
@@ -107,6 +130,7 @@ export async function registerRoutes(
       if (error instanceof ZodError) {
         res.status(400).json({ error: "Invalid form data", details: error.errors });
       } else {
+        console.error("Artwork submit error:", error);
         res.status(500).json({ error: "Failed to submit artwork" });
       }
     }

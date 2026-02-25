@@ -75,10 +75,12 @@ Business Cards, Flyers and Leaflets, Posters, Roller Banners, Business Stationer
 - `POST /api/artwork-submit` - Artwork upload form (name, email, phone, fileName) saved to DB; email notification via SendGrid when SENDGRID_API_KEY is set (sends to copyprintdublin@gmail.com)
 
 ## Email Notifications
-- SendGrid package installed (`@sendgrid/mail`)
+- Uses nodemailer (open source) with Gmail SMTP
 - Email module: `server/email.ts`
-- Currently logs to console (no SENDGRID_API_KEY configured yet)
-- To enable: set SENDGRID_API_KEY secret and verify sender email in SendGrid dashboard
+- Artwork file uploads handled by multer, saved to `uploads/` directory
+- Requires GMAIL_APP_PASSWORD secret (Gmail App Password from Google account settings)
+- Optional GMAIL_USER secret (defaults to copyprintdublin@gmail.com)
+- Emails sent to copyprintdublin@gmail.com with artwork file attached
 
 ## Contact Details
 - Phone: 01 677 4234

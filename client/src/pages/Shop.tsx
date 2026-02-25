@@ -185,7 +185,7 @@ function UploadArtworkBox() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [tel, setTel] = useState("");
-  const [fileName, setFileName] = useState<string | null>(null);
+  const [artworkFile, setArtworkFile] = useState<File | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
@@ -195,12 +195,15 @@ function UploadArtworkBox() {
     if (!isFormValid) return;
     setSubmitting(true);
     try {
-      await apiRequest("POST", "/api/artwork-submit", {
-        name: name.trim(),
-        email: email.trim(),
-        phone: tel.trim(),
-        fileName: fileName || null,
-      });
+      const formData = new FormData();
+      formData.append("name", name.trim());
+      formData.append("email", email.trim());
+      formData.append("phone", tel.trim());
+      if (artworkFile) {
+        formData.append("artwork", artworkFile);
+      }
+      const res = await fetch("/api/artwork-submit", { method: "POST", body: formData });
+      if (!res.ok) throw new Error("Failed");
       setSubmitted(true);
       toast({ title: "Artwork details submitted", description: "We'll be in touch shortly about your order." });
     } catch {
@@ -274,10 +277,10 @@ function UploadArtworkBox() {
         }`}
         data-testid="upload-artwork"
       >
-        {fileName ? (
+        {artworkFile ? (
           <div className="flex items-center gap-2 text-sm text-primary font-medium">
             <Check className="w-4 h-4" />
-            {fileName}
+            {artworkFile.name}
           </div>
         ) : (
           <>
@@ -292,7 +295,7 @@ function UploadArtworkBox() {
           className="hidden"
           accept=".pdf,.jpg,.jpeg,.png,.ai,.eps,.tiff,.tif"
           disabled={!isFormValid}
-          onChange={(e) => setFileName(e.target.files?.[0]?.name || null)}
+          onChange={(e) => setArtworkFile(e.target.files?.[0] || null)}
           data-testid="input-artwork-file"
         />
       </label>
