@@ -18,7 +18,7 @@ import { services } from "@/lib/services";
 import {
   Clock, Zap, BadgeDollarSign, Award, Star,
   ArrowRight, CheckCircle, Phone, MessageCircle,
-  ChevronLeft, ChevronRight,
+  ChevronLeft, ChevronRight, Printer, Package, ShoppingCart,
 } from "lucide-react";
 
 const sectionVariants = {
@@ -39,30 +39,44 @@ function HeroBanner() {
         />
         <div className="absolute bottom-0 left-0 right-0 z-10 bg-[#32373c]">
           <div className="max-w-7xl mx-auto px-4 py-14 relative">
-            <div className="flex items-center justify-center gap-3 sm:gap-4 flex-wrap text-sm sm:text-base" data-testid="hero-bar">
-              <span className="text-primary font-semibold italic" data-testid="badge-established">Est. 1982</span>
-              <span className="text-white/30">|</span>
-              <span className="text-white font-bold text-base sm:text-lg" data-testid="text-hero-title">Dublin's #1 <span className="text-primary">Print Shop</span></span>
-              <span className="text-white/30 hidden sm:inline">|</span>
-              <span className="text-white/80 hidden sm:inline font-medium">Same Day</span>
-              <span className="text-white/30 hidden sm:inline">|</span>
-              <span className="text-white/80 hidden sm:inline font-medium">Click & Collect</span>
-              <span className="text-white/30">|</span>
+            <div className="flex items-center justify-center gap-4 sm:gap-5 flex-wrap" data-testid="hero-bar">
+              <span className="flex items-center gap-1.5 text-primary font-semibold" data-testid="badge-established">
+                <Award className="w-4 h-4" />
+                Est. 1982
+              </span>
+              <span className="text-white/20">|</span>
+              <span className="flex items-center gap-1.5 text-white font-bold text-base sm:text-lg" data-testid="text-hero-title">
+                <Printer className="w-4 h-4 text-primary" />
+                Dublin's #1 <span className="text-primary ml-1">Print Shop</span>
+              </span>
+              <span className="text-white/20 hidden sm:inline">|</span>
+              <span className="hidden sm:flex items-center gap-1.5 text-white/80 font-medium text-sm">
+                <Zap className="w-3.5 h-3.5 text-primary" />
+                Same Day
+              </span>
+              <span className="text-white/20 hidden sm:inline">|</span>
+              <span className="hidden sm:flex items-center gap-1.5 text-white/80 font-medium text-sm">
+                <Package className="w-3.5 h-3.5 text-primary" />
+                Click & Collect
+              </span>
+              <span className="text-white/20">|</span>
               <Button
                 size="sm"
-                className="px-5 font-semibold"
+                className="px-5 font-semibold gap-1.5"
                 onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
                 data-testid="button-hero-order"
               >
+                <ShoppingCart className="w-3.5 h-3.5" />
                 Order Now
               </Button>
               <Button
                 size="sm"
                 variant="outline"
-                className="px-5 font-semibold border-white/30 text-white hover:bg-white/10"
+                className="px-5 font-semibold border-white/30 text-white hover:bg-white/10 gap-1.5"
                 onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
                 data-testid="button-hero-contact"
               >
+                <MessageCircle className="w-3.5 h-3.5" />
                 Contact Us
               </Button>
             </div>
