@@ -133,6 +133,52 @@ async function preRenderPages() {
   console.log(`pre-rendered ${routes.length} pages`);
 }
 
+async function generateSitemap() {
+  console.log("generating sitemap.xml...");
+  const baseUrl = "https://copyprint.ie";
+  const today = new Date().toISOString().split("T")[0];
+
+  const entries = routes.map((route) => {
+    let priority = "0.5";
+    let changefreq = "monthly";
+
+    if (route === "/") {
+      priority = "1.0";
+      changefreq = "weekly";
+    } else if (route.startsWith("/services/")) {
+      priority = "0.9";
+      changefreq = "weekly";
+    } else if (route === "/blog") {
+      priority = "0.8";
+      changefreq = "weekly";
+    } else if (route.startsWith("/blog/")) {
+      priority = "0.7";
+      changefreq = "monthly";
+    } else if (route === "/printing") {
+      priority = "0.7";
+      changefreq = "monthly";
+    } else if (route.startsWith("/printing/")) {
+      priority = "0.6";
+      changefreq = "monthly";
+    }
+
+    return `  <url>
+    <loc>${baseUrl}${route}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>${changefreq}</changefreq>
+    <priority>${priority}</priority>
+  </url>`;
+  });
+
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${entries.join("\n")}
+</urlset>`;
+
+  await writeFile(path.resolve("dist/public/sitemap.xml"), sitemap);
+  console.log(`  generated sitemap with ${routes.length} URLs`);
+}
+
 async function buildAll() {
   await rm("dist", { recursive: true, force: true });
 
@@ -154,6 +200,7 @@ async function buildAll() {
   });
 
   await preRenderPages();
+  await generateSitemap();
 
   console.log("building server...");
   const pkg = JSON.parse(await readFile("package.json", "utf-8"));
