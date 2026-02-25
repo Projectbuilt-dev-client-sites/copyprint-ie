@@ -88,7 +88,7 @@ export default function Header() {
           <div className="hidden xl:flex items-center gap-1">
             {navItems.map((item) => (
               <Link key={item.href} href={item.href} data-testid={`link-nav-${item.href.split("/").pop()}`}>
-                <span data-cursor-grow className={`px-3 py-1.5 text-[13px] font-medium transition-all cursor-none rounded-lg border border-white/15 shadow-[0_3px_0_rgba(0,0,0,0.3),0_4px_8px_rgba(0,0,0,0.2)] hover:shadow-[0_3px_0_rgba(0,0,0,0.3),0_4px_12px_rgba(250,204,21,0.5)] active:shadow-[0_1px_0_rgba(0,0,0,0.3)] active:translate-y-[2px] ${location === item.href ? "text-white bg-white/15" : "text-white/70 hover:text-white bg-white/10"}`}>
+                <span data-cursor-grow className={`px-3 py-1.5 text-[13px] font-medium transition-all cursor-none rounded-lg border border-white/15 shadow-[0_3px_0_rgba(0,0,0,0.3),0_4px_8px_rgba(0,0,0,0.2)] hover:shadow-[0_3px_0_rgba(0,0,0,0.3),0_4px_12px_rgba(250,204,21,0.5)] active:shadow-[0_1px_0_rgba(0,0,0,0.3)] active:translate-y-[2px] ${location === item.href ? "text-white bg-white/10" : "text-white/70 hover:text-white bg-transparent"}`}>
                   {item.label}
                 </span>
               </Link>
@@ -100,7 +100,7 @@ export default function Header() {
               onMouseLeave={() => setDropdownOpen(false)}
             >
               <button
-                className="flex items-center gap-1 px-3 py-1.5 text-[13px] font-medium text-white/70 hover:text-white transition-all rounded-lg bg-white/10 border border-white/15 shadow-[0_3px_0_rgba(0,0,0,0.3),0_4px_8px_rgba(0,0,0,0.2)] hover:shadow-[0_3px_0_rgba(0,0,0,0.3),0_4px_12px_rgba(250,204,21,0.5)] active:shadow-[0_1px_0_rgba(0,0,0,0.3)] active:translate-y-[2px] cursor-none"
+                className="flex items-center gap-1 px-3 py-1.5 text-[13px] font-medium text-white/70 hover:text-white transition-all rounded-lg bg-transparent border border-white/15 shadow-[0_3px_0_rgba(0,0,0,0.3),0_4px_8px_rgba(0,0,0,0.2)] hover:shadow-[0_3px_0_rgba(0,0,0,0.3),0_4px_12px_rgba(250,204,21,0.5)] active:shadow-[0_1px_0_rgba(0,0,0,0.3)] active:translate-y-[2px] cursor-none"
                 data-cursor-grow
                 data-testid="button-business-printing-dropdown"
               >
