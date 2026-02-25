@@ -8,13 +8,13 @@ import {
 
 const navItems = [
   { label: "Business Cards", href: "/services/business-cards" },
-  { label: "Stickers & Labels", href: "/services/stickers-labels" },
   { label: "Flyers & Leaflets", href: "/services/flyers-leaflets" },
   { label: "Posters", href: "/services/posters" },
   { label: "PVC Banners", href: "/services/pvc-banners" },
 ];
 
 const businessPrintingItems = [
+  { label: "Stickers & Labels", href: "/services/stickers-labels" },
   { label: "Business Stationery", href: "/services/business-stationery" },
   { label: "Restaurant Printing", href: "/services/restaurant-printing" },
   { label: "Roller Banners", href: "/services/roller-banners" },
