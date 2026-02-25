@@ -43,7 +43,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-[#32373c]">
       <div className="bg-[#32373c] border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 py-1.5 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 py-1 flex items-center justify-between">
           <div className="flex items-center gap-5">
             <a
               href="tel:016774234"
@@ -80,9 +80,9 @@ export default function Header() {
       </div>
 
       <nav className="bg-[#32373c]">
-        <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-6">
+        <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between gap-6">
           <Link href="/" data-testid="link-logo">
-            <img src="/images/logo.png" alt="Copyprint.ie" className="h-9 md:h-11 cursor-pointer" />
+            <img src="/images/logo.png" alt="Copyprint.ie" className="h-7 md:h-9 cursor-pointer" />
           </Link>
 
           <div className="hidden xl:flex items-center gap-1">
