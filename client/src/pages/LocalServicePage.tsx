@@ -66,32 +66,34 @@ export default function LocalServicePage() {
           </div>
         )}
         <div className="relative max-w-4xl mx-auto px-4 text-center">
-          <div className="flex items-center justify-center gap-2 text-white/50 text-sm mb-4">
-            <Link href="/" className="hover:text-white transition-colors" data-testid="breadcrumb-home">Home</Link>
-            <span>/</span>
-            <Link href={`/services/${service.parentSlug}`} className="hover:text-white transition-colors" data-testid="breadcrumb-service">{service.name}</Link>
-            <span>/</span>
-            <span className="text-white/80">{area.name}</span>
-          </div>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6" data-testid="text-local-h1">
-            {content.h1}
-          </h1>
-          <p className="text-white/70 text-lg max-w-2xl mx-auto mb-8" data-testid="text-local-intro">
-            {content.intro}
-          </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            <Button
-              className="bg-blue-600 hover:bg-blue-700 text-white gap-2"
-              onClick={() => document.getElementById("local-contact")?.scrollIntoView({ behavior: "smooth" })}
-              data-testid="button-local-order"
-            >
-              Get a Quote <ArrowRight className="w-4 h-4" />
-            </Button>
-            <a href="tel:016774234">
-              <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 gap-2" data-testid="button-local-call">
-                <Phone className="w-4 h-4" /> 01 677 4234
+          <div className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 px-6 py-10 md:px-12 md:py-14">
+            <div className="flex items-center justify-center gap-2 text-white/50 text-sm mb-4">
+              <Link href="/" className="hover:text-white transition-colors" data-testid="breadcrumb-home">Home</Link>
+              <span>/</span>
+              <Link href={`/services/${service.parentSlug}`} className="hover:text-white transition-colors" data-testid="breadcrumb-service">{service.name}</Link>
+              <span>/</span>
+              <span className="text-white/80">{area.name}</span>
+            </div>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6" data-testid="text-local-h1">
+              {content.h1}
+            </h1>
+            <p className="text-white/70 text-lg max-w-2xl mx-auto mb-8" data-testid="text-local-intro">
+              {content.intro}
+            </p>
+            <div className="flex flex-wrap justify-center gap-3">
+              <Button
+                className="bg-blue-600 hover:bg-blue-700 text-white gap-2"
+                onClick={() => document.getElementById("local-contact")?.scrollIntoView({ behavior: "smooth" })}
+                data-testid="button-local-order"
+              >
+                Get a Quote <ArrowRight className="w-4 h-4" />
               </Button>
-            </a>
+              <a href="tel:016774234">
+                <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 gap-2" data-testid="button-local-call">
+                  <Phone className="w-4 h-4" /> 01 677 4234
+                </Button>
+              </a>
+            </div>
           </div>
         </div>
       </section>
