@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { SiGoogle } from "react-icons/si";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { useForm } from "react-hook-form";
@@ -388,11 +389,14 @@ function Testimonials() {
               <p className="text-gray-600 text-sm leading-relaxed flex-1 mb-4">
                 "{t.text}"
               </p>
-              <div className="pt-3 border-t border-gray-100">
-                <p className="text-gray-900 font-semibold text-sm" data-testid={`text-testimonial-name-${page * REVIEWS_PER_PAGE + i}`}>
-                  {t.name}
-                </p>
-                <p className="text-gray-400 text-xs">Google Review</p>
+              <div className="pt-3 border-t border-gray-100 flex items-center gap-2">
+                <SiGoogle className="w-4 h-4 text-[#4285F4] flex-shrink-0" />
+                <div>
+                  <p className="text-gray-900 font-semibold text-sm" data-testid={`text-testimonial-name-${page * REVIEWS_PER_PAGE + i}`}>
+                    {t.name}
+                  </p>
+                  <p className="text-gray-400 text-xs">Google Review</p>
+                </div>
               </div>
             </motion.div>
           ))}
@@ -425,6 +429,20 @@ function Testimonials() {
           >
             <ChevronRight className="w-5 h-5" />
           </button>
+        </div>
+
+        <div className="text-center mt-6">
+          <a
+            href="https://www.google.com/search?si=AL3DRZHrmvnFAVQPOO2Bzhf8AX9KZZ6raUI_dT7DG_z0kV2_x4Phr9a942m0NIuT4LKKqgon7w6EFwPA183kMjG7hN1FNCsirFu89uh8HE36CXW54WPYZi79thdNRKKCEsCdyxecJHLm&q=Copy+Print+Reviews"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-sm font-medium text-primary transition-colors"
+            data-testid="link-see-all-reviews"
+          >
+            <SiGoogle className="w-4 h-4" />
+            See All Reviews on Google
+            <ArrowRight className="w-4 h-4" />
+          </a>
         </div>
       </div>
     </section>
