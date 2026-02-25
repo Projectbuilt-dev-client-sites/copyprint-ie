@@ -36,33 +36,33 @@ function HeroBanner() {
           allow="autoplay; fullscreen"
           title="Copyprint.ie Hero Video"
         />
-      </div>
-      <div className="bg-[#32373c] py-3 md:py-4">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center justify-center gap-2 sm:gap-3 flex-wrap text-sm md:text-base" data-testid="hero-bar">
-            <span className="text-white/70 font-medium" data-testid="badge-established">Est. 1982</span>
-            <span className="text-white font-bold" data-testid="text-hero-title">Dublin's #1 <span className="text-primary">Print Shop</span></span>
-            <span className="text-white/40 hidden sm:inline">*</span>
-            <span className="text-white/70 hidden sm:inline">Same Day</span>
-            <span className="text-white/40 hidden sm:inline">*</span>
-            <span className="text-white/70 hidden sm:inline">Click & Collect</span>
-            <span className="text-white/40">*</span>
-            <Button
-              size="sm"
-              onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
-              data-testid="button-hero-order"
-            >
-              Order Now
-            </Button>
-            <Button
-              size="sm"
-              variant="outline"
-              className="border-white/30 text-white bg-white/5"
-              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-              data-testid="button-hero-contact"
-            >
-              Contact Us
-            </Button>
+        <div className="absolute bottom-0 left-0 right-0 backdrop-blur-md bg-black/30">
+          <div className="max-w-7xl mx-auto px-4 py-3">
+            <div className="flex items-center justify-center gap-2 sm:gap-3 flex-wrap text-sm md:text-base" data-testid="hero-bar">
+              <span className="text-white/80 font-medium" data-testid="badge-established">Est. 1982</span>
+              <span className="text-white font-bold" data-testid="text-hero-title">Dublin's #1 <span className="text-primary">Print Shop</span></span>
+              <span className="text-white/40 hidden sm:inline">*</span>
+              <span className="text-white/80 hidden sm:inline">Same Day</span>
+              <span className="text-white/40 hidden sm:inline">*</span>
+              <span className="text-white/80 hidden sm:inline">Click & Collect</span>
+              <span className="text-white/40">*</span>
+              <Button
+                size="sm"
+                onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
+                data-testid="button-hero-order"
+              >
+                Order Now
+              </Button>
+              <Button
+                size="sm"
+                variant="outline"
+                className="border-white/30 text-white bg-white/10"
+                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+                data-testid="button-hero-contact"
+              >
+                Contact Us
+              </Button>
+            </div>
           </div>
         </div>
       </div>
