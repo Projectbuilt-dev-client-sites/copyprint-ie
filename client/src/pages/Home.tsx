@@ -28,13 +28,17 @@ const sectionVariants = {
 
 function HeroBanner() {
   return (
-    <section className="relative w-full" data-testid="section-hero">
+    <section className="relative w-full overflow-hidden" data-testid="section-hero">
       <div className="relative w-full h-[300px] sm:h-[400px] md:h-[450px] lg:h-[500px]">
-        <img
-          src="/images/hero-banner.png"
-          alt="Copyprint.ie - Dublin's #1 Print Shop"
-          className="w-full h-full object-cover"
-        />
+        <div className="absolute inset-0 overflow-hidden">
+          <iframe
+            src="https://player.vimeo.com/video/1168097892?background=1&autoplay=1&loop=1&muted=1&quality=1080p"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.78vh] min-w-full min-h-full"
+            style={{ aspectRatio: "16/9" }}
+            allow="autoplay; fullscreen"
+            title="Copyprint.ie Hero Video"
+          />
+        </div>
         <div className="absolute inset-0 bg-gradient-to-r from-[#32373c]/90 via-[#32373c]/65 to-transparent" />
         <div className="absolute inset-0 flex items-center">
           <div className="max-w-7xl mx-auto px-4 w-full">
