@@ -133,6 +133,12 @@ export default function Header() {
           </Link>
 
           <div className="hidden xl:flex items-center gap-1">
+            <Link href="/shop" data-testid="link-nav-shop">
+              <span data-cursor-grow className={`px-3 py-1.5 text-[13px] font-medium transition-all cursor-none rounded-lg border border-transparent shadow-none hover:shadow-[0_4px_12px_rgba(250,204,21,0.5)] active:translate-y-[2px] ${location === "/shop" ? "text-primary font-bold bg-primary/5" : "text-primary hover:text-primary/80 bg-transparent"}`}>
+                Shop Now
+              </span>
+            </Link>
+
             {navItems.map((item) => (
               <Link key={item.href} href={item.href} data-testid={`link-nav-${item.href.split("/").pop()}`}>
                 <span data-cursor-grow className={`px-3 py-1.5 text-[13px] font-medium transition-all cursor-none rounded-lg border border-transparent shadow-none hover:shadow-[0_4px_12px_rgba(250,204,21,0.5)] active:translate-y-[2px] ${location === item.href ? "text-gray-900 bg-gray-100" : "text-gray-600 hover:text-gray-900 bg-transparent"}`}>
@@ -140,12 +146,6 @@ export default function Header() {
                 </span>
               </Link>
             ))}
-
-            <Link href="/shop" data-testid="link-nav-shop">
-              <span data-cursor-grow className={`px-3 py-1.5 text-[13px] font-medium transition-all cursor-none rounded-lg border border-transparent shadow-none hover:shadow-[0_4px_12px_rgba(250,204,21,0.5)] active:translate-y-[2px] ${location === "/shop" ? "text-primary font-bold bg-primary/5" : "text-primary hover:text-primary/80 bg-transparent"}`}>
-                Shop Now
-              </span>
-            </Link>
 
             <Link href="/blog" data-testid="link-nav-blog">
               <span data-cursor-grow className={`px-3 py-1.5 text-[13px] font-medium transition-all cursor-none rounded-lg border border-transparent shadow-none hover:shadow-[0_4px_12px_rgba(250,204,21,0.5)] active:translate-y-[2px] ${location === "/blog" || location.startsWith("/blog/") ? "text-gray-900 bg-gray-100" : "text-gray-600 hover:text-gray-900 bg-transparent"}`}>
