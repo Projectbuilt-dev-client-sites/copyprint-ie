@@ -60,10 +60,9 @@ export default function LocalServicePage() {
             <img
               src={heroImage}
               alt={`${service.name} in ${area.name}`}
-              className="w-full h-full object-cover opacity-25"
+              className="w-full h-full object-cover"
               data-testid="img-hero"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#32373c]/60 via-[#32373c]/70 to-[#32373c]" />
           </div>
         )}
         <div className="relative max-w-4xl mx-auto px-4 text-center">
