@@ -242,34 +242,51 @@ export default function ServicePage() {
           <img
             src={service.image}
             alt={`${service.name} printing services at Copyprint.ie Dublin`}
-            className="w-full h-full object-cover opacity-20"
+            className="w-full h-full object-cover opacity-30"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#32373c] via-[#32373c]/95 to-[#32373c]/80" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#32373c] via-[#32373c]/90 to-[#32373c]/60" />
         </div>
-        <div className="max-w-5xl mx-auto px-4 relative z-10">
+        <div className="max-w-6xl mx-auto px-4 relative z-10">
           <Link href="/" data-testid="link-back-home">
             <span className="inline-flex items-center gap-1.5 text-white/60 text-sm mb-8 cursor-pointer transition-colors">
               <ArrowLeft className="w-4 h-4" /> Back to Home
             </span>
           </Link>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="flex items-center gap-4 mb-5">
-              <div className="w-14 h-14 rounded-md bg-primary/20 flex items-center justify-center">
-                <service.icon className="w-7 h-7 text-primary" />
+          <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+            <motion.div
+              className="flex-1"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="flex items-center gap-4 mb-5">
+                <div className="w-14 h-14 rounded-md bg-primary/20 flex items-center justify-center">
+                  <service.icon className="w-7 h-7 text-primary" />
+                </div>
+                <h1 className="text-3xl md:text-5xl font-bold text-white" data-testid="text-service-title">
+                  {service.name}
+                </h1>
               </div>
-              <h1 className="text-3xl md:text-5xl font-bold text-white" data-testid="text-service-title">
-                {service.name}
-              </h1>
-            </div>
-            <p className="text-white/70 text-lg max-w-3xl leading-relaxed" data-testid="text-service-description">
-              {service.description}
-            </p>
-          </motion.div>
+              <p className="text-white/70 text-lg max-w-3xl leading-relaxed" data-testid="text-service-description">
+                {service.description}
+              </p>
+            </motion.div>
+
+            <motion.div
+              className="w-full md:w-80 lg:w-96 flex-shrink-0"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <img
+                src={service.image}
+                alt={`${service.name} - Copyprint.ie Dublin`}
+                className="w-full rounded-lg shadow-2xl border border-white/10"
+                data-testid="img-service-hero"
+              />
+            </motion.div>
+          </div>
         </div>
       </section>
 
