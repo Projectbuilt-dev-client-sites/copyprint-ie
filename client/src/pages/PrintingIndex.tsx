@@ -13,6 +13,11 @@ export default function PrintingIndex() {
     <div>
       <section className="bg-[#32373c] py-16">
         <div className="max-w-5xl mx-auto px-4 text-center">
+          <div className="flex items-center justify-center gap-2 text-white/50 text-sm mb-4">
+            <Link href="/" className="hover:text-white transition-colors" data-testid="breadcrumb-home">Home</Link>
+            <span>/</span>
+            <span className="text-white/80">Locations</span>
+          </div>
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-4" data-testid="text-printing-index-h1">
             Printing Services Across Dublin
           </h1>
