@@ -28,3 +28,15 @@ export const contactMessages = pgTable("contact_messages", {
 export const insertContactSchema = createInsertSchema(contactMessages).omit({ id: true });
 export type InsertContact = z.infer<typeof insertContactSchema>;
 export type ContactMessage = typeof contactMessages.$inferSelect;
+
+export const artworkSubmissions = pgTable("artwork_submissions", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  fileName: text("file_name"),
+});
+
+export const insertArtworkSchema = createInsertSchema(artworkSubmissions).omit({ id: true });
+export type InsertArtwork = z.infer<typeof insertArtworkSchema>;
+export type ArtworkSubmission = typeof artworkSubmissions.$inferSelect;

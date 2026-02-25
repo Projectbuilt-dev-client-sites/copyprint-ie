@@ -1,8 +1,9 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertContactSchema } from "@shared/schema";
+import { insertContactSchema, insertArtworkSchema } from "@shared/schema";
 import { ZodError } from "zod";
+import { sendArtworkNotification } from "./email";
 import { getUncachableStripeClient, getStripePublishableKey } from "./stripeClient";
 import pg from "pg";
 
@@ -90,6 +91,23 @@ export async function registerRoutes(
         res.status(400).json({ error: "Invalid form data", details: error.errors });
       } else {
         res.status(500).json({ error: "Failed to send message" });
+      }
+    }
+  });
+
+  app.post("/api/artwork-submit", async (req, res) => {
+    try {
+      const data = insertArtworkSchema.parse(req.body);
+      const submission = await storage.createArtworkSubmission(data);
+      sendArtworkNotification(data).catch((err) =>
+        console.error("Failed to send artwork email:", err)
+      );
+      res.json({ success: true, id: submission.id });
+    } catch (error) {
+      if (error instanceof ZodError) {
+        res.status(400).json({ error: "Invalid form data", details: error.errors });
+      } else {
+        res.status(500).json({ error: "Failed to submit artwork" });
       }
     }
   });
