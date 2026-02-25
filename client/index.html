@@ -30,22 +30,20 @@
         }
       })();
     </script>
-    <div id="google_translate_element" style="display:none;position:absolute;"></div>
     <script type="text/javascript">
-      function googleTranslateElementInit() {
-        new google.translate.TranslateElement({
-          pageLanguage: 'en',
-          includedLanguages: 'en,es,fr,de,pt,zh-CN,pl,ar',
-          layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-          autoDisplay: false
-        }, 'google_translate_element');
-      }
       function setLanguage(lang) {
-        var el = document.querySelector('.goog-te-combo');
-        if (el) { el.value = lang; el.dispatchEvent(new Event('change')); }
+        if (lang === 'en') {
+          var hostname = window.location.hostname;
+          if (hostname.indexOf('translate.goog') !== -1) {
+            var orig = hostname.replace(/-/g, '.').replace('.translate.goog', '');
+            window.location.href = 'https://' + orig + window.location.pathname;
+          }
+          return;
+        }
+        var url = window.location.href;
+        window.location.href = 'https://translate.google.com/translate?sl=en&tl=' + lang + '&u=' + encodeURIComponent(url);
       }
     </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

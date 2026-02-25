@@ -108,8 +108,6 @@ export default function Header() {
                         className="w-full flex items-center gap-2.5 px-3.5 py-2 text-[13px] text-white/70 hover:text-white hover:bg-white/5 transition-all text-left"
                         onClick={() => {
                           (window as any).setLanguage?.(lang.code);
-                          const el = document.querySelector(".goog-te-combo") as HTMLSelectElement;
-                          if (el) { el.value = lang.code; el.dispatchEvent(new Event("change")); }
                           setLangOpen(false);
                         }}
                         data-testid={`button-lang-${lang.code}`}
