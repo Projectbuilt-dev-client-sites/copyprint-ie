@@ -143,7 +143,7 @@ export default function LocalServicePage() {
               Delivery & Collection for {area.name}
             </h2>
             <p className="text-gray-600 leading-relaxed mb-8" data-testid="text-delivery-body">
-              {content.delivery}
+              Multiple ways to receive your order for {area.name} customers. Pop into our Dame St location for same or next-day collection, or we can deliver directly to {area.name}. <a href="/services/nationwide-delivery" className="text-blue-600 hover:underline" data-testid="link-nationwide-delivery">Nationwide delivery &raquo;</a> <a href="/#contact" className="text-blue-600 hover:underline" data-testid="link-contact-us">Contact us</a>
             </p>
           </div>
         </div>
