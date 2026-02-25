@@ -35,7 +35,7 @@ function HeroBanner() {
           alt="Copyprint.ie - Dublin's #1 Print Shop"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-navy-dark/90 via-navy/70 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-900/85 via-gray-900/60 to-transparent" />
         <div className="absolute inset-0 flex items-center">
           <div className="max-w-7xl mx-auto px-4 w-full">
             <motion.div
@@ -44,7 +44,7 @@ function HeroBanner() {
               transition={{ duration: 0.7 }}
               className="max-w-xl"
             >
-              <span className="inline-flex items-center gap-2 bg-primary/20 text-primary px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold mb-4 border border-primary/30" data-testid="badge-established">
+              <span className="inline-flex items-center gap-2 bg-white/20 text-white px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold mb-4 border border-white/30 backdrop-blur-sm" data-testid="badge-established">
                 <Award className="w-3.5 h-3.5" />
                 Est. 1982
               </span>
@@ -52,7 +52,7 @@ function HeroBanner() {
                 Dublin's #1
                 <span className="block text-primary">Print Shop</span>
               </h1>
-              <p className="text-white/60 text-sm sm:text-base md:text-lg mb-6 max-w-md">
+              <p className="text-white/80 text-sm sm:text-base md:text-lg mb-6 max-w-md">
                 Same Day Click & Collect. Professional printing for business & personal needs since 1982.
               </p>
               <div className="flex flex-wrap gap-3">
@@ -67,7 +67,7 @@ function HeroBanner() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-white/20 text-white backdrop-blur-sm bg-white/5"
+                  className="border-white/30 text-white backdrop-blur-sm bg-white/10"
                   onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
                   data-testid="button-hero-contact"
                 >
@@ -84,7 +84,7 @@ function HeroBanner() {
 
 function ServicesGrid() {
   return (
-    <section id="services" className="py-14 md:py-20 bg-navy" data-testid="section-services">
+    <section id="services" className="py-14 md:py-20 bg-white" data-testid="section-services">
       <div className="max-w-7xl mx-auto px-4">
         <motion.div
           className="text-center mb-10 md:mb-14"
@@ -93,8 +93,8 @@ function ServicesGrid() {
           viewport={{ once: true }}
           variants={sectionVariants}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3" data-testid="text-services-title">Print Services</h2>
-          <p className="text-white/50 text-base md:text-lg max-w-2xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3" data-testid="text-services-title">Print Services</h2>
+          <p className="text-gray-500 text-base md:text-lg max-w-2xl mx-auto">
             From business cards to banners, we've got all your printing needs covered.
           </p>
         </motion.div>
@@ -109,7 +109,7 @@ function ServicesGrid() {
               transition={{ duration: 0.4, delay: index * 0.03 }}
             >
               <Link href={`/services/${service.slug}`} data-testid={`card-service-${service.slug}`}>
-                <div className="group cursor-pointer rounded-md overflow-hidden bg-navy-light border border-white/10 transition-all duration-300 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5">
+                <div className="group cursor-pointer rounded-md overflow-hidden bg-white border border-gray-200 transition-all duration-300 hover:border-primary/50 hover:shadow-lg">
                   <div className="aspect-[4/3] overflow-hidden">
                     <img
                       src={service.image}
@@ -118,7 +118,7 @@ function ServicesGrid() {
                     />
                   </div>
                   <div className="p-3 md:p-4 text-center">
-                    <h3 className="text-white font-semibold text-sm md:text-base" data-testid={`text-service-name-${service.slug}`}>
+                    <h3 className="text-gray-900 font-semibold text-sm md:text-base" data-testid={`text-service-name-${service.slug}`}>
                       {service.name}
                     </h3>
                   </div>
@@ -134,7 +134,7 @@ function ServicesGrid() {
 
 function CTABanner() {
   return (
-    <section className="py-12 md:py-16 bg-navy-dark" data-testid="section-cta">
+    <section className="py-12 md:py-16 bg-gray-50" data-testid="section-cta">
       <div className="max-w-6xl mx-auto px-4">
         <motion.div
           initial="hidden"
@@ -144,7 +144,7 @@ function CTABanner() {
         >
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
             <div className="flex-1 text-center md:text-left">
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-2" data-testid="text-cta-line1">
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2" data-testid="text-cta-line1">
                 Business Cards | Flyers & Leaflets
               </h2>
               <h2 className="text-2xl md:text-3xl font-bold text-primary mb-6">
@@ -163,7 +163,7 @@ function CTABanner() {
               <img
                 src="/images/order-now-cta.png"
                 alt="Order printing online"
-                className="w-full rounded-md shadow-2xl"
+                className="w-full rounded-md shadow-xl"
               />
             </div>
           </div>
@@ -175,7 +175,7 @@ function CTABanner() {
 
 function ContactBar() {
   return (
-    <section className="py-10 md:py-14 bg-navy border-y border-white/10" data-testid="section-contact-bar">
+    <section className="py-10 md:py-14 bg-white border-y border-gray-200" data-testid="section-contact-bar">
       <div className="max-w-4xl mx-auto px-4 text-center">
         <motion.div
           initial="hidden"
@@ -183,21 +183,21 @@ function ContactBar() {
           viewport={{ once: true }}
           variants={sectionVariants}
         >
-          <h3 className="text-xl font-bold text-white mb-2">
-            Copy<span className="text-primary">print</span><span className="text-white/60">.ie</span>
+          <h3 className="text-xl font-bold text-gray-900 mb-2">
+            Copy<span className="text-primary">print</span><span className="text-gray-400">.ie</span>
           </h3>
-          <p className="text-white/50 text-sm mb-6">
+          <p className="text-gray-500 text-sm mb-6">
             Click to Call or Send WhatsApp Message
           </p>
           <div className="flex items-center justify-center gap-4 flex-wrap">
             <a href="tel:016774234" data-testid="link-contactbar-phone">
-              <Button size="lg" variant="outline" className="border-white/20 text-white backdrop-blur-sm bg-white/5 gap-2">
+              <Button size="lg" variant="outline" className="gap-2">
                 <Phone className="w-5 h-5" />
                 01 677 4234
               </Button>
             </a>
             <a href="https://wa.me/353870687728" target="_blank" rel="noopener noreferrer" data-testid="link-contactbar-whatsapp">
-              <Button size="lg" className="gap-2 bg-green-600 border-green-700">
+              <Button size="lg" className="gap-2 bg-green-600 border-green-700 text-white">
                 <MessageCircle className="w-5 h-5" />
                 WhatsApp Us
               </Button>
@@ -244,7 +244,7 @@ function Testimonials() {
   }, [next]);
 
   return (
-    <section className="py-14 md:py-20 bg-navy-dark" data-testid="section-testimonials">
+    <section className="py-14 md:py-20 bg-gray-50" data-testid="section-testimonials">
       <div className="max-w-4xl mx-auto px-4">
         <motion.div
           className="text-center mb-10"
@@ -253,25 +253,25 @@ function Testimonials() {
           viewport={{ once: true }}
           variants={sectionVariants}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3" data-testid="text-testimonials-title">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3" data-testid="text-testimonials-title">
             What Customers Say!
           </h2>
         </motion.div>
 
         <div className="relative">
-          <div className="bg-navy-light border border-white/10 rounded-md p-8 md:p-12 text-center min-h-[220px] flex flex-col items-center justify-center">
+          <div className="bg-white border border-gray-200 rounded-md p-8 md:p-12 text-center min-h-[220px] flex flex-col items-center justify-center shadow-sm">
             <div className="flex gap-1 mb-5">
               {Array.from({ length: 5 }).map((_, i) => (
                 <Star key={i} className="w-5 h-5 fill-primary text-primary" />
               ))}
             </div>
-            <p className="text-white/70 text-base md:text-lg leading-relaxed mb-6 max-w-2xl italic" data-testid={`text-testimonial-${current}`}>
+            <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-6 max-w-2xl italic" data-testid={`text-testimonial-${current}`}>
               "{testimonials[current].text}"
             </p>
-            <p className="text-white font-semibold" data-testid={`text-testimonial-name-${current}`}>
+            <p className="text-gray-900 font-semibold" data-testid={`text-testimonial-name-${current}`}>
               {testimonials[current].name}
             </p>
-            <p className="text-white/40 text-sm">
+            <p className="text-gray-400 text-sm">
               {testimonials[current].source}
             </p>
           </div>
@@ -279,7 +279,7 @@ function Testimonials() {
           <div className="flex items-center justify-center gap-4 mt-6">
             <button
               onClick={prev}
-              className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white/70 transition-colors"
+              className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 transition-colors"
               data-testid="button-testimonial-prev"
             >
               <ChevronLeft className="w-5 h-5" />
@@ -289,14 +289,14 @@ function Testimonials() {
                 <button
                   key={i}
                   onClick={() => setCurrent(i)}
-                  className={`w-2.5 h-2.5 rounded-full transition-colors ${i === current ? "bg-primary" : "bg-white/20"}`}
+                  className={`w-2.5 h-2.5 rounded-full transition-colors ${i === current ? "bg-primary" : "bg-gray-300"}`}
                   data-testid={`button-testimonial-dot-${i}`}
                 />
               ))}
             </div>
             <button
               onClick={next}
-              className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white/70 transition-colors"
+              className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 transition-colors"
               data-testid="button-testimonial-next"
             >
               <ChevronRight className="w-5 h-5" />
@@ -333,7 +333,7 @@ const features = [
 
 function WhyChooseUs() {
   return (
-    <section className="py-14 md:py-20 bg-navy" data-testid="section-why">
+    <section className="py-14 md:py-20 bg-white" data-testid="section-why">
       <div className="max-w-7xl mx-auto px-4">
         <motion.div
           className="text-center mb-10 md:mb-14"
@@ -342,8 +342,8 @@ function WhyChooseUs() {
           viewport={{ once: true }}
           variants={sectionVariants}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3" data-testid="text-why-title">Why Choose Copyprint.ie</h2>
-          <p className="text-white/50 text-lg max-w-2xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3" data-testid="text-why-title">Why Choose Copyprint.ie</h2>
+          <p className="text-gray-500 text-lg max-w-2xl mx-auto">
             Trusted by Dublin businesses and individuals for over four decades.
           </p>
         </motion.div>
@@ -357,12 +357,12 @@ function WhyChooseUs() {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
             >
-              <div className="bg-navy-light border border-white/10 rounded-md p-6 text-center h-full">
-                <div className="w-14 h-14 rounded-full bg-primary/15 flex items-center justify-center mx-auto mb-4">
+              <div className="bg-gray-50 border border-gray-200 rounded-md p-6 text-center h-full">
+                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                   <feature.icon className="w-7 h-7 text-primary" />
                 </div>
-                <h3 className="text-white font-semibold mb-2" data-testid={`text-feature-${index}`}>{feature.title}</h3>
-                <p className="text-white/50 text-sm leading-relaxed">{feature.description}</p>
+                <h3 className="text-gray-900 font-semibold mb-2" data-testid={`text-feature-${index}`}>{feature.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">{feature.description}</p>
               </div>
             </motion.div>
           ))}
@@ -374,7 +374,7 @@ function WhyChooseUs() {
 
 function AboutSection() {
   return (
-    <section className="py-14 md:py-20 bg-navy-dark border-y border-white/10" data-testid="section-about">
+    <section className="py-14 md:py-20 bg-gray-50 border-y border-gray-200" data-testid="section-about">
       <div className="max-w-4xl mx-auto px-4 text-center">
         <motion.div
           initial="hidden"
@@ -382,13 +382,13 @@ function AboutSection() {
           viewport={{ once: true }}
           variants={sectionVariants}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6" data-testid="text-about-title">About Copyprint.ie</h2>
-          <p className="text-white/60 text-base md:text-lg leading-relaxed mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6" data-testid="text-about-title">About Copyprint.ie</h2>
+          <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-8">
             Based in Dame St, Dublin 2, we have been proudly serving Dublin since 1982.
             We take great pride in every commercial or personal print job, no matter how big or small.
             From a single poster to thousands of business cards, every order gets the same care and attention.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-5 text-white/50 text-sm">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-5 text-gray-500 text-sm">
             <span className="flex items-center gap-2">
               <CheckCircle className="w-4 h-4 text-primary" />
               Same Day Click & Collect
@@ -437,7 +437,7 @@ function ContactSection() {
   });
 
   return (
-    <section id="contact" className="py-14 md:py-20 bg-navy" data-testid="section-contact">
+    <section id="contact" className="py-14 md:py-20 bg-white" data-testid="section-contact">
       <div className="max-w-2xl mx-auto px-4">
         <motion.div
           className="text-center mb-10"
@@ -446,8 +446,8 @@ function ContactSection() {
           viewport={{ once: true }}
           variants={sectionVariants}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3" data-testid="text-contact-title">Get In Touch</h2>
-          <p className="text-white/50 text-base md:text-lg">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3" data-testid="text-contact-title">Get In Touch</h2>
+          <p className="text-gray-500 text-base md:text-lg">
             Send us a message and we'll get back to you promptly. Or call us at{" "}
             <a href="tel:016774234" className="text-primary font-medium">01 677 4234</a>.
           </p>
@@ -459,7 +459,7 @@ function ContactSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <div className="bg-navy-light border border-white/10 rounded-md p-6 md:p-8">
+          <div className="bg-gray-50 border border-gray-200 rounded-md p-6 md:p-8">
             <Form {...form}>
               <form onSubmit={form.handleSubmit((data) => mutation.mutate(data))} className="space-y-5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -468,9 +468,9 @@ function ContactSection() {
                     name="name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-white/80">Name</FormLabel>
+                        <FormLabel className="text-gray-700">Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="Your name" {...field} className="bg-navy border-white/15 text-white placeholder:text-white/30" data-testid="input-contact-name" />
+                          <Input placeholder="Your name" {...field} className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-400" data-testid="input-contact-name" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -481,9 +481,9 @@ function ContactSection() {
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-white/80">Email</FormLabel>
+                        <FormLabel className="text-gray-700">Email</FormLabel>
                         <FormControl>
-                          <Input placeholder="your@email.com" type="email" {...field} className="bg-navy border-white/15 text-white placeholder:text-white/30" data-testid="input-contact-email" />
+                          <Input placeholder="your@email.com" type="email" {...field} className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-400" data-testid="input-contact-email" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -495,9 +495,9 @@ function ContactSection() {
                   name="subject"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-white/80">Subject</FormLabel>
+                      <FormLabel className="text-gray-700">Subject</FormLabel>
                       <FormControl>
-                        <Input placeholder="What's this about?" {...field} className="bg-navy border-white/15 text-white placeholder:text-white/30" data-testid="input-contact-subject" />
+                        <Input placeholder="What's this about?" {...field} className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-400" data-testid="input-contact-subject" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -508,11 +508,11 @@ function ContactSection() {
                   name="message"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-white/80">Message</FormLabel>
+                      <FormLabel className="text-gray-700">Message</FormLabel>
                       <FormControl>
                         <Textarea
                           placeholder="Tell us about your printing needs..."
-                          className="min-h-[130px] bg-navy border-white/15 text-white placeholder:text-white/30"
+                          className="min-h-[130px] bg-white border-gray-300 text-gray-900 placeholder:text-gray-400"
                           {...field}
                           data-testid="input-contact-message"
                         />

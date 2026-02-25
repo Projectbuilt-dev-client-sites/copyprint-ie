@@ -42,7 +42,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50">
-      <div className="bg-navy-dark">
+      <div className="bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between gap-2">
           <div className="flex items-center gap-4 flex-wrap">
             <a
@@ -79,24 +79,24 @@ export default function Header() {
         </div>
       </div>
 
-      <nav className="bg-navy border-b border-white/10 backdrop-blur-sm">
+      <nav className="bg-white border-b border-gray-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
           <Link href="/" data-testid="link-logo">
-            <span className="text-white font-bold text-xl tracking-tight cursor-pointer">
+            <span className="text-gray-900 font-bold text-xl tracking-tight cursor-pointer">
               Copy<span className="text-primary">print</span>
-              <span className="text-white/60">.ie</span>
+              <span className="text-gray-400">.ie</span>
             </span>
           </Link>
 
           <div className="hidden xl:flex items-center gap-0.5">
             <Link href="/" data-testid="link-nav-shop">
-              <span className={`px-3 py-2 text-sm font-medium transition-colors cursor-pointer rounded-md ${location === "/" ? "text-white bg-white/10" : "text-white/75"}`}>
+              <span className={`px-3 py-2 text-sm font-medium transition-colors cursor-pointer rounded-md ${location === "/" ? "text-primary bg-primary/5" : "text-gray-600"}`}>
                 Shop Now
               </span>
             </Link>
             {navItems.map((item) => (
               <Link key={item.href} href={item.href} data-testid={`link-nav-${item.href.split("/").pop()}`}>
-                <span className={`px-3 py-2 text-sm font-medium transition-colors cursor-pointer rounded-md ${location === item.href ? "text-white bg-white/10" : "text-white/75"}`}>
+                <span className={`px-3 py-2 text-sm font-medium transition-colors cursor-pointer rounded-md ${location === item.href ? "text-primary bg-primary/5" : "text-gray-600"}`}>
                   {item.label}
                 </span>
               </Link>
@@ -108,7 +108,7 @@ export default function Header() {
               onMouseLeave={() => setDropdownOpen(false)}
             >
               <button
-                className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-white/75 transition-colors rounded-md"
+                className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-600 transition-colors rounded-md"
                 data-testid="button-business-printing-dropdown"
               >
                 Business Printing
@@ -131,7 +131,7 @@ export default function Header() {
 
             {extraItems.map((item) => (
               <Link key={item.href} href={item.href} data-testid={`link-nav-${item.href.split("/").pop()}`}>
-                <span className={`px-3 py-2 text-sm font-medium transition-colors cursor-pointer rounded-md ${location === item.href ? "text-white bg-white/10" : "text-white/75"}`}>
+                <span className={`px-3 py-2 text-sm font-medium transition-colors cursor-pointer rounded-md ${location === item.href ? "text-primary bg-primary/5" : "text-gray-600"}`}>
                   {item.label}
                 </span>
               </Link>
@@ -156,15 +156,15 @@ export default function Header() {
 
             <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
               <SheetTrigger asChild>
-                <Button size="icon" variant="ghost" className="xl:hidden text-white no-default-hover-elevate no-default-active-elevate" data-testid="button-mobile-menu">
+                <Button size="icon" variant="ghost" className="xl:hidden text-gray-700 no-default-hover-elevate no-default-active-elevate" data-testid="button-mobile-menu">
                   <Menu className="w-5 h-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="bg-navy border-white/10 w-[300px]">
+              <SheetContent side="right" className="bg-white border-gray-200 w-[300px]">
                 <SheetHeader>
-                  <SheetTitle className="text-white text-left">
+                  <SheetTitle className="text-gray-900 text-left">
                     Copy<span className="text-primary">print</span>
-                    <span className="text-white/60">.ie</span>
+                    <span className="text-gray-400">.ie</span>
                   </SheetTitle>
                 </SheetHeader>
                 <div className="flex flex-col gap-1 mt-6">
@@ -175,20 +175,20 @@ export default function Header() {
                       onClick={() => setMobileOpen(false)}
                       data-testid={`link-mobile-${item.href === "/" ? "home" : item.href.split("/").pop()}`}
                     >
-                      <span className={`block px-3 py-2.5 text-sm font-medium rounded-md cursor-pointer transition-colors ${location === item.href ? "text-white bg-white/10" : "text-white/70"}`}>
+                      <span className={`block px-3 py-2.5 text-sm font-medium rounded-md cursor-pointer transition-colors ${location === item.href ? "text-primary bg-primary/5" : "text-gray-600"}`}>
                         {item.label}
                       </span>
                     </Link>
                   ))}
                 </div>
-                <div className="mt-6 pt-6 border-t border-white/10 space-y-3">
-                  <a href="tel:016774234" className="flex items-center gap-2 text-white/70 text-sm" data-testid="link-mobile-phone">
+                <div className="mt-6 pt-6 border-t border-gray-200 space-y-3">
+                  <a href="tel:016774234" className="flex items-center gap-2 text-gray-600 text-sm" data-testid="link-mobile-phone">
                     <Phone className="w-4 h-4" /> 01 677 4234
                   </a>
-                  <a href="https://wa.me/353870687728" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-green-400/90 text-sm" data-testid="link-mobile-whatsapp">
+                  <a href="https://wa.me/353870687728" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-green-600 text-sm" data-testid="link-mobile-whatsapp">
                     <MessageCircle className="w-4 h-4" /> WhatsApp Us
                   </a>
-                  <a href="mailto:info@copyprint.ie" className="flex items-center gap-2 text-white/70 text-sm" data-testid="link-mobile-email">
+                  <a href="mailto:info@copyprint.ie" className="flex items-center gap-2 text-gray-600 text-sm" data-testid="link-mobile-email">
                     <Mail className="w-4 h-4" /> info@copyprint.ie
                   </a>
                 </div>
