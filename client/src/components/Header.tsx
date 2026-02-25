@@ -57,7 +57,7 @@ export default function Header() {
             <Link key={item.href} href={item.href} data-testid={`link-nav-${item.href.split("/").pop()}`}>
               <span 
                 data-cursor-grow 
-                className={`px-3 py-2 text-sm font-medium transition-all cursor-none rounded relative group ${
+                className={`px-3 py-2 text-sm font-medium transition-all rounded relative group ${
                   location === item.href 
                     ? "text-white bg-white/10" 
                     : "text-white/70 hover:text-white"
@@ -75,7 +75,7 @@ export default function Header() {
             onMouseLeave={() => setDropdownOpen(false)}
           >
             <button
-              className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-white/70 hover:text-white transition-all rounded cursor-none"
+              className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-white/70 hover:text-white transition-all rounded"
               data-cursor-grow
               data-testid="button-more-services-dropdown"
             >
@@ -87,7 +87,7 @@ export default function Header() {
                 <div className="bg-[#3d4248]/95 backdrop-blur-md rounded shadow-2xl py-2 min-w-[200px] border border-white/10 animate-in fade-in slide-in-from-top-2 duration-200">
                   {moreItems.map((item) => (
                     <Link key={item.href} href={item.href} data-testid={`link-dropdown-${item.href.split("/").pop()}`}>
-                      <span className={`block px-4 py-2 text-sm cursor-none transition-all ${
+                      <span className={`block px-4 py-2 text-sm transition-all ${
                         location === item.href ? "text-primary bg-white/5" : "text-white/70 hover:text-white hover:bg-white/5"
                       }`}>
                         {item.label}
