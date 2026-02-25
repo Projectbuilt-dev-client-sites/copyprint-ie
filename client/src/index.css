@@ -174,20 +174,6 @@
     @apply font-sans antialiased bg-background text-foreground;
   }
 
-  iframe[src*="vimeo"] + div,
-  iframe[src*="vimeo"] ~ .vp-title,
-  iframe[src*="vimeo"] ~ .vp-badge {
-    display: none !important;
-  }
-}
-
-.vp-title,
-.vp-badge-link,
-[class*="vp-title"],
-[class*="vp-badge"] {
-  display: none !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
 }
 
 /**
