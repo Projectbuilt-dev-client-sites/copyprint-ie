@@ -31,7 +31,7 @@ function HeroBanner() {
     <section className="relative w-full overflow-hidden" data-testid="section-hero">
       <div className="relative w-full" style={{ paddingTop: "56.25%" }}>
         <iframe
-          src="https://player.vimeo.com/video/1168097892?background=1&autoplay=1&loop=1&muted=1&quality=1080p"
+          src="https://player.vimeo.com/video/1168097892?background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&quality=1080p"
           className="absolute inset-0 w-full h-full"
           allow="autoplay; fullscreen"
           title="Copyprint.ie Hero Video"
