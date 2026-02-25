@@ -1,0 +1,26 @@
+Add rich SEO keyword optimization and a blog structure to the copyprint.ie site.
+
+KEYWORDS - Add 25-30 rich keywords per service page as hidden SEO meta keywords, structured data, and naturally woven into page content. Use these keyword themes per page:
+
+Homepage: print shop dublin, same day printing dublin, business printing dublin, cheap printing dublin, printing services dublin 2, fast printing dublin, online printing ireland, print shop dame street, copyprint dublin, printing near me dublin, next day printing dublin, quality printing dublin, professional printing dublin, dublin city printing, printing company dublin, business cards dublin, flyers printing dublin, poster printing dublin, banner printing dublin, sticker printing dublin, leaflet printing dublin, same day business cards, printing dame street, dublin 2 printing, printing services ireland
+
+Business Cards: business cards dublin, cheap business cards ireland, same day business cards dublin, business cards printing dublin, fast business cards, professional business cards dublin, business card design dublin, glossy business cards ireland, matt business cards dublin, double sided business cards, business cards next day delivery ireland, bulk business cards cheap, premium business cards dublin, business card printing same day, business cards online ireland, business cards dame street, business card print shop dublin, cheap business cards dublin, business cards 24 hours, express business cards ireland, spot uv business cards ireland, luxury business cards dublin, business cards 500, business cards 250, business cards 100
+
+Flyers & Leaflets: flyers printing dublin, leaflets printing ireland, cheap flyers dublin, same day flyers printing, A5 flyers dublin, A4 flyers printing ireland, flyer distribution dublin, promotional flyers dublin, event flyers printing, restaurant leaflets dublin, takeaway menus printing dublin, flyer printing near me, fast flyer printing dublin, bulk flyers cheap ireland, leaflet printing same day, A6 flyers dublin, DL leaflets printing, double sided flyers ireland, full colour flyers dublin, flyers 500 cheap, flyers 1000 cheap ireland, marketing flyers dublin, leaflet design and print dublin, flyer printing dame street, next day flyers ireland
+
+Do the same keyword depth for every other service page: Stickers & Labels, Posters, PVC Banners, Business Stationery, Restaurant Printing, Roller Banners, Party Banners, Booklets, Student Services, Personal Printing, Laminating & Binding.
+
+BLOG STRUCTURE - Create 8 blog posts with full content:
+
+1. "How to Design the Perfect Business Card in 2025" - tips on bleed, resolution, fonts, finish options
+2. "Same Day Printing in Dublin - Everything You Need to Know" - services available same day, how to order, cut off times
+3. "Top 10 Tips for Effective Flyer Design" - layout, typography, call to action, print specs
+4. "Restaurant Menu Printing Guide - Sizes, Materials & Costs" - full guide for Dublin restaurants
+5. "Student Printing Services in Dublin - Thesis, CVs, Portfolios" - everything students need
+6. "PVC Banners vs Roller Banners - Which is Right for Your Event?" - comparison guide
+7. "How to Prepare Print-Ready Files - A Complete Guide" - PDF, AI, PSD setup tips
+8. "Business Stationery That Makes a Lasting Impression" - letterheads, envelopes, compliment slips
+
+Each blog post should be 600-800 words, fully written, with proper headings, naturally containing 15-20 relevant keywords, meta title, meta description, and Open Graph tags. Create a /blog index page listing all 8 posts with featured images, excerpts, and read more links. Add Blog link to the main navigation.
+
+After creating all content rebuild the static HTML for all pages including blog pages and commit to GitHub.

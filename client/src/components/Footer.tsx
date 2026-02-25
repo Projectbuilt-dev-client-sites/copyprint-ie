@@ -98,11 +98,6 @@ export default function Footer() {
                 { label: "Drumcondra", slug: "drumcondra" },
                 { label: "Dundrum", slug: "dundrum" },
                 { label: "Blackrock", slug: "blackrock" },
-                { label: "Swords", slug: "swords" },
-                { label: "Tallaght", slug: "tallaght" },
-                { label: "Blanchardstown", slug: "blanchardstown" },
-                { label: "Dun Laoghaire", slug: "dun-laoghaire" },
-                { label: "Clontarf", slug: "clontarf" },
               ].map((loc) => (
                 <li key={loc.slug}>
                   <Link href={`/printing/${loc.slug}/business-cards`} data-testid={`link-footer-loc-${loc.slug}`}>
