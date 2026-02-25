@@ -29,54 +29,48 @@ const sectionVariants = {
 function HeroBanner() {
   return (
     <section className="relative w-full overflow-hidden" data-testid="section-hero">
-      <div className="relative w-full h-[300px] sm:h-[400px] md:h-[450px] lg:h-[500px]">
-        <div className="absolute inset-0 overflow-hidden">
-          <iframe
-            src="https://player.vimeo.com/video/1168097892?background=1&autoplay=1&loop=1&muted=1&quality=1080p"
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.78vh] min-w-full min-h-full"
-            style={{ aspectRatio: "16/9" }}
-            allow="autoplay; fullscreen"
-            title="Copyprint.ie Hero Video"
-          />
-        </div>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-            >
-              <p className="text-white text-sm sm:text-base font-medium mb-2 drop-shadow-lg" data-testid="badge-established">Est. 1982</p>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-1 leading-tight drop-shadow-lg" data-testid="text-hero-title">
-                Dublin's #1
-              </h1>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-4 leading-tight drop-shadow-lg">
-                Print Shop
-              </h1>
-              <p className="text-white text-sm sm:text-base md:text-lg mb-6 max-w-xl mx-auto drop-shadow-lg">
-                Same Day Click & Collect. Professional printing for business & personal needs since 1982.
-              </p>
-              <div className="flex flex-wrap gap-3 justify-center">
-                <Button
-                  size="lg"
-                  className="gap-2"
-                  onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
-                  data-testid="button-hero-order"
-                >
-                  Order Now <ArrowRight className="w-4 h-4" />
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-white/30 text-white backdrop-blur-sm bg-white/10"
-                  onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-                  data-testid="button-hero-contact"
-                >
-                  Contact Us
-                </Button>
-              </div>
-            </motion.div>
-          </div>
+      <div className="relative w-full" style={{ paddingTop: "56.25%" }}>
+        <iframe
+          src="https://player.vimeo.com/video/1168097892?background=1&autoplay=1&loop=1&muted=1&quality=1080p"
+          className="absolute inset-0 w-full h-full"
+          allow="autoplay; fullscreen"
+          title="Copyprint.ie Hero Video"
+        />
+      </div>
+      <div className="bg-[#32373c] py-6 md:py-8">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <p className="text-white/70 text-sm font-medium mb-1" data-testid="badge-established">Est. 1982</p>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-1 leading-tight" data-testid="text-hero-title">
+              Dublin's #1 <span className="text-primary">Print Shop</span>
+            </h1>
+            <p className="text-white/60 text-sm md:text-base mb-5 max-w-lg mx-auto">
+              Same Day Click & Collect. Professional printing for business & personal needs since 1982.
+            </p>
+            <div className="flex flex-wrap gap-3 justify-center">
+              <Button
+                size="lg"
+                className="gap-2"
+                onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
+                data-testid="button-hero-order"
+              >
+                Order Now <ArrowRight className="w-4 h-4" />
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white/30 text-white bg-white/5"
+                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+                data-testid="button-hero-contact"
+              >
+                Contact Us
+              </Button>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
