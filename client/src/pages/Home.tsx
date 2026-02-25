@@ -37,40 +37,33 @@ function HeroBanner() {
           title="Copyprint.ie Hero Video"
         />
       </div>
-      <div className="bg-[#32373c] py-6 md:py-8">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <p className="text-white/70 text-sm font-medium mb-1" data-testid="badge-established">Est. 1982</p>
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-1 leading-tight" data-testid="text-hero-title">
-              Dublin's #1 <span className="text-primary">Print Shop</span>
-            </h1>
-            <p className="text-white/60 text-sm md:text-base mb-5 max-w-lg mx-auto">
-              Same Day Click & Collect. Professional printing for business & personal needs since 1982.
-            </p>
-            <div className="flex flex-wrap gap-3 justify-center">
-              <Button
-                size="lg"
-                className="gap-2"
-                onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
-                data-testid="button-hero-order"
-              >
-                Order Now <ArrowRight className="w-4 h-4" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white/30 text-white bg-white/5"
-                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-                data-testid="button-hero-contact"
-              >
-                Contact Us
-              </Button>
-            </div>
-          </motion.div>
+      <div className="bg-[#32373c] py-3 md:py-4">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex items-center justify-center gap-2 sm:gap-3 flex-wrap text-sm md:text-base" data-testid="hero-bar">
+            <span className="text-white/70 font-medium" data-testid="badge-established">Est. 1982</span>
+            <span className="text-white font-bold" data-testid="text-hero-title">Dublin's #1 <span className="text-primary">Print Shop</span></span>
+            <span className="text-white/40 hidden sm:inline">*</span>
+            <span className="text-white/70 hidden sm:inline">Same Day</span>
+            <span className="text-white/40 hidden sm:inline">*</span>
+            <span className="text-white/70 hidden sm:inline">Click & Collect</span>
+            <span className="text-white/40">*</span>
+            <Button
+              size="sm"
+              onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
+              data-testid="button-hero-order"
+            >
+              Order Now
+            </Button>
+            <Button
+              size="sm"
+              variant="outline"
+              className="border-white/30 text-white bg-white/5"
+              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+              data-testid="button-hero-contact"
+            >
+              Contact Us
+            </Button>
+          </div>
         </div>
       </div>
     </section>
