@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { blogPosts } from "@/lib/blog-posts";
 import { Calendar, ArrowRight } from "lucide-react";
+import blogHeroImage from "@assets/blog/blog-hero.png";
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -42,8 +43,14 @@ export default function BlogIndex() {
 
   return (
     <div>
-      <section className="py-16 md:py-24 bg-[#32373c]">
-        <div className="max-w-5xl mx-auto px-4">
+      <section className="relative py-20 md:py-28 overflow-hidden" data-testid="section-blog-hero">
+        <img
+          src={blogHeroImage}
+          alt="Copyprint.ie Blog"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
+        <div className="relative max-w-5xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

@@ -83,8 +83,14 @@ export default function BlogPost() {
 
   return (
     <div>
-      <section className="py-16 md:py-24 bg-[#32373c]">
-        <div className="max-w-4xl mx-auto px-4">
+      <section className="relative py-20 md:py-28 overflow-hidden" data-testid="section-post-hero">
+        <img
+          src={post.featuredImage}
+          alt={post.title}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
+        <div className="relative max-w-4xl mx-auto px-4">
           <Link href="/blog" data-testid="link-back-blog">
             <span className="inline-flex items-center gap-1.5 text-white/60 text-sm mb-8 cursor-pointer transition-colors">
               <ArrowLeft className="w-4 h-4" /> Back to Blog
