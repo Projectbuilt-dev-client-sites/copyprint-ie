@@ -453,7 +453,7 @@ function ContactSection() {
         >
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3" data-testid="text-contact-title">Get In Touch</h2>
           <p className="text-gray-500 text-base md:text-lg">
-            Send us a message and we'll get back to you promptly. Or call us at{" "}
+            Send us a message Or call{" "}
             <a href="tel:016774234" className="text-primary font-medium">01 677 4234</a>.
           </p>
         </motion.div>
