@@ -39,23 +39,20 @@ function HeroBanner() {
         />
         <div className="absolute bottom-0 left-0 right-0 z-10 bg-[#32373c]">
           <div className="max-w-7xl mx-auto px-4 py-14 relative">
-            <div className="flex items-center justify-center gap-4 sm:gap-5 flex-wrap" data-testid="hero-bar">
-              <span className="flex items-center gap-1.5 text-primary font-semibold" data-testid="badge-established">
+            <div className="flex items-center justify-center gap-3 sm:gap-4 flex-wrap" data-testid="hero-bar">
+              <span className="flex items-center gap-1.5 text-primary font-semibold px-4 py-2 rounded-lg bg-white/10 border border-white/15 shadow-[0_4px_0_rgba(0,0,0,0.3),0_6px_12px_rgba(0,0,0,0.2)] active:shadow-[0_1px_0_rgba(0,0,0,0.3)] active:translate-y-[3px] transition-all select-none" data-testid="badge-established">
                 <Award className="w-4 h-4" />
                 Est. 1982
               </span>
-              <span className="text-white/20">|</span>
-              <span className="flex items-center gap-1.5 text-white font-bold text-base sm:text-lg" data-testid="text-hero-title">
+              <span className="flex items-center gap-1.5 text-white font-bold text-base sm:text-lg px-4 py-2 rounded-lg bg-white/10 border border-white/15 shadow-[0_4px_0_rgba(0,0,0,0.3),0_6px_12px_rgba(0,0,0,0.2)] active:shadow-[0_1px_0_rgba(0,0,0,0.3)] active:translate-y-[3px] transition-all select-none" data-testid="text-hero-title">
                 <Printer className="w-4 h-4 text-primary" />
                 Dublin's #1 <span className="text-primary ml-1">Print Shop</span>
               </span>
-              <span className="text-white/20 hidden sm:inline">|</span>
-              <span className="hidden sm:flex items-center gap-1.5 text-white/80 font-medium text-sm">
+              <span className="hidden sm:flex items-center gap-1.5 text-white/80 font-medium text-sm px-4 py-2 rounded-lg bg-white/10 border border-white/15 shadow-[0_4px_0_rgba(0,0,0,0.3),0_6px_12px_rgba(0,0,0,0.2)] active:shadow-[0_1px_0_rgba(0,0,0,0.3)] active:translate-y-[3px] transition-all select-none">
                 <Zap className="w-3.5 h-3.5 text-primary" />
                 Same Day
               </span>
-              <span className="text-white/20 hidden sm:inline">|</span>
-              <span className="hidden sm:flex items-center gap-1.5 text-white/80 font-medium text-sm">
+              <span className="hidden sm:flex items-center gap-1.5 text-white/80 font-medium text-sm px-4 py-2 rounded-lg bg-white/10 border border-white/15 shadow-[0_4px_0_rgba(0,0,0,0.3),0_6px_12px_rgba(0,0,0,0.2)] active:shadow-[0_1px_0_rgba(0,0,0,0.3)] active:translate-y-[3px] transition-all select-none">
                 <Package className="w-3.5 h-3.5 text-primary" />
                 Click & Collect
               </span>
