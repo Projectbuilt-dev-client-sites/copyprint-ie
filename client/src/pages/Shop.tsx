@@ -47,20 +47,40 @@ function getOptionsFromMetadata(metadata: Record<string, string>, key: string): 
   return val ? val.split(",").map(s => s.trim()) : [];
 }
 
-function ProductCard({ product, onAddToCart }: { product: Product; onAddToCart: (item: CartItem) => void }) {
-  const printOptions = getOptionsFromMetadata(product.metadata, "print");
-  const qtyOptions = getOptionsFromMetadata(product.metadata, "qty");
-  const sizeOptions = getOptionsFromMetadata(product.metadata, "size");
+const optionLabels: Record<string, string> = {
+  print: "Print Options",
+  qty: "Quantity",
+  size: "Size",
+  finish: "Finish",
+};
 
-  const [selectedPrint, setSelectedPrint] = useState(printOptions[0] || "");
-  const [selectedQty, setSelectedQty] = useState(qtyOptions[0] || "");
-  const [selectedSize, setSelectedSize] = useState(sizeOptions[0] || "");
+function ProductCard({ product, onAddToCart }: { product: Product; onAddToCart: (item: CartItem) => void }) {
+  const optionKeys = Object.keys(product.metadata || {})
+    .filter(k => k.startsWith("options_"))
+    .map(k => k.replace("options_", ""));
+
+  const optionValues: Record<string, string[]> = {};
+  for (const key of optionKeys) {
+    optionValues[key] = getOptionsFromMetadata(product.metadata, key);
+  }
+
+  const [selections, setSelections] = useState<Record<string, string>>(() => {
+    const init: Record<string, string> = {};
+    for (const key of optionKeys) {
+      init[key] = optionValues[key]?.[0] || "";
+    }
+    return init;
+  });
+
+  const setSelection = (key: string, val: string) => {
+    setSelections(prev => ({ ...prev, [key]: val }));
+  };
 
   const matchingPrice = product.prices.find(p => {
     const m = p.metadata || {};
-    if (selectedQty && m.qty !== selectedQty) return false;
-    if (selectedPrint && m.print !== selectedPrint) return false;
-    if (selectedSize && m.size !== selectedSize) return false;
+    for (const key of optionKeys) {
+      if (selections[key] && m[key] && m[key] !== selections[key]) return false;
+    }
     return true;
   });
 
@@ -96,59 +116,23 @@ function ProductCard({ product, onAddToCart }: { product: Product; onAddToCart: 
         <p className="text-gray-500 text-sm mb-4 leading-relaxed">{product.description}</p>
 
         <div className="space-y-3 mb-4">
-          {printOptions.length > 0 && (
-            <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1.5">Print Options</label>
+          {optionKeys.map(key => (
+            <div key={key}>
+              <label className="block text-xs font-semibold text-gray-700 mb-1.5">{optionLabels[key] || key}</label>
               <div className="flex gap-2 flex-wrap">
-                {printOptions.map(opt => (
+                {(optionValues[key] || []).map(opt => (
                   <button
                     key={opt}
-                    onClick={() => setSelectedPrint(opt)}
-                    className={`px-3 py-1.5 text-xs rounded-lg border transition-all ${selectedPrint === opt ? "border-primary bg-primary/10 text-primary font-semibold" : "border-gray-200 text-gray-600"}`}
-                    data-testid={`button-print-${opt.toLowerCase().replace(/\s/g, '-')}`}
+                    onClick={() => setSelection(key, opt)}
+                    className={`px-3 py-1.5 text-xs rounded-lg border transition-all ${selections[key] === opt ? "border-primary bg-primary/10 text-primary font-semibold" : "border-gray-200 text-gray-600"}`}
+                    data-testid={`button-${key}-${opt.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
                   >
                     {opt}
                   </button>
                 ))}
               </div>
             </div>
-          )}
-
-          {qtyOptions.length > 0 && (
-            <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1.5">Quantity</label>
-              <div className="flex gap-2 flex-wrap">
-                {qtyOptions.map(opt => (
-                  <button
-                    key={opt}
-                    onClick={() => setSelectedQty(opt)}
-                    className={`px-3 py-1.5 text-xs rounded-lg border transition-all ${selectedQty === opt ? "border-primary bg-primary/10 text-primary font-semibold" : "border-gray-200 text-gray-600"}`}
-                    data-testid={`button-qty-${opt}`}
-                  >
-                    {opt}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {sizeOptions.length > 0 && (
-            <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1.5">Size</label>
-              <div className="flex gap-2 flex-wrap">
-                {sizeOptions.map(opt => (
-                  <button
-                    key={opt}
-                    onClick={() => setSelectedSize(opt)}
-                    className={`px-3 py-1.5 text-xs rounded-lg border transition-all ${selectedSize === opt ? "border-primary bg-primary/10 text-primary font-semibold" : "border-gray-200 text-gray-600"}`}
-                    data-testid={`button-size-${opt.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
-                  >
-                    {opt}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
+          ))}
         </div>
 
         {matchingPrice && (
