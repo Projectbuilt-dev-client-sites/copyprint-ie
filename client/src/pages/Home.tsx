@@ -37,6 +37,7 @@ function HeroBanner() {
           referrerPolicy="strict-origin-when-cross-origin"
           title="Copyprint.ie"
         />
+        <div className="absolute bottom-2 right-2 w-28 h-8 z-[8] rounded bg-[#1a1a1a] pointer-events-none" />
         <div className="absolute bottom-0 left-0 right-0 z-10 backdrop-blur-md bg-black/30">
           <div className="max-w-7xl mx-auto px-4 py-12">
             <div className="flex items-center justify-center gap-2 sm:gap-3 flex-wrap text-sm md:text-base" data-testid="hero-bar">
