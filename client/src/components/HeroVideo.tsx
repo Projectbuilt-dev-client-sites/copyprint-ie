@@ -15,61 +15,60 @@ export default function HeroVideo() {
           referrerPolicy="strict-origin-when-cross-origin"
           title="Copyprint.ie"
         />
-        <div className="absolute inset-0 z-5 flex items-center justify-center">
-          <div className="flex items-center gap-5 md:gap-7 flex-wrap justify-center px-4" data-testid="hero-bar">
-            <span className="flex items-center gap-1.5 text-white/90 text-xs tracking-[0.15em] uppercase font-medium px-3 py-1.5 rounded-sm bg-black/40 backdrop-blur-sm border-t border-t-white/20 border-b-2 border-b-black/30 shadow-[0_2px_0_rgba(0,0,0,0.3)]" data-testid="badge-established">
-              <Award className="w-3.5 h-3.5" />
-              Est. 1982
-            </span>
-            <span className="w-px h-4 bg-white/30" />
-            <span className="flex items-center gap-1.5 text-white font-semibold text-sm tracking-wide px-3 py-1.5 rounded-sm bg-black/40 backdrop-blur-sm border-t border-t-white/20 border-b-2 border-b-black/30 shadow-[0_2px_0_rgba(0,0,0,0.3)]" data-testid="text-hero-title">
-              <Printer className="w-4 h-4" />
-              Dublin's #1 Print Shop
-            </span>
-            <span className="w-px h-4 bg-white/30 hidden sm:block" />
-            <span className="hidden sm:flex items-center gap-1.5 text-white/90 text-xs tracking-[0.15em] uppercase font-medium px-3 py-1.5 rounded-sm bg-black/40 backdrop-blur-sm border-t border-t-white/20 border-b-2 border-b-black/30 shadow-[0_2px_0_rgba(0,0,0,0.3)]">
-              <Zap className="w-3.5 h-3.5" />
-              Same Day
-            </span>
-            <span className="w-px h-4 bg-white/30 hidden sm:block" />
-            <span className="hidden sm:flex items-center gap-1.5 text-white/90 text-xs tracking-[0.15em] uppercase font-medium px-3 py-1.5 rounded-sm bg-black/40 backdrop-blur-sm border-t border-t-white/20 border-b-2 border-b-black/30 shadow-[0_2px_0_rgba(0,0,0,0.3)]">
-              <Package className="w-3.5 h-3.5" />
-              Click & Collect
-            </span>
-          </div>
-        </div>
         <div className="absolute bottom-0 left-0 right-0 z-10 bg-[#32373c]">
-          <div className="max-w-7xl mx-auto px-4 py-3">
-            <div className="flex items-center justify-center gap-3">
-              <Button
-                size="sm"
-                className="h-8 px-5 text-xs font-semibold tracking-wide uppercase rounded-sm"
-                onClick={() => {
-                  if (location === "/") {
-                    document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
-                  } else {
-                    window.location.href = "/#services";
-                  }
-                }}
-                data-testid="button-hero-order"
-              >
-                Order Now
-              </Button>
-              <Button
-                size="sm"
-                variant="outline"
-                className="h-8 px-5 text-xs font-semibold tracking-wide uppercase rounded-sm border-t border-t-white/20 border-b-2 border-b-black/30 shadow-[0_2px_0_rgba(0,0,0,0.3)] bg-white/10 text-white/70 hover:bg-white/15 hover:shadow-[0_4px_12px_rgba(250,204,21,0.5)]"
-                onClick={() => {
-                  if (location === "/") {
-                    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-                  } else {
-                    window.location.href = "/#contact";
-                  }
-                }}
-                data-testid="button-hero-contact"
-              >
-                Contact Us
-              </Button>
+          <div className="max-w-7xl mx-auto px-4 py-6 sm:py-10 md:py-14">
+            <div className="flex items-center justify-center gap-6 md:gap-8 flex-wrap" data-testid="hero-bar">
+              <span className="flex items-center gap-1.5 text-white/80 text-xs tracking-[0.15em] uppercase font-medium px-3 py-1.5 rounded-sm bg-white/10 border-t border-t-white/20 border-b-2 border-b-black/30 shadow-[0_2px_0_rgba(0,0,0,0.3)]" data-testid="badge-established">
+                <Award className="w-3.5 h-3.5" />
+                Est. 1982
+              </span>
+              <span className="w-px h-4 bg-white/15" />
+              <span className="flex items-center gap-1.5 text-white font-semibold text-sm tracking-wide px-3 py-1.5 rounded-sm bg-white/10 border-t border-t-white/20 border-b-2 border-b-black/30 shadow-[0_2px_0_rgba(0,0,0,0.3)]" data-testid="text-hero-title">
+                <Printer className="w-4 h-4" />
+                Dublin's #1 Print Shop
+              </span>
+              <span className="w-px h-4 bg-white/15 hidden sm:block" />
+              <span className="hidden sm:flex items-center gap-1.5 text-white/70 text-xs tracking-[0.15em] uppercase font-medium px-3 py-1.5 rounded-sm bg-white/10 border-t border-t-white/20 border-b-2 border-b-black/30 shadow-[0_2px_0_rgba(0,0,0,0.3)]">
+                <Zap className="w-3.5 h-3.5" />
+                Same Day
+              </span>
+              <span className="w-px h-4 bg-white/15 hidden sm:block" />
+              <span className="hidden sm:flex items-center gap-1.5 text-white/70 text-xs tracking-[0.15em] uppercase font-medium px-3 py-1.5 rounded-sm bg-white/10 border-t border-t-white/20 border-b-2 border-b-black/30 shadow-[0_2px_0_rgba(0,0,0,0.3)]">
+                <Package className="w-3.5 h-3.5" />
+                Click & Collect
+              </span>
+              <span className="w-px h-4 bg-white/15" />
+              <div className="flex items-center gap-2">
+                <Button
+                  size="sm"
+                  className="h-8 px-5 text-xs font-semibold tracking-wide uppercase rounded-sm"
+                  onClick={() => {
+                    if (location === "/") {
+                      document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      window.location.href = "/#services";
+                    }
+                  }}
+                  data-testid="button-hero-order"
+                >
+                  Order Now
+                </Button>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="h-8 px-5 text-xs font-semibold tracking-wide uppercase rounded-sm border-t border-t-white/20 border-b-2 border-b-black/30 shadow-[0_2px_0_rgba(0,0,0,0.3)] bg-white/10 text-white/70 hover:bg-white/15 hover:shadow-[0_4px_12px_rgba(250,204,21,0.5)]"
+                  onClick={() => {
+                    if (location === "/") {
+                      document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      window.location.href = "/#contact";
+                    }
+                  }}
+                  data-testid="button-hero-contact"
+                >
+                  Contact Us
+                </Button>
+              </div>
             </div>
           </div>
         </div>
