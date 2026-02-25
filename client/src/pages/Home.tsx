@@ -37,47 +37,41 @@ function HeroBanner() {
           referrerPolicy="strict-origin-when-cross-origin"
           title="Copyprint.ie"
         />
-        <div className="absolute bottom-0 left-0 right-0 z-10 bg-[#32373c] border-t border-white/5">
+        <div className="absolute bottom-0 left-0 right-0 z-10 bg-[#32373c]">
           <div className="max-w-7xl mx-auto px-4 py-14">
-            <div className="flex items-center justify-center gap-5 md:gap-7 flex-wrap" data-testid="hero-bar">
-              <span className="flex items-center gap-2 text-white/60 text-xs tracking-[0.12em] uppercase font-medium" data-testid="badge-established">
-                <Award className="w-4 h-4 text-[#FFD700]" />
+            <div className="flex items-center justify-center gap-6 md:gap-8 flex-wrap" data-testid="hero-bar">
+              <span className="text-white/50 text-xs tracking-[0.15em] uppercase font-medium" data-testid="badge-established">
                 Est. 1982
               </span>
-              <span className="w-px h-5 bg-white/15" />
-              <span className="flex items-center gap-2 text-white font-bold text-sm sm:text-base tracking-wide" data-testid="text-hero-title">
-                <Printer className="w-4 h-4 text-[#00BFFF]" />
-                Dublin's #1 <span className="text-[#FF00FF] ml-1">Print Shop</span>
+              <span className="w-px h-4 bg-white/15" />
+              <span className="text-white font-semibold text-sm tracking-wide" data-testid="text-hero-title">
+                Dublin's #1 Print Shop
               </span>
-              <span className="w-px h-5 bg-white/15 hidden sm:block" />
-              <span className="hidden sm:flex items-center gap-2 text-white/70 text-xs tracking-[0.1em] uppercase font-medium">
-                <Zap className="w-3.5 h-3.5 text-[#FFD700]" />
+              <span className="w-px h-4 bg-white/15 hidden sm:block" />
+              <span className="hidden sm:block text-white/50 text-xs tracking-[0.15em] uppercase font-medium">
                 Same Day
               </span>
-              <span className="w-px h-5 bg-white/15 hidden sm:block" />
-              <span className="hidden sm:flex items-center gap-2 text-white/70 text-xs tracking-[0.1em] uppercase font-medium">
-                <Package className="w-3.5 h-3.5 text-[#00BFFF]" />
+              <span className="w-px h-4 bg-white/15 hidden sm:block" />
+              <span className="hidden sm:block text-white/50 text-xs tracking-[0.15em] uppercase font-medium">
                 Click & Collect
               </span>
-              <span className="w-px h-5 bg-white/15" />
+              <span className="w-px h-4 bg-white/15" />
               <div className="flex items-center gap-2">
                 <Button
                   size="sm"
-                  className="h-8 px-4 text-xs font-semibold tracking-wide uppercase rounded-sm gap-1.5 bg-[#FF00FF] hover:bg-[#e600e6] text-white"
+                  className="h-8 px-5 text-xs font-semibold tracking-wide uppercase rounded-sm"
                   onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
                   data-testid="button-hero-order"
                 >
-                  <ShoppingCart className="w-3.5 h-3.5" />
                   Order Now
                 </Button>
                 <Button
                   size="sm"
                   variant="outline"
-                  className="h-8 px-4 text-xs font-semibold tracking-wide uppercase rounded-sm border-[#00BFFF]/40 text-[#00BFFF] hover:bg-[#00BFFF]/10 gap-1.5"
+                  className="h-8 px-5 text-xs font-semibold tracking-wide uppercase rounded-sm border-white/25 text-white/70 hover:bg-white/10"
                   onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
                   data-testid="button-hero-contact"
                 >
-                  <MessageCircle className="w-3.5 h-3.5" />
                   Contact Us
                 </Button>
               </div>
