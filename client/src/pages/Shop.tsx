@@ -5,6 +5,16 @@ import { ShoppingCart, Plus, Minus, Trash2, ArrowRight, Upload, Check, X, Loader
 import { Button } from "@/components/ui/button";
 import { apiRequest } from "@/lib/queryClient";
 
+import businessCards1 from "@assets/heroes/business-cards-1.png";
+import flyersLeaflets1 from "@assets/heroes/flyers-and-leaflets-1.png";
+import posters1 from "@assets/heroes/posters-1.png";
+
+const productImages: Record<string, string> = {
+  "business-cards": businessCards1,
+  "flyers-leaflets": flyersLeaflets1,
+  "posters": posters1,
+};
+
 interface Price {
   id: string;
   unit_amount: number;
@@ -92,17 +102,13 @@ function ProductCard({ product, onAddToCart }: { product: Product; onAddToCart: 
 
   return (
     <div className="bg-white rounded-xl border border-gray-200 overflow-hidden" data-testid={`card-product-${product.id}`}>
-      <div className="bg-gray-100 aspect-[4/3] flex items-center justify-center">
-        {serviceSlug ? (
-          <Link href={`/services/${serviceSlug}`}>
+      <div className="bg-gray-100 aspect-[4/3] flex items-center justify-center overflow-hidden">
+        {serviceSlug && productImages[serviceSlug] ? (
+          <Link href={`/services/${serviceSlug}`} className="w-full h-full">
             <img
-              src={`/images/services/${serviceSlug}.jpg`}
+              src={productImages[serviceSlug]}
               alt={`${product.name} printing at Copyprint.ie`}
-              className="w-full h-full object-cover"
-              onError={(e) => {
-                (e.target as HTMLImageElement).style.display = 'none';
-                (e.target as HTMLImageElement).parentElement!.innerHTML = `<div class="flex items-center justify-center w-full h-full"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>`;
-              }}
+              className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
             />
           </Link>
         ) : (
