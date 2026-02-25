@@ -54,12 +54,12 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50">
-      <div className="bg-[#32373c] border-b border-white/10">
+      <div className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 py-1.5 flex items-center justify-between">
           <div className="flex items-center gap-5">
             <a
               href="tel:016774234"
-              className="flex items-center gap-1.5 text-white/60 text-xs tracking-wide transition-colors hover:text-white"
+              className="flex items-center gap-1.5 text-gray-500 text-xs tracking-wide transition-colors hover:text-gray-900"
               data-testid="link-phone"
             >
               <Phone className="w-3 h-3" />
@@ -69,7 +69,7 @@ export default function Header() {
               href="https://wa.me/353870687728"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-green-400/80 text-xs tracking-wide transition-colors hover:text-green-300"
+              className="flex items-center gap-1.5 text-green-600 text-xs tracking-wide transition-colors hover:text-green-700"
               data-testid="link-whatsapp-top"
             >
               <MessageCircle className="w-3 h-3" />
@@ -77,7 +77,7 @@ export default function Header() {
             </a>
             <a
               href="mailto:info@copyprint.ie"
-              className="hidden md:flex items-center gap-1.5 text-white/60 text-xs tracking-wide transition-colors hover:text-white"
+              className="hidden md:flex items-center gap-1.5 text-gray-500 text-xs tracking-wide transition-colors hover:text-gray-900"
               data-testid="link-email"
             >
               <Mail className="w-3 h-3" />
@@ -85,13 +85,13 @@ export default function Header() {
             </a>
           </div>
           <div className="hidden md:flex items-center gap-4">
-            <span className="flex items-center gap-1.5 text-white/40 text-xs tracking-wide">
+            <span className="flex items-center gap-1.5 text-gray-400 text-xs tracking-wide">
               <MapPin className="w-3 h-3" />
               29-30 Dame St, Dublin 2
             </span>
             <div className="relative">
               <button
-                className="flex items-center gap-1.5 text-white/40 text-xs tracking-wide transition-colors hover:text-white"
+                className="flex items-center gap-1.5 text-gray-400 text-xs tracking-wide transition-colors hover:text-gray-900"
                 onClick={() => setLangOpen(!langOpen)}
                 data-testid="button-language"
               >
@@ -101,11 +101,11 @@ export default function Header() {
               </button>
               {langOpen && (
                 <div className="absolute top-full right-0 pt-2 z-50">
-                  <div className="bg-[#3d4248] rounded-lg shadow-2xl py-1.5 min-w-[160px] border border-white/10">
+                  <div className="bg-white rounded-lg shadow-2xl py-1.5 min-w-[160px] border border-gray-200">
                     {languages.map((lang) => (
                       <button
                         key={lang.code}
-                        className="w-full flex items-center gap-2.5 px-3.5 py-2 text-[13px] text-white/70 hover:text-white hover:bg-white/5 transition-all text-left"
+                        className="w-full flex items-center gap-2.5 px-3.5 py-2 text-[13px] text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-all text-left"
                         onClick={() => {
                           (window as any).setLanguage?.(lang.code);
                           setLangOpen(false);
@@ -124,7 +124,7 @@ export default function Header() {
         </div>
       </div>
 
-      <nav className="bg-[#32373c]">
+      <nav className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-6">
           <Link href="/" data-testid="link-logo">
             <img src="/images/logo.png" alt="Copyprint.ie" className="h-9 md:h-11 cursor-pointer" />
@@ -133,7 +133,7 @@ export default function Header() {
           <div className="hidden xl:flex items-center gap-1">
             {navItems.map((item) => (
               <Link key={item.href} href={item.href} data-testid={`link-nav-${item.href.split("/").pop()}`}>
-                <span data-cursor-grow className={`px-3 py-1.5 text-[13px] font-medium transition-all cursor-none rounded-lg border border-white/15 shadow-[0_3px_0_rgba(0,0,0,0.3),0_4px_8px_rgba(0,0,0,0.2)] hover:shadow-[0_3px_0_rgba(0,0,0,0.3),0_4px_12px_rgba(250,204,21,0.5)] active:shadow-[0_1px_0_rgba(0,0,0,0.3)] active:translate-y-[2px] ${location === item.href ? "text-white bg-white/10" : "text-white/70 hover:text-white bg-transparent"}`}>
+                <span data-cursor-grow className={`px-3 py-1.5 text-[13px] font-medium transition-all cursor-none rounded-lg border border-gray-200 shadow-[0_3px_0_rgba(0,0,0,0.08),0_4px_8px_rgba(0,0,0,0.05)] hover:shadow-[0_3px_0_rgba(0,0,0,0.08),0_4px_12px_rgba(250,204,21,0.5)] active:shadow-[0_1px_0_rgba(0,0,0,0.08)] active:translate-y-[2px] ${location === item.href ? "text-gray-900 bg-gray-100" : "text-gray-600 hover:text-gray-900 bg-transparent"}`}>
                   {item.label}
                 </span>
               </Link>
@@ -145,7 +145,7 @@ export default function Header() {
               onMouseLeave={() => setDropdownOpen(false)}
             >
               <button
-                className="flex items-center gap-1 px-3 py-1.5 text-[13px] font-medium text-white/70 hover:text-white transition-all rounded-lg bg-transparent border border-white/15 shadow-[0_3px_0_rgba(0,0,0,0.3),0_4px_8px_rgba(0,0,0,0.2)] hover:shadow-[0_3px_0_rgba(0,0,0,0.3),0_4px_12px_rgba(250,204,21,0.5)] active:shadow-[0_1px_0_rgba(0,0,0,0.3)] active:translate-y-[2px] cursor-none"
+                className="flex items-center gap-1 px-3 py-1.5 text-[13px] font-medium text-gray-600 hover:text-gray-900 transition-all rounded-lg bg-transparent border border-gray-200 shadow-[0_3px_0_rgba(0,0,0,0.08),0_4px_8px_rgba(0,0,0,0.05)] hover:shadow-[0_3px_0_rgba(0,0,0,0.08),0_4px_12px_rgba(250,204,21,0.5)] active:shadow-[0_1px_0_rgba(0,0,0,0.08)] active:translate-y-[2px] cursor-none"
                 data-cursor-grow
                 data-testid="button-business-printing-dropdown"
               >
@@ -154,10 +154,10 @@ export default function Header() {
               </button>
               {dropdownOpen && (
                 <div className="absolute top-full left-0 pt-2 z-50">
-                  <div className="bg-[#3d4248] rounded-lg shadow-2xl py-2 min-w-[220px] border border-white/10">
+                  <div className="bg-white rounded-lg shadow-2xl py-2 min-w-[220px] border border-gray-200">
                     {[...businessPrintingItems, ...extraItems].map((item) => (
                       <Link key={item.href} href={item.href} data-testid={`link-dropdown-${item.href.split("/").pop()}`}>
-                        <span data-cursor-grow className={`block px-4 py-2.5 text-[13px] cursor-none transition-all hover:shadow-[0_4px_12px_rgba(250,204,21,0.5)] ${location === item.href ? "text-primary bg-white/5" : "text-white/70 hover:text-white hover:bg-white/5"}`}>
+                        <span data-cursor-grow className={`block px-4 py-2.5 text-[13px] cursor-none transition-all hover:shadow-[0_4px_12px_rgba(250,204,21,0.5)] ${location === item.href ? "text-blue-600 bg-gray-50" : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"}`}>
                           {item.label}
                         </span>
                       </Link>
@@ -186,11 +186,11 @@ export default function Header() {
 
             <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
               <SheetTrigger asChild>
-                <Button size="icon" variant="ghost" className="xl:hidden text-white/80 no-default-hover-elevate no-default-active-elevate" data-testid="button-mobile-menu">
+                <Button size="icon" variant="ghost" className="xl:hidden text-gray-700 no-default-hover-elevate no-default-active-elevate" data-testid="button-mobile-menu">
                   <Menu className="w-5 h-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="bg-[#32373c] border-white/10 w-[300px]">
+              <SheetContent side="right" className="bg-white border-gray-200 w-[300px]">
                 <SheetHeader>
                   <SheetTitle className="text-left">
                     <img src="/images/logo.png" alt="Copyprint.ie" className="h-9" />
@@ -204,20 +204,20 @@ export default function Header() {
                       onClick={() => setMobileOpen(false)}
                       data-testid={`link-mobile-${item.href === "/" ? "home" : item.href.split("/").pop()}`}
                     >
-                      <span className={`block px-3 py-2.5 text-sm font-medium rounded cursor-pointer transition-all ${location === item.href ? "text-primary bg-white/10" : "text-white/70 hover:text-white hover:bg-white/5"}`}>
+                      <span className={`block px-3 py-2.5 text-sm font-medium rounded cursor-pointer transition-all ${location === item.href ? "text-blue-600 bg-gray-100" : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"}`}>
                         {item.label}
                       </span>
                     </Link>
                   ))}
                 </div>
-                <div className="mt-6 pt-6 border-t border-white/10 space-y-3">
-                  <a href="tel:016774234" className="flex items-center gap-2 text-white/60 text-sm hover:text-white transition-colors" data-testid="link-mobile-phone">
+                <div className="mt-6 pt-6 border-t border-gray-200 space-y-3">
+                  <a href="tel:016774234" className="flex items-center gap-2 text-gray-500 text-sm hover:text-gray-900 transition-colors" data-testid="link-mobile-phone">
                     <Phone className="w-4 h-4" /> 01 677 4234
                   </a>
-                  <a href="https://wa.me/353870687728" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-green-400/80 text-sm hover:text-green-300 transition-colors" data-testid="link-mobile-whatsapp">
+                  <a href="https://wa.me/353870687728" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-green-600 text-sm hover:text-green-700 transition-colors" data-testid="link-mobile-whatsapp">
                     <MessageCircle className="w-4 h-4" /> WhatsApp Us
                   </a>
-                  <a href="mailto:info@copyprint.ie" className="flex items-center gap-2 text-white/60 text-sm hover:text-white transition-colors" data-testid="link-mobile-email">
+                  <a href="mailto:info@copyprint.ie" className="flex items-center gap-2 text-gray-500 text-sm hover:text-gray-900 transition-colors" data-testid="link-mobile-email">
                     <Mail className="w-4 h-4" /> info@copyprint.ie
                   </a>
                 </div>
