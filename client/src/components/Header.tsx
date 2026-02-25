@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
-import { Phone, MessageCircle, Mail, Menu, ChevronDown, MapPin, X } from "lucide-react";
+import { Phone, MessageCircle, Mail, Menu, ChevronDown, MapPin, X, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet, SheetContent, SheetTrigger, SheetTitle, SheetHeader
@@ -72,9 +72,22 @@ export default function Header() {
               <span>info@copyprint.ie</span>
             </a>
           </div>
-          <div className="hidden md:flex items-center gap-1.5 text-white/40 text-xs tracking-wide">
-            <MapPin className="w-3 h-3" />
-            <span>29-30 Dame St, Dublin 2</span>
+          <div className="hidden md:flex items-center gap-4">
+            <span className="flex items-center gap-1.5 text-white/40 text-xs tracking-wide">
+              <MapPin className="w-3 h-3" />
+              29-30 Dame St, Dublin 2
+            </span>
+            <button
+              className="flex items-center gap-1.5 text-white/40 text-xs tracking-wide transition-colors hover:text-white"
+              onClick={() => {
+                const el = document.getElementById("google_translate_element");
+                if (el) el.classList.toggle("hidden");
+              }}
+              data-testid="button-language"
+            >
+              <Globe className="w-3 h-3" />
+              <span>Language</span>
+            </button>
           </div>
         </div>
       </div>
