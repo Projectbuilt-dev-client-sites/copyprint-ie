@@ -38,7 +38,7 @@ function HeroBanner() {
           title="Copyprint.ie"
         />
         <div className="absolute bottom-0 left-0 right-0 z-10 backdrop-blur-md bg-black/30">
-          <div className="absolute right-4 top-1/2 -translate-y-1/2 w-32 h-10 rounded bg-white z-20" data-testid="badge-cta-placeholder" />
+          <div className="absolute right-0 -top-10 w-40 h-12 rounded-tl bg-white z-20" data-testid="badge-cta-placeholder" />
           <div className="max-w-7xl mx-auto px-4 py-12 relative">
             <div className="flex items-center justify-center gap-2 sm:gap-3 flex-wrap text-sm md:text-base" data-testid="hero-bar">
               <span className="text-white/80 font-medium" data-testid="badge-established">Est. 1982</span>
