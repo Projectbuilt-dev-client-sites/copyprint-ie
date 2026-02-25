@@ -1,11 +1,11 @@
-import blogBusinessCards from "@assets/blog/business-card-design.png";
-import blogSameDayPrinting from "@assets/blog/same-day-printing.png";
-import blogFlyerDesign from "@assets/blog/flyer-design-tips.png";
-import blogRestaurantMenu from "@assets/blog/restaurant-menu-printing.png";
-import blogStudentPrinting from "@assets/blog/student-printing.png";
-import blogBannersComparison from "@assets/blog/banners-comparison.png";
-import blogPrintReadyFiles from "@assets/blog/print-ready-files.png";
-import blogBusinessStationery from "@assets/blog/business-stationery.png";
+import blogBusinessCards from "@assets/blog/business-card-design.webp";
+import blogSameDayPrinting from "@assets/blog/same-day-printing.webp";
+import blogFlyerDesign from "@assets/blog/flyer-design-tips.webp";
+import blogRestaurantMenu from "@assets/blog/restaurant-menu-printing.webp";
+import blogStudentPrinting from "@assets/blog/student-printing.webp";
+import blogBannersComparison from "@assets/blog/banners-comparison.webp";
+import blogPrintReadyFiles from "@assets/blog/print-ready-files.webp";
+import blogBusinessStationery from "@assets/blog/business-stationery.webp";
 
 export interface BlogPost {
   title: string;

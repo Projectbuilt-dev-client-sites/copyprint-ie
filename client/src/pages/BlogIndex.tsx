@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { blogPosts } from "@/lib/blog-posts";
 import { Calendar, ArrowRight } from "lucide-react";
-import blogHeroImage from "@assets/blog/blog-hero.png";
+import blogHeroImage from "@assets/blog/blog-hero.webp";
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 30 },

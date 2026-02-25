@@ -53,7 +53,7 @@ export default function BlogPost() {
         "url": "https://copyprint.ie",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://copyprint.ie/images/logo.png",
+          "url": "https://copyprint.ie/images/logo.webp",
         },
       },
       "mainEntityOfPage": {

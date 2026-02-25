@@ -129,7 +129,7 @@ export default function Header() {
       <nav className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-6">
           <Link href="/" data-testid="link-logo">
-            <img src="/images/logo.png" alt="Copyprint.ie" className="h-9 md:h-11 cursor-pointer" />
+            <img src="/images/logo.webp" alt="Copyprint.ie" className="h-9 md:h-11 cursor-pointer" />
           </Link>
 
           <div className="hidden xl:flex items-center gap-1">
@@ -207,7 +207,7 @@ export default function Header() {
               <SheetContent side="right" className="bg-white border-gray-200 w-[300px]">
                 <SheetHeader>
                   <SheetTitle className="text-left">
-                    <img src="/images/logo.png" alt="Copyprint.ie" className="h-9" />
+                    <img src="/images/logo.webp" alt="Copyprint.ie" className="h-9" />
                   </SheetTitle>
                 </SheetHeader>
                 <div className="flex flex-col gap-0.5 mt-6">

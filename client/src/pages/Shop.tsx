@@ -6,9 +6,9 @@ import { Button } from "@/components/ui/button";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 
-import businessCards1 from "@assets/heroes/business-cards-1.png";
-import flyersLeaflets1 from "@assets/heroes/flyers-and-leaflets-1.png";
-import posters1 from "@assets/heroes/posters-1.png";
+import businessCards1 from "@assets/heroes/business-cards-1.webp";
+import flyersLeaflets1 from "@assets/heroes/flyers-and-leaflets-1.webp";
+import posters1 from "@assets/heroes/posters-1.webp";
 
 const productImages: Record<string, string> = {
   "business-cards": businessCards1,

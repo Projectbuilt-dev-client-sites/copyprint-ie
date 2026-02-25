@@ -169,7 +169,7 @@ function CTABanner() {
             </div>
             <div className="flex-1 max-w-md">
               <img
-                src="/images/order-now-cta.png"
+                src="/images/order-now-cta.webp"
                 alt="Order printing online at Copyprint.ie Dublin - same day click and collect"
                 className="w-full rounded-md shadow-xl"
               />
@@ -191,7 +191,7 @@ function ContactBar() {
           viewport={{ once: true }}
           variants={sectionVariants}
         >
-          <img src="/images/logo.png" alt="Copyprint.ie" className="h-10 mx-auto mb-2" />
+          <img src="/images/logo.webp" alt="Copyprint.ie" className="h-10 mx-auto mb-2" />
           <p className="text-gray-500 text-sm mb-6">
             Click to Call or Send WhatsApp Message
           </p>
@@ -711,7 +711,7 @@ export default function Home() {
         "latitude": 53.3441,
         "longitude": -6.2675
       },
-      "image": "https://copyprint.ie/images/logo.png",
+      "image": "https://copyprint.ie/images/logo.webp",
       "priceRange": "$$",
       "openingHoursSpecification": [
         {
