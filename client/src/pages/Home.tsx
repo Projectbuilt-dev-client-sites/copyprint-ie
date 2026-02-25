@@ -45,17 +45,17 @@ function HeroBanner() {
                 Est. 1982
               </span>
               <span className="w-px h-4 bg-white/15" />
-              <span className="flex items-center gap-1.5 text-white font-semibold text-sm tracking-wide" data-testid="text-hero-title">
+              <span className="flex items-center gap-1.5 text-white font-semibold text-sm tracking-wide px-3 py-1.5 rounded-sm bg-white/10 border-t border-t-white/20 border-b-2 border-b-black/30 shadow-[0_2px_0_rgba(0,0,0,0.3)]" data-testid="text-hero-title">
                 <Printer className="w-4 h-4" />
                 Dublin's #1 Print Shop
               </span>
               <span className="w-px h-4 bg-white/15 hidden sm:block" />
-              <span className="hidden sm:flex items-center gap-1.5 text-white/50 text-xs tracking-[0.15em] uppercase font-medium">
+              <span className="hidden sm:flex items-center gap-1.5 text-white/70 text-xs tracking-[0.15em] uppercase font-medium px-3 py-1.5 rounded-sm bg-white/10 border-t border-t-white/20 border-b-2 border-b-black/30 shadow-[0_2px_0_rgba(0,0,0,0.3)]">
                 <Zap className="w-3.5 h-3.5" />
                 Same Day
               </span>
               <span className="w-px h-4 bg-white/15 hidden sm:block" />
-              <span className="hidden sm:flex items-center gap-1.5 text-white/50 text-xs tracking-[0.15em] uppercase font-medium">
+              <span className="hidden sm:flex items-center gap-1.5 text-white/70 text-xs tracking-[0.15em] uppercase font-medium px-3 py-1.5 rounded-sm bg-white/10 border-t border-t-white/20 border-b-2 border-b-black/30 shadow-[0_2px_0_rgba(0,0,0,0.3)]">
                 <Package className="w-3.5 h-3.5" />
                 Click & Collect
               </span>
