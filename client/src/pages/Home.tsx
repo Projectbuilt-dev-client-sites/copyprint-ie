@@ -58,7 +58,7 @@ function HeroBanner() {
               </span>
               <Button
                 size="sm"
-                className="px-5 font-semibold gap-1.5"
+                className="px-5 font-semibold gap-1.5 bg-blue-600 hover:bg-blue-700 text-white"
                 onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
                 data-testid="button-hero-order"
               >
