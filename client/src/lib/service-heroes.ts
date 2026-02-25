@@ -36,3 +36,21 @@ export function getServiceHero(serviceSlug: string, seed: string): string {
   h = (h >>> 0) % heroes.length;
   return heroes[h];
 }
+
+export function getServiceCtaHero(serviceSlug: string, seed: string): string {
+  const heroes = serviceHeroes[serviceSlug];
+  if (!heroes) return "";
+  const ctaSeed = "cta-" + seed;
+  let h = 0;
+  for (let i = 0; i < ctaSeed.length; i++) {
+    h = Math.imul(31, h) + ctaSeed.charCodeAt(i) | 0;
+  }
+  const heroIdx = (h >>> 0) % heroes.length;
+  let mainH = 0;
+  for (let i = 0; i < seed.length; i++) {
+    mainH = Math.imul(31, mainH) + seed.charCodeAt(i) | 0;
+  }
+  const mainIdx = (mainH >>> 0) % heroes.length;
+  if (heroIdx === mainIdx) return heroes[(heroIdx + 1) % heroes.length];
+  return heroes[heroIdx];
+}

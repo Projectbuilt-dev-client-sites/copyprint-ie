@@ -2,7 +2,7 @@ import { useParams, Link } from "wouter";
 import { dublinAreas, localServices } from "@/lib/dublin-areas";
 import { generateLocalContent } from "@/lib/spintax";
 import { areaData } from "@/lib/dublin-locations";
-import { getServiceHero } from "@/lib/service-heroes";
+import { getServiceHero, getServiceCtaHero } from "@/lib/service-heroes";
 import { CheckCircle, ArrowRight, Phone, MessageCircle, MapPin, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
@@ -38,6 +38,7 @@ export default function LocalServicePage() {
   const content = generateLocalContent(area.name, service.name, seed);
   const locationData = areaData[area.slug] || null;
   const heroImage = getServiceHero(service.slug, seed);
+  const ctaImage = getServiceCtaHero(service.slug, seed);
 
   const nearbyAreas = dublinAreas
     .filter(item => item.slug !== area.slug)
@@ -150,17 +151,17 @@ export default function LocalServicePage() {
       </section>
 
       <section id="local-contact" className="relative py-16 md:py-20 overflow-hidden">
-        {heroImage && (
+        {ctaImage && (
           <div className="absolute inset-0">
             <img
-              src={heroImage}
+              src={ctaImage}
               alt={`Order ${service.name} in ${area.name}`}
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
           </div>
         )}
-        {!heroImage && <div className="absolute inset-0 bg-[#32373c]" />}
+        {!ctaImage && <div className="absolute inset-0 bg-[#32373c]" />}
         <div className="relative max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-4" data-testid="text-cta-heading">
             Order {service.name} in {area.name}
