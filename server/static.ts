@@ -12,25 +12,9 @@ export function serveStatic(app: Express) {
 
   app.use(express.static(distPath));
 
-  const template = fs.readFileSync(path.resolve(distPath, "index.html"), "utf-8");
+  const indexPath = path.resolve(distPath, "index.html");
 
-  let render: ((url: string) => { html: string; metaTags: string }) | null = null;
-  const serverEntryPath = path.resolve(__dirname, "entry-server.js");
-  if (fs.existsSync(serverEntryPath)) {
-    render = require(serverEntryPath).render;
-  }
-
-  const existingMetaRegex = /<title>[\s\S]*?<\/title>\s*|<meta\s+name="description"[\s\S]*?\/>\s*|<meta\s+property="og:[\s\S]*?\/>\s*/g;
-
-  app.use("/{*path}", (req, res) => {
-    if (render) {
-      const result = render(req.originalUrl);
-      let page = template.replace("<!--ssr-outlet-->", result.html);
-      page = page.replace(existingMetaRegex, "");
-      page = page.replace("</head>", `    ${result.metaTags}\n  </head>`);
-      res.status(200).set({ "Content-Type": "text/html" }).end(page);
-    } else {
-      res.sendFile(path.resolve(distPath, "index.html"));
-    }
+  app.use("/{*path}", (_req, res) => {
+    res.sendFile(indexPath);
   });
 }
