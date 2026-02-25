@@ -13,6 +13,7 @@ import {
 import {
   Upload, CreditCard, ArrowLeft, Phone, MessageCircle, ArrowRight,
 } from "lucide-react";
+import ArtworkUploadForm from "@/components/ArtworkUploadForm";
 import NotFound from "./not-found";
 
 const sectionVariants = {
@@ -336,22 +337,7 @@ export default function ServicePage() {
           >
             <h2 className="text-2xl font-bold text-gray-900 mb-6" data-testid="text-order-title">Place Your Order</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-white border border-gray-200 rounded-md p-6 shadow-sm">
-                <h3 className="text-gray-900 font-semibold mb-4 flex items-center gap-2">
-                  <Upload className="w-5 h-5 text-primary" />
-                  Upload Your Files
-                </h3>
-                <div className="border-2 border-dashed border-gray-200 rounded-md p-8 text-center">
-                  <Upload className="w-10 h-10 text-gray-300 mx-auto mb-3" />
-                  <p className="text-gray-500 mb-1">Drag & drop your files here</p>
-                  <p className="text-xs text-gray-400 mb-4">PDF, AI, PSD, JPG, PNG accepted</p>
-                  <Button variant="secondary" data-testid="button-browse-files">Browse Files</Button>
-                </div>
-                <p className="text-xs text-gray-400 mt-3 text-center">
-                  File upload coming soon. Email files to{" "}
-                  <a href="mailto:info@copyprint.ie" className="text-primary font-medium">info@copyprint.ie</a>
-                </p>
-              </div>
+              <ArtworkUploadForm serviceName={service.name} />
 
               <div className="bg-white border border-gray-200 rounded-md p-6 shadow-sm">
                 <h3 className="text-gray-900 font-semibold mb-4 flex items-center gap-2">
