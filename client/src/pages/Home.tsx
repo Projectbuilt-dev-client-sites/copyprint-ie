@@ -72,7 +72,7 @@ function HeroBanner() {
                 <Button
                   size="sm"
                   variant="outline"
-                  className="h-8 px-5 text-xs font-semibold tracking-wide uppercase rounded-sm border-white/25 text-white/70 hover:bg-white/10"
+                  className="h-8 px-5 text-xs font-semibold tracking-wide uppercase rounded-sm border-white/25 text-white/70 hover:bg-white/10 hover:shadow-[0_4px_12px_rgba(250,204,21,0.5)]"
                   onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
                   data-testid="button-hero-contact"
                 >
