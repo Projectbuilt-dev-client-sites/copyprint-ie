@@ -38,8 +38,8 @@ function HeroBanner() {
           title="Copyprint.ie"
         />
         <div className="absolute bottom-0 left-0 right-0 z-10 bg-[#32373c] border-t border-white/5">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="flex items-center justify-center h-14 gap-6 md:gap-8" data-testid="hero-bar">
+          <div className="max-w-7xl mx-auto px-4 py-14">
+            <div className="flex items-center justify-center gap-6 md:gap-8" data-testid="hero-bar">
               <span className="text-white/50 text-xs tracking-[0.15em] uppercase font-medium" data-testid="badge-established">
                 Est. 1982
               </span>
