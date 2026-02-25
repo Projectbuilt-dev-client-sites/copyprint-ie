@@ -24,7 +24,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#32373c] text-gray-300">
       <div className="max-w-7xl mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           <div>
             <Link href="/" data-testid="link-footer-logo">
               <img src="/images/logo.png" alt="Copyprint.ie" className="h-10 brightness-0 invert cursor-pointer" />
@@ -86,6 +86,35 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-white font-semibold mb-4">Locations We Serve</h3>
+            <ul className="space-y-2.5">
+              {[
+                { label: "Rathmines", slug: "rathmines" },
+                { label: "Ranelagh", slug: "ranelagh" },
+                { label: "Drumcondra", slug: "drumcondra" },
+                { label: "Dundrum", slug: "dundrum" },
+                { label: "Blackrock", slug: "blackrock" },
+                { label: "Swords", slug: "swords" },
+                { label: "Tallaght", slug: "tallaght" },
+                { label: "Blanchardstown", slug: "blanchardstown" },
+                { label: "Dun Laoghaire", slug: "dun-laoghaire" },
+                { label: "Clontarf", slug: "clontarf" },
+              ].map((loc) => (
+                <li key={loc.slug}>
+                  <Link href={`/printing/${loc.slug}/business-cards`} data-testid={`link-footer-loc-${loc.slug}`}>
+                    <span className="text-sm cursor-pointer transition-colors">{loc.label}</span>
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link href="/printing" data-testid="link-footer-all-locations">
+                  <span className="text-sm cursor-pointer transition-colors text-white/80 font-medium">View All Areas →</span>
+                </Link>
+              </li>
             </ul>
           </div>
 
