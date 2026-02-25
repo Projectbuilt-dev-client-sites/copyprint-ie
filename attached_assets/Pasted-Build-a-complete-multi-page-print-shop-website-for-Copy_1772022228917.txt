@@ -1,0 +1,50 @@
+Build a complete multi-page print shop website for Copyprint.ie. 
+
+BUSINESS DETAILS:
+- Name: Copyprint.ie
+- Address: 29-30 Dame St, Dublin 2, D02 A025
+- Phone: 01 677 4234
+- WhatsApp: 087 068 7728
+- Email: info@copyprint.ie
+- Established: 1982
+- Tagline: Dublin's #1 print shop for personal and business printing
+
+DESIGN:
+- Modern, clean, professional
+- Colour scheme: deep navy #1a1a2e and orange #f97316
+- Mobile responsive
+- Smooth animations and hover effects on cards
+- Fast loading
+
+NAVIGATION WITH DROPDOWNS:
+- Shop Now
+- Business Cards
+- Stickers & Labels
+- Flyers & Leaflets
+- Posters
+- PVC Banners
+- Business Printing (dropdown: Business Stationery, Restaurant Printing, Roller Banners, Party Banners, Booklets, Laminating & Binding)
+- Student Services
+- Personal Printing
+
+HOMEPAGE SECTIONS:
+1. Header - logo, phone, WhatsApp click to contact buttons, full nav with dropdown
+2. Hero banner - "Dublin's #1 Print Shop Since 1982", Same Day Click & Collect badge, Order Now CTA button
+3. Services grid (13 cards with icons): Business Cards, Flyers & Leaflets, Stickers & Labels, Posters, PVC Banners, Business Stationery, Restaurant Printing, Roller Banners, Party Banners, Booklets, Student Services, Personal Printing, Laminating & Binding
+4. Middle CTA banner - "Business Cards | Flyers & Leaflets | PVC Banners | Poster Printing" with Order Now button
+5. Why Choose Us - Same Day Click & Collect, Fast Turnaround, Competitive Dublin Prices, Est 1982
+6. Testimonials section - 3 reviews:
+   - Siobhan Duffy: "Absolutely fantastic service! Brilliant for students who need to get things printed within a quick time and student friendly prices. Quality of the printing is brilliant!"
+   - Jonathan Wilde: "Cannot fault their service. The guys at Copyprint are great, I use them regularly. Great prices and always very quick!"
+   - Fiona Mullan: "Very fast turnaround and great prices. Business cards look great. I would highly recommend."
+7. About section - "Based in Dame St, Dublin 2, est. 1982. We take great pride in every commercial or personal print job no matter how big or small. Same Day Click & Collect | Bespoke Jobs Turned Around Fast | Local or Nationwide Delivery"
+8. Contact form - name, email, subject, message fields
+9. Footer - address, Google Reviews link, social follow links, copyright
+
+INDIVIDUAL SERVICE PAGES (create one for each):
+Each page should have hero, service description, pricing placeholder table, file upload/order section with Stripe payment button placeholder, and FAQ section
+
+STRIPE INTEGRATION:
+Add Stripe payment button placeholders on each service page for online ordering
+
+Make it visually stunning — this is a complete professional rebuild replacing an outdated WordPress site.
