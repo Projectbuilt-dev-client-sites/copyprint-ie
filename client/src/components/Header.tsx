@@ -25,46 +25,30 @@ const moreItems = [
   { label: "Personal Printing", href: "/services/personal-printing" },
 ];
 
-// STYLE OPTIONS:
-// 1. "Modern Minimal" (Current) - Solid dark, clean lines.
-// 2. "Glassmorphism" - Transparent blurred background, floating look.
-// 3. "Corporate Split" - Two-tone bar with utility links at top.
-// 4. "Centered Logo" - Logo in center, links on both sides.
-
 export default function Header() {
   const [location] = useLocation();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  
-  // Change this variable to switch styles
-  const style: "minimal" | "glass" | "corporate" = "glass";
-
-  const headerClasses = {
-    minimal: "bg-[#32373c]",
-    glass: "bg-[#32373c]/80 backdrop-blur-md border-b border-white/10",
-    corporate: "bg-[#32373c] border-b-2 border-primary/30"
-  };
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-[10000] transition-all duration-300 ${headerClasses[style]}`}>
+    <header className="bg-[#32373c] relative z-[100]">
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
         <Link href="/" data-testid="link-logo">
-          <img src="/images/logo.png" alt="Copyprint.ie" className="h-10 cursor-pointer hover:scale-105 transition-transform" />
+          <img src="/images/logo.png" alt="Copyprint.ie" className="h-10" />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1">
           {navItems.map((item) => (
             <Link key={item.href} href={item.href} data-testid={`link-nav-${item.href.split("/").pop()}`}>
-              <span 
-                data-cursor-grow 
-                className={`px-3 py-2 text-sm font-medium transition-all rounded relative group ${
-                  location === item.href 
-                    ? "text-white bg-white/10" 
-                    : "text-white/70 hover:text-white"
+              <span
+                data-cursor-grow
+                className={`px-3 py-2 text-sm font-medium rounded transition-colors ${
+                  location === item.href
+                    ? "text-white bg-white/10"
+                    : "text-white/70 hover:text-white hover:bg-white/5"
                 }`}
               >
                 {item.label}
-                <span className={`absolute bottom-1 left-3 right-3 h-0.5 bg-primary transition-all duration-300 transform scale-x-0 group-hover:scale-x-100 ${location === item.href ? "scale-x-100" : ""}`} />
               </span>
             </Link>
           ))}
@@ -75,19 +59,19 @@ export default function Header() {
             onMouseLeave={() => setDropdownOpen(false)}
           >
             <button
-              className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-white/70 hover:text-white transition-all rounded"
+              className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-white/70 hover:text-white rounded transition-colors hover:bg-white/5"
               data-cursor-grow
-              data-testid="button-more-services-dropdown"
+              data-testid="button-more-dropdown"
             >
               More
               <ChevronDown className={`w-4 h-4 transition-transform ${dropdownOpen ? "rotate-180" : ""}`} />
             </button>
             {dropdownOpen && (
               <div className="absolute top-full left-0 pt-1 z-50">
-                <div className="bg-[#3d4248]/95 backdrop-blur-md rounded shadow-2xl py-2 min-w-[200px] border border-white/10 animate-in fade-in slide-in-from-top-2 duration-200">
+                <div className="bg-[#3d4248] rounded shadow-xl py-1 min-w-[200px] border border-white/10">
                   {moreItems.map((item) => (
                     <Link key={item.href} href={item.href} data-testid={`link-dropdown-${item.href.split("/").pop()}`}>
-                      <span className={`block px-4 py-2 text-sm transition-all ${
+                      <span className={`block px-4 py-2 text-sm transition-colors ${
                         location === item.href ? "text-primary bg-white/5" : "text-white/70 hover:text-white hover:bg-white/5"
                       }`}>
                         {item.label}
@@ -110,7 +94,7 @@ export default function Header() {
                 window.location.href = "/#contact";
               }
             }}
-            className="hidden sm:inline-flex text-sm px-6 h-9 font-bold uppercase tracking-wider hover-elevate"
+            className="hidden sm:inline-flex text-sm px-5 h-9"
             data-testid="button-order-now-header"
           >
             Order Now
@@ -136,7 +120,7 @@ export default function Header() {
                     onClick={() => setMobileOpen(false)}
                     data-testid={`link-mobile-${item.href.split("/").pop()}`}
                   >
-                    <span className={`block px-6 py-3 text-base font-medium transition-all ${
+                    <span className={`block px-6 py-3 text-base font-medium transition-colors ${
                       location === item.href ? "text-primary bg-white/5" : "text-white/70 hover:text-white hover:bg-white/5"
                     }`}>
                       {item.label}
