@@ -40,23 +40,22 @@ function HeroBanner() {
         <div className="absolute bottom-0 left-0 right-0 z-10 bg-[#32373c]">
           <div className="max-w-7xl mx-auto px-4 py-14 relative">
             <div className="flex items-center justify-center gap-3 sm:gap-4 flex-wrap" data-testid="hero-bar">
-              <span className="flex items-center gap-1.5 text-primary font-semibold text-[13px] px-3 py-1.5 rounded-lg bg-transparent border border-white/15 shadow-[0_3px_0_rgba(0,0,0,0.3),0_4px_8px_rgba(0,0,0,0.2)] hover:shadow-[0_3px_0_rgba(0,0,0,0.3),0_4px_12px_rgba(250,204,21,0.5)] active:shadow-[0_1px_0_rgba(0,0,0,0.3)] active:translate-y-[2px] transition-all select-none" data-testid="badge-established">
-                <Award className="w-4 h-4" />
+              <span className="flex items-center gap-1.5 text-white font-semibold text-[13px] px-3 py-1.5 rounded-lg bg-transparent border border-white/15 shadow-[0_3px_0_rgba(0,0,0,0.3),0_4px_8px_rgba(0,0,0,0.2)] hover:shadow-[0_3px_0_rgba(0,0,0,0.3),0_4px_12px_rgba(250,204,21,0.5)] active:shadow-[0_1px_0_rgba(0,0,0,0.3)] active:translate-y-[2px] transition-all select-none" data-testid="badge-established">
+                <Award className="w-4 h-4 text-white/70" />
                 Est. 1982
               </span>
               <span className="flex items-center gap-1.5 text-white font-bold text-[13px] sm:text-sm px-3 py-1.5 rounded-lg bg-transparent border border-white/15 shadow-[0_3px_0_rgba(0,0,0,0.3),0_4px_8px_rgba(0,0,0,0.2)] hover:shadow-[0_3px_0_rgba(0,0,0,0.3),0_4px_12px_rgba(250,204,21,0.5)] active:shadow-[0_1px_0_rgba(0,0,0,0.3)] active:translate-y-[2px] transition-all select-none" data-testid="text-hero-title">
-                <Printer className="w-4 h-4 text-primary" />
-                Dublin's #1 <span className="text-primary ml-1">Print Shop</span>
+                <Printer className="w-4 h-4 text-white/70" />
+                Dublin's #1 <span className="text-white/70 ml-1">Print Shop</span>
               </span>
               <span className="hidden sm:flex items-center gap-1.5 text-white/80 font-medium text-[13px] px-3 py-1.5 rounded-lg bg-transparent border border-white/15 shadow-[0_3px_0_rgba(0,0,0,0.3),0_4px_8px_rgba(0,0,0,0.2)] hover:shadow-[0_3px_0_rgba(0,0,0,0.3),0_4px_12px_rgba(250,204,21,0.5)] active:shadow-[0_1px_0_rgba(0,0,0,0.3)] active:translate-y-[2px] transition-all select-none">
-                <Zap className="w-3.5 h-3.5 text-primary" />
+                <Zap className="w-3.5 h-3.5 text-white/70" />
                 Same Day
               </span>
               <span className="hidden sm:flex items-center gap-1.5 text-white/80 font-medium text-[13px] px-3 py-1.5 rounded-lg bg-transparent border border-white/15 shadow-[0_3px_0_rgba(0,0,0,0.3),0_4px_8px_rgba(0,0,0,0.2)] hover:shadow-[0_3px_0_rgba(0,0,0,0.3),0_4px_12px_rgba(250,204,21,0.5)] active:shadow-[0_1px_0_rgba(0,0,0,0.3)] active:translate-y-[2px] transition-all select-none">
-                <Package className="w-3.5 h-3.5 text-primary" />
+                <Package className="w-3.5 h-3.5 text-white/70" />
                 Click & Collect
               </span>
-              <span className="text-white/20">|</span>
               <Button
                 size="sm"
                 className="px-5 font-semibold gap-1.5"
@@ -151,7 +150,7 @@ function CTABanner() {
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2" data-testid="text-cta-line1">
                 Business Cards | Flyers & Leaflets
               </h2>
-              <h2 className="text-2xl md:text-3xl font-bold text-primary mb-6">
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-600 mb-6">
                 PVC Banners | Poster Printing
               </h2>
               <Button
@@ -264,7 +263,7 @@ function Testimonials() {
           <div className="bg-white border border-gray-200 rounded-md p-8 md:p-12 text-center min-h-[220px] flex flex-col items-center justify-center shadow-sm">
             <div className="flex gap-1 mb-5">
               {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} className="w-5 h-5 fill-primary text-primary" />
+                <Star key={i} className="w-5 h-5 fill-gray-800 text-gray-800" />
               ))}
             </div>
             <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-6 max-w-2xl italic" data-testid={`text-testimonial-${current}`}>
@@ -360,8 +359,8 @@ function WhyChooseUs() {
               transition={{ duration: 0.4, delay: index * 0.1 }}
             >
               <div className="bg-gray-50 border border-gray-200 rounded-md p-6 text-center h-full">
-                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                  <feature.icon className="w-7 h-7 text-primary" />
+                <div className="w-14 h-14 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-4">
+                  <feature.icon className="w-7 h-7 text-gray-700" />
                 </div>
                 <h3 className="text-gray-900 font-semibold mb-2" data-testid={`text-feature-${index}`}>{feature.title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed">{feature.description}</p>
@@ -387,8 +386,8 @@ function AboutSection() {
         >
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="h-px w-10 bg-primary" />
-              <span className="text-primary text-xs tracking-[0.3em] uppercase font-medium">Since 1982</span>
+              <div className="h-px w-10 bg-white/50" />
+              <span className="text-white/70 text-xs tracking-[0.3em] uppercase font-medium">Since 1982</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6" data-testid="text-about-title">About Copyprint.ie</h2>
             <p className="text-white/70 text-base md:text-lg leading-relaxed">
@@ -399,8 +398,8 @@ function AboutSection() {
           </div>
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-lg p-5">
-              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                <Zap className="w-5 h-5 text-primary" />
+              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                <Zap className="w-5 h-5 text-white/70" />
               </div>
               <div>
                 <span className="text-white font-semibold text-sm">Same Day Click & Collect</span>
@@ -408,8 +407,8 @@ function AboutSection() {
               </div>
             </div>
             <div className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-lg p-5">
-              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                <Clock className="w-5 h-5 text-primary" />
+              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                <Clock className="w-5 h-5 text-white/70" />
               </div>
               <div>
                 <span className="text-white font-semibold text-sm">Bespoke Jobs Turned Around Fast</span>
@@ -417,8 +416,8 @@ function AboutSection() {
               </div>
             </div>
             <div className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-lg p-5">
-              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                <Package className="w-5 h-5 text-primary" />
+              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                <Package className="w-5 h-5 text-white/70" />
               </div>
               <div>
                 <span className="text-white font-semibold text-sm">Local or Nationwide or International Delivery</span>
