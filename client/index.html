@@ -30,13 +30,20 @@
         }
       })();
     </script>
-    <div id="google_translate_element" class="hidden fixed top-[70px] right-4 z-[60] bg-white rounded-lg shadow-xl p-2"></div>
+    <div id="google_translate_element" style="display:none;position:absolute;"></div>
     <script type="text/javascript">
       function googleTranslateElementInit() {
         new google.translate.TranslateElement({
           pageLanguage: 'en',
-          layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+          includedLanguages: 'en,es,fr,de,pt,zh-CN,pl,ar',
+          layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+          autoDisplay: false
         }, 'google_translate_element');
+      }
+      function setLanguage(lang) {
+        var el = document.querySelector('.goog-te-combo');
+        if (el) { el.value = lang; el.dispatchEvent(new Event('change')); }
+        document.getElementById('lang-menu').classList.add('hidden');
       }
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>

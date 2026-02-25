@@ -32,6 +32,18 @@ export default function Header() {
   const [location] = useLocation();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [langOpen, setLangOpen] = useState(false);
+
+  const languages = [
+    { code: "en", label: "English", flag: "🇬🇧" },
+    { code: "es", label: "Español", flag: "🇪🇸" },
+    { code: "fr", label: "Français", flag: "🇫🇷" },
+    { code: "de", label: "Deutsch", flag: "🇩🇪" },
+    { code: "pt", label: "Português", flag: "🇵🇹" },
+    { code: "zh-CN", label: "中文", flag: "🇨🇳" },
+    { code: "pl", label: "Polski", flag: "🇵🇱" },
+    { code: "ar", label: "العربية", flag: "🇸🇦" },
+  ];
 
   const allMobileItems = [
     { label: "Home", href: "/" },
@@ -77,17 +89,39 @@ export default function Header() {
               <MapPin className="w-3 h-3" />
               29-30 Dame St, Dublin 2
             </span>
-            <button
-              className="flex items-center gap-1.5 text-white/40 text-xs tracking-wide transition-colors hover:text-white"
-              onClick={() => {
-                const el = document.getElementById("google_translate_element");
-                if (el) el.classList.toggle("hidden");
-              }}
-              data-testid="button-language"
-            >
-              <Globe className="w-3 h-3" />
-              <span>Language</span>
-            </button>
+            <div className="relative">
+              <button
+                className="flex items-center gap-1.5 text-white/40 text-xs tracking-wide transition-colors hover:text-white"
+                onClick={() => setLangOpen(!langOpen)}
+                data-testid="button-language"
+              >
+                <Globe className="w-3 h-3" />
+                <span>Language</span>
+                <ChevronDown className={`w-2.5 h-2.5 transition-transform ${langOpen ? "rotate-180" : ""}`} />
+              </button>
+              {langOpen && (
+                <div className="absolute top-full right-0 pt-2 z-50">
+                  <div className="bg-[#3d4248] rounded-lg shadow-2xl py-1.5 min-w-[160px] border border-white/10">
+                    {languages.map((lang) => (
+                      <button
+                        key={lang.code}
+                        className="w-full flex items-center gap-2.5 px-3.5 py-2 text-[13px] text-white/70 hover:text-white hover:bg-white/5 transition-all text-left"
+                        onClick={() => {
+                          (window as any).setLanguage?.(lang.code);
+                          const el = document.querySelector(".goog-te-combo") as HTMLSelectElement;
+                          if (el) { el.value = lang.code; el.dispatchEvent(new Event("change")); }
+                          setLangOpen(false);
+                        }}
+                        data-testid={`button-lang-${lang.code}`}
+                      >
+                        <span className="text-base">{lang.flag}</span>
+                        {lang.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
