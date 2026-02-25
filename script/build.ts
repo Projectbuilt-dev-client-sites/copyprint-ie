@@ -32,7 +32,7 @@ const allowlist = [
   "zod-validation-error",
 ];
 
-const routes = [
+const serviceRoutes = [
   "/",
   "/services/business-cards",
   "/services/flyers-leaflets",
@@ -48,6 +48,45 @@ const routes = [
   "/services/personal-printing",
   "/services/laminating-binding",
 ];
+
+const dublinAreaNames = [
+  "Artane", "Ashtown", "Ballsbridge", "Ballinteer", "Ballyboden", "Ballybrack",
+  "Ballyfermot", "Ballymount", "Ballymun", "Ballyroan", "Bayside", "Beaumont",
+  "Blackrock", "Blanchardstown", "Booterstown", "Broadstone", "Cabinteely", "Cabra",
+  "Carpenterstown", "Castleknock", "Chapelizod", "Cherrywood", "Christchurch",
+  "Churchtown", "Citywest", "Clondalkin", "Clonsilla", "Clonskeagh", "Clontarf",
+  "Coolock", "Crumlin", "Dalkey", "Darndale", "Dartry", "Deansgrange",
+  "Dollymount", "Donabate", "Donaghmede", "Donnybrook", "Donnycarney",
+  "Drimnagh", "Drumcondra", "Dublin 1", "Dublin 2", "Dublin 4", "Dublin 6",
+  "Dublin 7", "Dublin 8", "Dun Laoghaire", "Dundrum", "East Wall", "Fairview",
+  "Finglas", "Firhouse", "Foxrock", "Glasnevin", "Glasthule", "Goatstown",
+  "Grangegorman", "Harolds Cross", "Howth", "Inchicore", "Irishtown", "Islandbridge",
+  "Jobstown", "Kilbarrack", "Kill O The Grange", "Killiney", "Killester",
+  "Kilmacud", "Kilmainham", "Kilnamanagh", "Kimmage", "Kinsealy", "Knocklyon",
+  "Leopardstown", "Liffey Valley", "Lucan", "Lusk", "Malahide", "Marino",
+  "Merrion", "Milltown", "Monkstown", "Mount Merrion", "Mulhuddart", "Naul",
+  "North Wall", "Ongar", "Palmerstown", "Phibsborough", "Portmarnock",
+  "Portobello", "Raheny", "Ranelagh", "Rathcoole", "Rathfarnham", "Rathgar",
+  "Rathmines", "Rialto", "Ringsend", "Rush", "Saggart", "Sandyford",
+  "Sandymount", "Santry", "Shankill", "Skerries", "Smithfield", "Stepaside",
+  "Stillorgan", "Stoneybatter", "Sutton", "Swords", "Tallaght", "Templeogue",
+  "Terenure", "The Liberties", "Tyrrelstown"
+];
+
+const localServiceSlugs = [
+  "business-cards", "flyers-and-leaflets", "posters",
+  "roller-banners", "business-stationery", "restaurant-printing"
+];
+
+function toSlug(name: string) {
+  return name.toLowerCase().replace(/\s+/g, "-").replace(/'/g, "");
+}
+
+const localRoutes = dublinAreaNames.flatMap(area =>
+  localServiceSlugs.map(svc => `/printing/${toSlug(area)}/${svc}`)
+);
+
+const routes = [...serviceRoutes, "/printing", ...localRoutes];
 
 const existingMetaRegex = /<title>[\s\S]*?<\/title>\s*|<meta\s+name="description"[\s\S]*?\/>\s*|<meta\s+property="og:[\s\S]*?\/>\s*/g;
 
