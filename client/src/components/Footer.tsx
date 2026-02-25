@@ -27,10 +27,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
             <Link href="/" data-testid="link-footer-logo">
-              <span className="text-white font-bold text-xl tracking-tight cursor-pointer">
-                Copy<span className="text-primary">print</span>
-                <span className="text-white/60">.ie</span>
-              </span>
+              <img src="/images/logo.png" alt="Copyprint.ie" className="h-10 brightness-0 invert cursor-pointer" />
             </Link>
             <p className="mt-4 text-sm leading-relaxed">
               Dublin's #1 print shop for personal and business printing. Proudly serving Dublin since 1982.

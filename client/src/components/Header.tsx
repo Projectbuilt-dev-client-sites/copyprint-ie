@@ -82,10 +82,7 @@ export default function Header() {
       <nav className="bg-white border-b border-gray-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
           <Link href="/" data-testid="link-logo">
-            <span className="text-gray-900 font-bold text-xl tracking-tight cursor-pointer">
-              Copy<span className="text-primary">print</span>
-              <span className="text-gray-400">.ie</span>
-            </span>
+            <img src="/images/logo.png" alt="Copyprint.ie" className="h-10 md:h-12 cursor-pointer" />
           </Link>
 
           <div className="hidden xl:flex items-center gap-0.5">
@@ -162,9 +159,8 @@ export default function Header() {
               </SheetTrigger>
               <SheetContent side="right" className="bg-white border-gray-200 w-[300px]">
                 <SheetHeader>
-                  <SheetTitle className="text-gray-900 text-left">
-                    Copy<span className="text-primary">print</span>
-                    <span className="text-gray-400">.ie</span>
+                  <SheetTitle className="text-left">
+                    <img src="/images/logo.png" alt="Copyprint.ie" className="h-9" />
                   </SheetTitle>
                 </SheetHeader>
                 <div className="flex flex-col gap-1 mt-6">

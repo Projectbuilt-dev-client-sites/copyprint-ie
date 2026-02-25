@@ -189,9 +189,7 @@ function ContactBar() {
           viewport={{ once: true }}
           variants={sectionVariants}
         >
-          <h3 className="text-xl font-bold text-gray-900 mb-2">
-            Copy<span className="text-primary">print</span><span className="text-gray-400">.ie</span>
-          </h3>
+          <img src="/images/logo.png" alt="Copyprint.ie" className="h-10 mx-auto mb-2" />
           <p className="text-gray-500 text-sm mb-6">
             Click to Call or Send WhatsApp Message
           </p>
