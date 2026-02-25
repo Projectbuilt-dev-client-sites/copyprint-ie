@@ -379,33 +379,55 @@ function WhyChooseUs() {
 
 function AboutSection() {
   return (
-    <section className="py-14 md:py-20 bg-gray-50 border-y border-gray-200" data-testid="section-about">
-      <div className="max-w-4xl mx-auto px-4 text-center">
+    <section className="py-16 md:py-24 bg-[#32373c]" data-testid="section-about">
+      <div className="max-w-5xl mx-auto px-4">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={sectionVariants}
+          className="grid md:grid-cols-2 gap-10 md:gap-16 items-center"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6" data-testid="text-about-title">About Copyprint.ie</h2>
-          <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-8">
-            Based in Dame St, Dublin 2, we have been proudly serving Dublin since 1982.
-            We take great pride in every commercial or personal print job, no matter how big or small.
-            From a single poster to thousands of business cards, every order gets the same care and attention.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-5 text-gray-500 text-sm">
-            <span className="flex items-center gap-2">
-              <CheckCircle className="w-4 h-4 text-primary" />
-              Same Day Click & Collect
-            </span>
-            <span className="flex items-center gap-2">
-              <CheckCircle className="w-4 h-4 text-primary" />
-              Bespoke Jobs Turned Around Fast
-            </span>
-            <span className="flex items-center gap-2">
-              <CheckCircle className="w-4 h-4 text-primary" />
-              Local or Nationwide Delivery
-            </span>
+          <div>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="h-px w-10 bg-primary" />
+              <span className="text-primary text-xs tracking-[0.3em] uppercase font-medium">Since 1982</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6" data-testid="text-about-title">About Copyprint.ie</h2>
+            <p className="text-white/70 text-base md:text-lg leading-relaxed">
+              Based in Dame St, Dublin 2, we have been proudly serving Dublin since 1982.
+              We take great pride in every commercial or personal print job, no matter how big or small.
+              From a single poster to thousands of business cards, every order gets the same care and attention.
+            </p>
+          </div>
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-lg p-5">
+              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                <Zap className="w-5 h-5 text-primary" />
+              </div>
+              <div>
+                <span className="text-white font-semibold text-sm">Same Day Click & Collect</span>
+                <p className="text-white/50 text-xs mt-0.5">Order online, pick up in store</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-lg p-5">
+              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                <Clock className="w-5 h-5 text-primary" />
+              </div>
+              <div>
+                <span className="text-white font-semibold text-sm">Bespoke Jobs Turned Around Fast</span>
+                <p className="text-white/50 text-xs mt-0.5">Custom work delivered on time</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-lg p-5">
+              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                <Package className="w-5 h-5 text-primary" />
+              </div>
+              <div>
+                <span className="text-white font-semibold text-sm">Local or Nationwide Delivery</span>
+                <p className="text-white/50 text-xs mt-0.5">We deliver anywhere in Ireland</p>
+              </div>
+            </div>
           </div>
         </motion.div>
       </div>
