@@ -39,30 +39,32 @@ function HeroBanner() {
         />
         <div className="absolute bottom-0 left-0 right-0 z-10 bg-[#32373c]">
           <div className="max-w-7xl mx-auto px-4 py-14 relative">
-            <div className="flex items-center justify-center gap-2 sm:gap-3 flex-wrap text-sm md:text-base" data-testid="hero-bar">
-              <span className="text-white/80 font-medium" data-testid="badge-established">Est. 1982</span>
-              <span className="text-white font-bold" data-testid="text-hero-title">Dublin's #1 <span className="text-primary">Print Shop</span></span>
-              <span className="text-white/40 hidden sm:inline">*</span>
-              <span className="text-white/80 hidden sm:inline">Same Day</span>
-              <span className="text-white/40 hidden sm:inline">*</span>
-              <span className="text-white/80 hidden sm:inline">Click & Collect</span>
-              <span className="text-white/40">*</span>
-              <Button
-                size="sm"
-                onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
-                data-testid="button-hero-order"
-              >
-                Order Now
-              </Button>
-              <Button
-                size="sm"
-                variant="outline"
-                className="border-white/30 text-white bg-white/10"
-                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-                data-testid="button-hero-contact"
-              >
-                Contact Us
-              </Button>
+            <div className="flex items-center justify-center gap-3 sm:gap-5 flex-wrap" data-testid="hero-bar">
+              <span className="text-xs tracking-[0.25em] uppercase text-white/60 font-light border border-white/20 rounded-full px-4 py-1" data-testid="badge-established">Est. 1982</span>
+              <span className="text-lg sm:text-xl font-bold text-white tracking-wide" data-testid="text-hero-title">Dublin's #1 <span className="text-primary">Print Shop</span></span>
+              <span className="hidden sm:inline text-primary text-lg">&#9679;</span>
+              <span className="hidden sm:inline text-white/90 text-sm font-semibold tracking-wide uppercase">Same Day</span>
+              <span className="hidden sm:inline text-primary text-lg">&#9679;</span>
+              <span className="hidden sm:inline text-white/90 text-sm font-semibold tracking-wide uppercase">Click & Collect</span>
+              <div className="flex items-center gap-3 ml-2">
+                <Button
+                  size="sm"
+                  className="rounded-full px-6 font-semibold shadow-lg shadow-primary/30"
+                  onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
+                  data-testid="button-hero-order"
+                >
+                  Order Now
+                </Button>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="rounded-full px-6 font-semibold border-white/40 text-white hover:bg-white/20"
+                  onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+                  data-testid="button-hero-contact"
+                >
+                  Contact Us
+                </Button>
+              </div>
             </div>
           </div>
         </div>
