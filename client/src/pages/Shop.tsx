@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { Link, useLocation } from "wouter";
-import { ShoppingCart, Plus, Minus, Trash2, ArrowRight, Upload, Check, X, Loader2, Package } from "lucide-react";
+import { ShoppingCart, Plus, Minus, Trash2, ArrowRight, Upload, Check, X, Loader2, Package, Mail, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { apiRequest } from "@/lib/queryClient";
 
@@ -181,6 +181,8 @@ function ProductCard({ product, onAddToCart }: { product: Product; onAddToCart: 
 
 function UploadArtworkBox() {
   const [fileName, setFileName] = useState<string | null>(null);
+  const [email, setEmail] = useState("");
+  const [tel, setTel] = useState("");
 
   return (
     <div className="bg-white rounded-xl border border-gray-200 p-5">
@@ -191,8 +193,38 @@ function UploadArtworkBox() {
       <p className="text-xs text-gray-500 mb-3">
         Upload your print-ready artwork file (PDF, JPG, PNG, AI, EPS)
       </p>
+
+      <div className="space-y-2 mb-3">
+        <div className="relative">
+          <Mail className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" />
+          <input
+            type="email"
+            placeholder="Email address *"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full pl-8 pr-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
+            data-testid="input-artwork-email"
+          />
+        </div>
+        <div className="relative">
+          <Phone className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" />
+          <input
+            type="tel"
+            placeholder="Phone number *"
+            value={tel}
+            onChange={(e) => setTel(e.target.value)}
+            className="w-full pl-8 pr-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
+            data-testid="input-artwork-tel"
+          />
+        </div>
+      </div>
+
       <label
-        className="flex flex-col items-center justify-center w-full h-24 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-primary/50 hover:bg-primary/5 transition-all"
+        className={`flex flex-col items-center justify-center w-full h-24 border-2 border-dashed rounded-lg transition-all ${
+          email && tel
+            ? "border-gray-300 cursor-pointer hover:border-primary/50 hover:bg-primary/5"
+            : "border-gray-200 cursor-not-allowed bg-gray-50"
+        }`}
         data-testid="upload-artwork"
       >
         {fileName ? (
@@ -202,14 +234,17 @@ function UploadArtworkBox() {
           </div>
         ) : (
           <>
-            <Upload className="w-5 h-5 text-gray-400 mb-1" />
-            <span className="text-xs text-gray-500">Click to upload or drag & drop</span>
+            <Upload className={`w-5 h-5 mb-1 ${email && tel ? "text-gray-400" : "text-gray-300"}`} />
+            <span className={`text-xs ${email && tel ? "text-gray-500" : "text-gray-400"}`}>
+              {email && tel ? "Click to upload or drag & drop" : "Enter email & phone first"}
+            </span>
           </>
         )}
         <input
           type="file"
           className="hidden"
           accept=".pdf,.jpg,.jpeg,.png,.ai,.eps,.tiff,.tif"
+          disabled={!email || !tel}
           onChange={(e) => setFileName(e.target.files?.[0]?.name || null)}
           data-testid="input-artwork-file"
         />
