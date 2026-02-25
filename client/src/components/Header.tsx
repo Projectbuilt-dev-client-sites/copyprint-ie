@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
-import { Phone, MessageCircle, Mail, Menu, ChevronDown, MapPin, X } from "lucide-react";
+import { Menu, ChevronDown, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet, SheetContent, SheetTrigger, SheetTitle, SheetHeader
@@ -14,16 +14,13 @@ const navItems = [
   { label: "PVC Banners", href: "/services/pvc-banners" },
 ];
 
-const businessPrintingItems = [
+const moreItems = [
   { label: "Business Stationery", href: "/services/business-stationery" },
   { label: "Restaurant Printing", href: "/services/restaurant-printing" },
   { label: "Roller Banners", href: "/services/roller-banners" },
   { label: "Party Banners", href: "/services/party-banners" },
   { label: "Booklets", href: "/services/booklets" },
   { label: "Laminating & Binding", href: "/services/laminating-binding" },
-];
-
-const extraItems = [
   { label: "Student Services", href: "/services/student-services" },
   { label: "Personal Printing", href: "/services/personal-printing" },
 ];
@@ -36,22 +33,21 @@ export default function Header() {
   const allMobileItems = [
     { label: "Home", href: "/" },
     ...navItems,
-    ...businessPrintingItems,
-    ...extraItems,
+    ...moreItems,
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#32373c]">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[#32373c] shadow-lg">
       <nav>
-        <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link href="/" data-testid="link-logo">
-            <img src="/images/logo.png" alt="Copyprint.ie" className="h-7 md:h-9 cursor-pointer" />
+            <img src="/images/logo.png" alt="Copyprint.ie" className="h-10 cursor-pointer" />
           </Link>
 
-          <div className="hidden lg:flex items-center gap-0.5">
+          <div className="hidden lg:flex items-center gap-1">
             {navItems.map((item) => (
               <Link key={item.href} href={item.href} data-testid={`link-nav-${item.href.split("/").pop()}`}>
-                <span data-cursor-grow className={`px-2.5 py-1 text-[12px] font-medium transition-all cursor-none rounded hover:shadow-[0_4px_12px_rgba(250,204,21,0.5)] ${location === item.href ? "text-white bg-white/15" : "text-white/70 hover:text-white hover:bg-white/5"}`}>
+                <span data-cursor-grow className={`px-3 py-2 text-sm font-medium transition-all cursor-none rounded hover:shadow-[0_4px_12px_rgba(250,204,21,0.5)] ${location === item.href ? "text-white bg-white/15" : "text-white/70 hover:text-white hover:bg-white/5"}`}>
                   {item.label}
                 </span>
               </Link>
@@ -63,19 +59,19 @@ export default function Header() {
               onMouseLeave={() => setDropdownOpen(false)}
             >
               <button
-                className="flex items-center gap-1 px-2.5 py-1 text-[12px] font-medium text-white/70 hover:text-white transition-all rounded hover:bg-white/5 hover:shadow-[0_4px_12px_rgba(250,204,21,0.5)] cursor-none"
+                className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-white/70 hover:text-white transition-all rounded hover:bg-white/5 hover:shadow-[0_4px_12px_rgba(250,204,21,0.5)] cursor-none"
                 data-cursor-grow
-                data-testid="button-business-printing-dropdown"
+                data-testid="button-more-services-dropdown"
               >
                 More Services
-                <ChevronDown className={`w-3 h-3 transition-transform ${dropdownOpen ? "rotate-180" : ""}`} />
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${dropdownOpen ? "rotate-180" : ""}`} />
               </button>
               {dropdownOpen && (
                 <div className="absolute top-full left-0 pt-2 z-50">
                   <div className="bg-[#3d4248] rounded-lg shadow-2xl py-2 min-w-[220px] border border-white/10">
-                    {[...businessPrintingItems, ...extraItems].map((item) => (
+                    {moreItems.map((item) => (
                       <Link key={item.href} href={item.href} data-testid={`link-dropdown-${item.href.split("/").pop()}`}>
-                        <span className={`block px-4 py-2.5 text-[13px] cursor-none transition-all hover:shadow-[0_4px_12px_rgba(250,204,21,0.5)] ${location === item.href ? "text-primary bg-white/5" : "text-white/70 hover:text-white hover:bg-white/5"}`}>
+                        <span className={`block px-4 py-2.5 text-sm cursor-none transition-all hover:shadow-[0_4px_12px_rgba(250,204,21,0.5)] ${location === item.href ? "text-primary bg-white/5" : "text-white/70 hover:text-white hover:bg-white/5"}`}>
                           {item.label}
                         </span>
                       </Link>
@@ -96,7 +92,7 @@ export default function Header() {
                   window.location.href = "/#contact";
                 }
               }}
-              className="hidden sm:inline-flex text-xs px-5"
+              className="hidden sm:inline-flex text-sm px-6 h-9"
               data-testid="button-order-now-header"
             >
               Order Now
@@ -127,17 +123,6 @@ export default function Header() {
                       </span>
                     </Link>
                   ))}
-                </div>
-                <div className="mt-6 pt-6 border-t border-white/10 space-y-3">
-                  <a href="tel:016774234" className="flex items-center gap-2 text-white/60 text-sm hover:text-white transition-colors" data-testid="link-mobile-phone">
-                    <Phone className="w-4 h-4" /> 01 677 4234
-                  </a>
-                  <a href="https://wa.me/353870687728" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-green-400/80 text-sm hover:text-green-300 transition-colors" data-testid="link-mobile-whatsapp">
-                    <MessageCircle className="w-4 h-4" /> WhatsApp Us
-                  </a>
-                  <a href="mailto:info@copyprint.ie" className="flex items-center gap-2 text-white/60 text-sm hover:text-white transition-colors" data-testid="link-mobile-email">
-                    <Mail className="w-4 h-4" /> info@copyprint.ie
-                  </a>
                 </div>
               </SheetContent>
             </Sheet>
