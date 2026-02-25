@@ -6,7 +6,7 @@ export default function HeroVideo() {
   const [location] = useLocation();
 
   return (
-    <section className="relative w-full overflow-hidden" data-testid="section-hero">
+    <section className="relative w-full overflow-hidden -mt-[1px]" data-testid="section-hero">
       <div className="relative w-full" style={{ paddingTop: "clamp(75%, 56.25vw, 56.25%)" }}>
         <iframe
           src="https://player.vimeo.com/video/1168097892?badge=0&autopause=0&player_id=0&app_id=58479&background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&dnt=1"
@@ -15,7 +15,7 @@ export default function HeroVideo() {
           referrerPolicy="strict-origin-when-cross-origin"
           title="Copyprint.ie"
         />
-        <div className="absolute bottom-0 left-0 right-0 z-10 bg-[#32373c]">
+        <div className="absolute bottom-0 left-0 right-0 z-10 bg-[#32373c]/80 backdrop-blur-md">
           <div className="max-w-7xl mx-auto px-4 py-6 sm:py-10 md:py-14">
             <div className="flex items-center justify-center gap-6 md:gap-8 flex-wrap" data-testid="hero-bar">
               <span className="flex items-center gap-1.5 text-white/80 text-xs tracking-[0.15em] uppercase font-medium px-3 py-1.5 rounded-sm bg-white/10 border-t border-t-white/20 border-b-2 border-b-black/30 shadow-[0_2px_0_rgba(0,0,0,0.3)]" data-testid="badge-established">
