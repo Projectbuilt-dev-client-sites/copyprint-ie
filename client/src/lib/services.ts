@@ -4,6 +4,12 @@ import {
   UtensilsCrossed, Monitor, Sparkles, BookOpen,
   GraduationCap, Heart, Layers,
 } from "lucide-react";
+import bc1 from "@assets/heroes/business-cards-1.webp";
+import fl1 from "@assets/heroes/flyers-and-leaflets-1.webp";
+import po1 from "@assets/heroes/posters-1.webp";
+import rb1 from "@assets/heroes/roller-banners-1.webp";
+import bs1 from "@assets/heroes/business-stationery-1.webp";
+import rp1 from "@assets/heroes/restaurant-printing-1.webp";
 
 export interface ServicePricing {
   name: string;
@@ -34,7 +40,7 @@ export const services: Service[] = [
     shortDescription: "Premium quality business cards with same day collection available.",
     description: "Make a lasting first impression with our premium business cards. Printed on high-quality 400gsm card stock with a range of finishes including matt lamination, gloss lamination, and spot UV. Available in standard and custom sizes.",
     icon: CreditCard,
-    image: "/images/business-cards.webp",
+    image: bc1,
     pricing: [
       { name: "Standard Matt", quantity: "100", price: "\u20AC25" },
       { name: "Standard Matt", quantity: "250", price: "\u20AC35" },
@@ -62,7 +68,7 @@ export const services: Service[] = [
     shortDescription: "Eye-catching flyers and leaflets for promotions and events.",
     description: "Get your message out there with professionally printed flyers and leaflets. Available in A3, A4, A5, A6, and DL sizes on a variety of paper stocks. Perfect for promotions, events, menus, and marketing campaigns.",
     icon: FileText,
-    image: "/images/flyers-leaflets.webp",
+    image: fl1,
     pricing: [
       { name: "A5 Flyers (150gsm)", quantity: "100", price: "\u20AC30" },
       { name: "A5 Flyers (150gsm)", quantity: "250", price: "\u20AC45" },
@@ -118,7 +124,7 @@ export const services: Service[] = [
     shortDescription: "Vibrant poster printing from A3 to A0 in stunning quality.",
     description: "High-impact poster printing in sizes from A3 to A0 and custom dimensions. Printed on premium poster paper with vivid colours that demand attention. Perfect for advertising, events, retail displays, and art prints.",
     icon: Image,
-    image: "/images/posters.webp",
+    image: po1,
     pricing: [
       { name: "A3 Poster", quantity: "1", price: "\u20AC8" },
       { name: "A3 Poster", quantity: "5", price: "\u20AC30" },
@@ -174,7 +180,7 @@ export const services: Service[] = [
     shortDescription: "Letterheads, compliment slips, envelopes, and NCR pads.",
     description: "Complete business stationery solutions including letterheads, compliment slips, envelopes, NCR pads, and invoice books. Maintain a professional, consistent brand across all your printed communications.",
     icon: Briefcase,
-    image: "/images/business-stationery.webp",
+    image: bs1,
     pricing: [
       { name: "Letterheads (A4)", quantity: "250", price: "\u20AC65" },
       { name: "Letterheads (A4)", quantity: "500", price: "\u20AC95" },
@@ -202,7 +208,7 @@ export const services: Service[] = [
     shortDescription: "Menus, table talkers, loyalty cards, and takeaway materials.",
     description: "Specialised printing for the food and hospitality industry. From elegant dinner menus to takeaway menus, table talkers, loyalty cards, and branded packaging. We understand the unique printing needs of Dublin's restaurants and cafes.",
     icon: UtensilsCrossed,
-    image: "/images/restaurant-printing.webp",
+    image: rp1,
     pricing: [
       { name: "A4 Menus (Folded)", quantity: "50", price: "\u20AC45" },
       { name: "A4 Menus (Folded)", quantity: "100", price: "\u20AC65" },
@@ -230,7 +236,7 @@ export const services: Service[] = [
     shortDescription: "Professional pull-up roller banners for events and exhibitions.",
     description: "Professional retractable roller banners that make a big impact at events, exhibitions, and in your premises. Easy to set up in seconds, portable, and reusable. Available in standard 850mm x 2000mm and custom sizes.",
     icon: Monitor,
-    image: "/images/roller-banners.webp",
+    image: rb1,
     pricing: [
       { name: "Standard (850x2000mm)", quantity: "1", price: "\u20AC85" },
       { name: "Standard (850x2000mm)", quantity: "2", price: "\u20AC150" },
