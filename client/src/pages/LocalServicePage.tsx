@@ -66,7 +66,7 @@ export default function LocalServicePage() {
           </div>
         )}
         <div className="relative max-w-4xl mx-auto px-4 text-center">
-          <div className="bg-black/40 backdrop-blur-md rounded-2xl border border-white/10 px-6 py-10 md:px-12 md:py-14">
+          <div className="bg-black/20 backdrop-blur-md rounded-2xl border border-white/10 px-6 py-10 md:px-12 md:py-14">
             <div className="flex items-center justify-center gap-2 text-white/50 text-sm mb-4">
               <Link href="/" className="hover:text-white transition-colors" data-testid="breadcrumb-home">Home</Link>
               <span>/</span>
