@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { Phone, MessageCircle, Mail, MapPin, Clock, ExternalLink } from "lucide-react";
-import { SiFacebook, SiInstagram } from "react-icons/si";
+import { SiFacebook, SiInstagram, SiGoogle } from "react-icons/si";
 
 const serviceLinks = [
   { label: "Business Cards", href: "/services/business-cards" },
@@ -53,13 +53,13 @@ export default function Footer() {
                 <SiInstagram className="w-4 h-4 text-white/80" />
               </a>
               <a
-                href="https://g.page/copyprintie"
+                href="https://www.google.com/search?si=AL3DRZHrmvnFAVQPOO2Bzhf8AX9KZZ6raUI_dT7DG_z0kV2_x4Phr9a942m0NIuT4LKKqgon7w6EFwPA183kMjG7hN1FNCsirFu89uh8HE36CXW54WPYZi79thdNRKKCEsCdyxecJHLm&q=Copy+Print+Reviews"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-md bg-white/10 flex items-center justify-center transition-colors"
                 data-testid="link-google-reviews"
               >
-                <ExternalLink className="w-4 h-4 text-white/80" />
+                <SiGoogle className="w-4 h-4 text-white/80" />
               </a>
             </div>
           </div>
@@ -154,12 +154,13 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-4 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-gray-500">
           <p data-testid="text-copyright">&copy; {new Date().getFullYear()} Copyprint.ie. All rights reserved.</p>
           <a
-            href="https://g.page/copyprintie"
+            href="https://www.google.com/search?si=AL3DRZHrmvnFAVQPOO2Bzhf8AX9KZZ6raUI_dT7DG_z0kV2_x4Phr9a942m0NIuT4LKKqgon7w6EFwPA183kMjG7hN1FNCsirFu89uh8HE36CXW54WPYZi79thdNRKKCEsCdyxecJHLm&q=Copy+Print+Reviews"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 transition-colors"
             data-testid="link-footer-google-reviews"
           >
+            <SiGoogle className="w-3 h-3" />
             <span>Read our Google Reviews</span>
             <ExternalLink className="w-3 h-3" />
           </a>
