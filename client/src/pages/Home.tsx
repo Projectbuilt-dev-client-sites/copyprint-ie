@@ -31,13 +31,11 @@ function HeroBanner() {
     <section className="relative w-full overflow-hidden" data-testid="section-hero">
       <div className="relative w-full" style={{ paddingTop: "56.25%" }}>
         <iframe
-          src="https://player.vimeo.com/video/1168097892?background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&quality=1080p"
+          src="https://player.vimeo.com/video/1168097892?background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&dnt=1&badge=0&quality=1080p"
           className="absolute inset-0 w-full h-full z-0"
           allow="autoplay; fullscreen"
           title="Copyprint.ie Hero Video"
         />
-        <div className="absolute top-0 left-0 right-0 h-16 z-[5] bg-gradient-to-b from-white to-transparent pointer-events-none" />
-        <div className="absolute top-0 right-0 w-32 h-16 z-[6] bg-white/80 pointer-events-none" />
         <div className="absolute bottom-0 left-0 right-0 z-10 backdrop-blur-md bg-black/30">
           <div className="max-w-7xl mx-auto px-4 py-3">
             <div className="flex items-center justify-center gap-2 sm:gap-3 flex-wrap text-sm md:text-base" data-testid="hero-bar">
