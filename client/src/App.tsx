@@ -38,7 +38,9 @@ function App() {
         <ScrollToTop />
         <div className="min-h-screen flex flex-col">
           <Header />
-          <HeroVideo />
+          <div className="-mt-px">
+            <HeroVideo />
+          </div>
           <main className="flex-1">
             <Router />
           </main>
