@@ -31,14 +31,14 @@ export default function ServicePage() {
 
   return (
     <div>
-      <section className="relative py-16 md:py-24 bg-gray-900">
+      <section className="relative py-16 md:py-24 bg-[#32373c]">
         <div className="absolute inset-0 overflow-hidden">
           <img
             src={service.image}
             alt={service.name}
             className="w-full h-full object-cover opacity-20"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/95 to-gray-900/80" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#32373c] via-[#32373c]/95 to-[#32373c]/80" />
         </div>
         <div className="max-w-5xl mx-auto px-4 relative z-10">
           <Link href="/" data-testid="link-back-home">

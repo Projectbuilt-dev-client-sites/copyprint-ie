@@ -35,7 +35,7 @@ function HeroBanner() {
           alt="Copyprint.ie - Dublin's #1 Print Shop"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-gray-900/85 via-gray-900/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#32373c]/90 via-[#32373c]/65 to-transparent" />
         <div className="absolute inset-0 flex items-center">
           <div className="max-w-7xl mx-auto px-4 w-full">
             <motion.div
@@ -93,7 +93,9 @@ function ServicesGrid() {
           viewport={{ once: true }}
           variants={sectionVariants}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3" data-testid="text-services-title">Print Services</h2>
+          <div className="inline-block bg-primary px-8 py-3 rounded-sm mb-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-white" data-testid="text-services-title">Print Services</h2>
+          </div>
           <p className="text-gray-500 text-base md:text-lg max-w-2xl mx-auto">
             From business cards to banners, we've got all your printing needs covered.
           </p>
