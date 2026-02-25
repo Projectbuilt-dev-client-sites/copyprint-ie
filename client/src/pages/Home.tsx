@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { useForm } from "react-hook-form";
@@ -217,76 +217,146 @@ function ContactBar() {
 
 const testimonials = [
   {
+    name: "Екатерина Пластун",
+    text: "I reached out to five different companies, and Susan at Copy Print was by far the fastest to respond. Throughout the entire order process, she was consistently helpful and professional.",
+    rating: 5,
+  },
+  {
+    name: "Jennifer Murphy",
+    text: "Excellent service. Fast, affordable & very friendly. Thanks Alan!",
+    rating: 5,
+  },
+  {
+    name: "Jordan Evans",
+    text: "Great service! I was able to email them a document last minute and they had it ready to go. Very fair prices and top class service. Highly recommend.",
+    rating: 5,
+  },
+  {
+    name: "Nat S",
+    text: "I had recently made an order for flyers where I had accidentally gotten the order sizes wrong. They were so understanding and helped me fix it straight away.",
+    rating: 5,
+  },
+  {
+    name: "Laura",
+    text: "Alan was super helpful and did a great job on my order. The price was super reasonable and he had everything done within 24 hours. Would definitively return.",
+    rating: 5,
+  },
+  {
+    name: "Amanda Pender",
+    text: "Really good service, dropped by on the off chance without emailing ahead, had me in and out in 10 minutes to bind two presentations! And really good price too.",
+    rating: 5,
+  },
+  {
+    name: "Aisling O'Connor",
+    text: "Copy Print were able to sort me out last minute and print posters and booklets for my students attending the BT Young Scientist. They also delivered them quickly.",
+    rating: 5,
+  },
+  {
+    name: "Vand Vaz",
+    text: "We had a pleasant experience making our brand stickers with them. Quick to answer by email, the job was done quick and the quality was amazing! Highly recommended.",
+    rating: 5,
+  },
+  {
+    name: "Kimberly Katz",
+    text: "Traveling from the US on business and needed some quick printing turnaround for table tents. Alan was easy to work with, appreciate his speediness and flexibility.",
+    rating: 5,
+  },
+  {
+    name: "Konrad Porebski",
+    text: "Great, professional service. The lady behind the desk is super quick and smart. Thanks guys for today!",
+    rating: 5,
+  },
+  {
     name: "Siobhan Duffy",
-    text: "Absolutely fantastic service! Brilliant for students who need to get things printed within a quick time and student friendly prices. Quality of the printing is brilliant!",
-    source: "recommends Copyprint.ie",
+    text: "Brilliant service! Super fast and I cannot fault Alan at all. Fast and cheap for the fantastic quality you are getting with your prints.",
+    rating: 5,
   },
   {
-    name: "Jonathan Wilde",
-    text: "Cannot fault their service. The guys at Copyprint are great, I use them regularly. Great prices and always very quick!",
-    source: "online review",
+    name: "Alberto Cruz",
+    text: "I travel to Dublin to attend a conference and the posters I brought from Barcelona were lost during the trip. They printed them again for me in just one hour the same day!",
+    rating: 5,
   },
   {
-    name: "Fiona Mullan",
-    text: "Very fast turnaround and great prices. Business cards look great. I would highly recommend.",
-    source: "online review",
+    name: "Andrew O'Connor",
+    text: "Fantastic customer service and high quality prints. I did not know how to prepare my artwork for printing and was guided with patience and respect. Highly recommend.",
+    rating: 5,
   },
   {
-    name: "Mark O'Brien",
-    text: "We've been using Copyprint for all our restaurant menus and promotional material for years. Always reliable, always top quality. The lads really know their stuff.",
-    source: "Google review",
+    name: "Катерина Обужована",
+    text: "We went to print 6 small books. The quality is super, the service is very good, the books were printed in 1 hour. I liked it very much, I recommend it.",
+    rating: 5,
   },
   {
-    name: "Sarah Kennedy",
-    text: "Had banners and flyers done for a charity event. They went above and beyond to get everything ready on time. The colours were vibrant and the finish was spot on.",
-    source: "Google review",
+    name: "Maryanne",
+    text: "Fantastic printing service. Got an A0 poster printed here for a conference and had it ready for me in less than 24 hours. Very pleasant to deal with and very high quality.",
+    rating: 5,
   },
   {
-    name: "David Nolan",
-    text: "Needed 500 business cards same day for a conference. Walked in at 10am, collected at 2pm. Perfect quality and very reasonable price. Lifesavers!",
-    source: "recommends Copyprint.ie",
+    name: "Silvia Antón",
+    text: "Lovely, fast and reliable, will definitely come back if needed! Great quality and great prices. 10/10",
+    rating: 5,
   },
   {
-    name: "Aoife McCarthy",
-    text: "I got my wedding invitations printed here and they were absolutely gorgeous. The team helped me choose the right card stock and finish. So happy with the result!",
-    source: "Google review",
+    name: "Lingfei Fan",
+    text: "Best print experience in Dublin! Amazing service with a lot of patience, for a really fair price. Thanks so much for the help today!",
+    rating: 5,
   },
   {
-    name: "Conor Fitzpatrick",
-    text: "Best print shop in Dublin, hands down. I've tried a few others but always come back to Copyprint. Consistent quality, fair prices, and genuinely helpful staff.",
-    source: "Google review",
+    name: "Denver Thomas",
+    text: "These guys are brilliant, fantastic prices, very professional, always on time, prompt delivery. They look after loyal customers for sure.",
+    rating: 5,
   },
   {
-    name: "Emma Byrne",
-    text: "Got my thesis bound here and it looked so professional. They were really patient explaining the different binding options. Great service for students!",
-    source: "online review",
+    name: "Gordon Kelley",
+    text: "Great family business, real attention to customers, very reasonably priced and very flexible. Excellent experience.",
+    rating: 5,
   },
   {
-    name: "Padraig Walsh",
-    text: "We order roller banners and posters for our trade shows regularly. Copyprint always delivers on time and the quality is excellent. Highly recommend for business printing.",
-    source: "recommends Copyprint.ie",
+    name: "Barbara Carter",
+    text: "Amazing quality posters done on the same day, Alan is a gent and super responsive to emails. I would highly recommend!",
+    rating: 5,
+  },
+  {
+    name: "Hannah Simpson",
+    text: "I got some printing and laminating done here and it was perfect. Would highly recommend!",
+    rating: 5,
+  },
+  {
+    name: "Déborah Gubiotti",
+    text: "Highly recommended. The quality of the prints is excellent, and Alan is very kind and helpful. My best printing experience.",
+    rating: 5,
+  },
+  {
+    name: "Gerard Fitzpatrick",
+    text: "I found Alan Maher friendly, very helpful, professional and great value. Highly recommended.",
+    rating: 5,
+  },
+  {
+    name: "Serena Mehta",
+    text: "Excellent print shop! I had an A3 art print printed here and it came out beautifully, it was even wrapped for easy transport. Would definitely recommend.",
+    rating: 5,
+  },
+  {
+    name: "Georgij Alekseev",
+    text: "They print and bind your papers fast and have kind staff! I can highly recommend this shop for students because they have a special student offer.",
+    rating: 5,
   },
 ];
 
+const REVIEWS_PER_PAGE = 5;
+const totalPages = Math.ceil(testimonials.length / REVIEWS_PER_PAGE);
+
 function Testimonials() {
-  const [current, setCurrent] = useState(0);
+  const [page, setPage] = useState(0);
 
-  const next = useCallback(() => {
-    setCurrent((prev) => (prev + 1) % testimonials.length);
-  }, []);
-
-  const prev = useCallback(() => {
-    setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  }, []);
-
-  useEffect(() => {
-    const timer = setInterval(next, 6000);
-    return () => clearInterval(timer);
-  }, [next]);
+  const currentReviews = testimonials.slice(
+    page * REVIEWS_PER_PAGE,
+    (page + 1) * REVIEWS_PER_PAGE
+  );
 
   return (
     <section className="py-14 md:py-20 bg-gray-50" data-testid="section-testimonials">
-      <div className="max-w-4xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-4">
         <motion.div
           className="text-center mb-10"
           initial="hidden"
@@ -297,52 +367,64 @@ function Testimonials() {
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3" data-testid="text-testimonials-title">
             What Customers Say!
           </h2>
+          <p className="text-gray-500">Real reviews from our valued customers</p>
         </motion.div>
 
-        <div className="relative">
-          <div className="bg-white border border-gray-200 rounded-md p-8 md:p-12 text-center min-h-[220px] flex flex-col items-center justify-center shadow-sm">
-            <div className="flex gap-1 mb-5">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} className="w-5 h-5 fill-gray-800 text-gray-800" />
-              ))}
-            </div>
-            <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-6 max-w-2xl italic" data-testid={`text-testimonial-${current}`}>
-              "{testimonials[current].text}"
-            </p>
-            <p className="text-gray-900 font-semibold" data-testid={`text-testimonial-name-${current}`}>
-              {testimonials[current].name}
-            </p>
-            <p className="text-gray-400 text-sm">
-              {testimonials[current].source}
-            </p>
-          </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          {currentReviews.map((t, i) => (
+            <motion.div
+              key={page * REVIEWS_PER_PAGE + i}
+              className="bg-white border border-gray-200 rounded-lg p-5 shadow-sm flex flex-col"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: i * 0.08 }}
+              data-testid={`card-testimonial-${page * REVIEWS_PER_PAGE + i}`}
+            >
+              <div className="flex gap-0.5 mb-3">
+                {Array.from({ length: t.rating }).map((_, s) => (
+                  <Star key={s} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                ))}
+              </div>
+              <p className="text-gray-600 text-sm leading-relaxed flex-1 mb-4">
+                "{t.text}"
+              </p>
+              <div className="pt-3 border-t border-gray-100">
+                <p className="text-gray-900 font-semibold text-sm" data-testid={`text-testimonial-name-${page * REVIEWS_PER_PAGE + i}`}>
+                  {t.name}
+                </p>
+                <p className="text-gray-400 text-xs">Google Review</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
 
-          <div className="flex items-center justify-center gap-4 mt-6">
-            <button
-              onClick={prev}
-              className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 transition-colors"
-              data-testid="button-testimonial-prev"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <div className="flex gap-2">
-              {testimonials.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCurrent(i)}
-                  className={`w-2.5 h-2.5 rounded-full transition-colors ${i === current ? "bg-primary" : "bg-gray-300"}`}
-                  data-testid={`button-testimonial-dot-${i}`}
-                />
-              ))}
-            </div>
-            <button
-              onClick={next}
-              className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 transition-colors"
-              data-testid="button-testimonial-next"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
+        <div className="flex items-center justify-center gap-3 mt-8">
+          <button
+            onClick={() => setPage((p) => Math.max(0, p - 1))}
+            disabled={page === 0}
+            className="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+            data-testid="button-testimonial-prev"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <div className="flex gap-2">
+            {Array.from({ length: totalPages }).map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setPage(i)}
+                className={`w-2.5 h-2.5 rounded-full transition-colors ${i === page ? "bg-primary" : "bg-gray-300"}`}
+                data-testid={`button-testimonial-dot-${i}`}
+              />
+            ))}
           </div>
+          <button
+            onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
+            disabled={page === totalPages - 1}
+            className="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+            data-testid="button-testimonial-next"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
         </div>
       </div>
     </section>
