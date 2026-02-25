@@ -27,6 +27,25 @@ export default function PrintingIndex() {
         </div>
       </section>
 
+      <section className="py-10 bg-gray-50 border-b border-gray-200">
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <Link href="/" data-testid="link-quick-home">
+              <span className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:border-gray-400 hover:text-gray-900 transition-all cursor-pointer">
+                Home
+              </span>
+            </Link>
+            {localServices.map(s => (
+              <Link key={s.parentSlug} href={`/services/${s.parentSlug}`} data-testid={`link-quick-${s.parentSlug}`}>
+                <span className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:border-gray-400 hover:text-gray-900 transition-all cursor-pointer">
+                  {s.name}
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="py-16 bg-white">
         <div className="max-w-5xl mx-auto px-4">
           {localServices.map(service => (

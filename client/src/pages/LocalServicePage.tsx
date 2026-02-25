@@ -178,6 +178,34 @@ export default function LocalServicePage() {
               </Link>
             ))}
           </div>
+
+          <h3 className="text-lg font-bold text-gray-900 mt-10 mb-4" data-testid="text-quick-links-heading">
+            Quick Links
+          </h3>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/" data-testid="link-quick-home">
+              <span className="block p-3 bg-white border border-gray-200 rounded-lg text-sm text-gray-700 hover:text-gray-900 hover:border-gray-400 transition-all text-center cursor-pointer">
+                Home
+              </span>
+            </Link>
+            <Link href={`/services/${service.parentSlug}`} data-testid="link-quick-parent-service">
+              <span className="block p-3 bg-white border border-gray-200 rounded-lg text-sm text-gray-700 hover:text-gray-900 hover:border-gray-400 transition-all text-center cursor-pointer">
+                {service.name}
+              </span>
+            </Link>
+            {localServices.filter(s => s.slug !== service.slug).map(s => (
+              <Link key={s.parentSlug} href={`/services/${s.parentSlug}`} data-testid={`link-quick-svc-${s.parentSlug}`}>
+                <span className="block p-3 bg-white border border-gray-200 rounded-lg text-sm text-gray-700 hover:text-gray-900 hover:border-gray-400 transition-all text-center cursor-pointer">
+                  {s.name}
+                </span>
+              </Link>
+            ))}
+            <Link href="/printing" data-testid="link-quick-all-areas">
+              <span className="block p-3 bg-white border border-gray-200 rounded-lg text-sm text-gray-700 hover:text-gray-900 hover:border-gray-400 transition-all text-center cursor-pointer">
+                All Dublin Areas
+              </span>
+            </Link>
+          </div>
         </div>
       </section>
     </div>
