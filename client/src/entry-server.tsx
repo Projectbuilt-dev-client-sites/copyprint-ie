@@ -116,6 +116,11 @@ function buildMetaTags(meta: RouteMeta): string {
     `<meta property="og:description" content="${meta.ogDescription}" />`,
     `<meta property="og:type" content="${meta.ogType}" />`,
     `<meta property="og:url" content="${meta.ogUrl}" />`,
+    `<meta property="og:image" content="https://copyprint.ie/images/og-logo.jpg" />`,
+    `<meta property="og:image:width" content="1200" />`,
+    `<meta property="og:image:height" content="400" />`,
+    `<meta name="twitter:card" content="summary_large_image" />`,
+    `<meta name="twitter:image" content="https://copyprint.ie/images/og-logo.jpg" />`,
   ];
   if (meta.keywords) {
     tags.push(`<meta name="keywords" content="${meta.keywords}" />`);
