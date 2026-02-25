@@ -36,8 +36,8 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <ScrollToTop />
+        <Header />
         <div className="min-h-screen flex flex-col">
-          <Header />
           <HeroVideo />
           <main className="flex-1">
             <Router />
