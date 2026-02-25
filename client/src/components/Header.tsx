@@ -149,7 +149,7 @@ export default function Header() {
               className="hidden sm:inline-flex text-xs px-5"
               data-testid="button-order-now-header"
             >
-              Order Now
+              Shop Now
             </Button>
 
             <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
