@@ -133,7 +133,7 @@ export default function Header() {
           <div className="hidden xl:flex items-center gap-1">
             {navItems.map((item) => (
               <Link key={item.href} href={item.href} data-testid={`link-nav-${item.href.split("/").pop()}`}>
-                <span data-cursor-grow className={`px-3 py-1.5 text-[13px] font-medium transition-all cursor-none rounded-lg border border-gray-200 shadow-[0_3px_0_rgba(0,0,0,0.08),0_4px_8px_rgba(0,0,0,0.05)] hover:shadow-[0_3px_0_rgba(0,0,0,0.08),0_4px_12px_rgba(250,204,21,0.5)] active:shadow-[0_1px_0_rgba(0,0,0,0.08)] active:translate-y-[2px] ${location === item.href ? "text-gray-900 bg-gray-100" : "text-gray-600 hover:text-gray-900 bg-transparent"}`}>
+                <span data-cursor-grow className={`px-3 py-1.5 text-[13px] font-medium transition-all cursor-none rounded-lg border border-transparent shadow-none hover:shadow-[0_4px_12px_rgba(250,204,21,0.5)] active:translate-y-[2px] ${location === item.href ? "text-gray-900 bg-gray-100" : "text-gray-600 hover:text-gray-900 bg-transparent"}`}>
                   {item.label}
                 </span>
               </Link>
@@ -145,7 +145,7 @@ export default function Header() {
               onMouseLeave={() => setDropdownOpen(false)}
             >
               <button
-                className="flex items-center gap-1 px-3 py-1.5 text-[13px] font-medium text-gray-600 hover:text-gray-900 transition-all rounded-lg bg-transparent border border-gray-200 shadow-[0_3px_0_rgba(0,0,0,0.08),0_4px_8px_rgba(0,0,0,0.05)] hover:shadow-[0_3px_0_rgba(0,0,0,0.08),0_4px_12px_rgba(250,204,21,0.5)] active:shadow-[0_1px_0_rgba(0,0,0,0.08)] active:translate-y-[2px] cursor-none"
+                className="flex items-center gap-1 px-3 py-1.5 text-[13px] font-medium text-gray-600 hover:text-gray-900 transition-all rounded-lg bg-transparent border border-transparent shadow-none hover:shadow-[0_4px_12px_rgba(250,204,21,0.5)] active:translate-y-[2px] cursor-none"
                 data-cursor-grow
                 data-testid="button-business-printing-dropdown"
               >
