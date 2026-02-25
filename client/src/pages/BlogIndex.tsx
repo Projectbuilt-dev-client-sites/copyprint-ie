@@ -60,7 +60,7 @@ export default function BlogIndex() {
             <h1 className="text-3xl md:text-5xl font-bold text-white mb-4" data-testid="text-blog-title">
               Blog
             </h1>
-            <p className="text-white/70 text-lg max-w-2xl mx-auto" data-testid="text-blog-subtitle">
+            <p className="text-white/70 text-sm md:text-base max-w-2xl mx-auto" data-testid="text-blog-subtitle">
               Printing tips, design guides, and expert advice from Dublin's trusted print shop.
             </p>
           </motion.div>
