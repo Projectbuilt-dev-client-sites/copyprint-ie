@@ -39,7 +39,7 @@ function HeroBanner() {
             title="Copyprint.ie Hero Video"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-[#32373c]/90 via-[#32373c]/65 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/20 to-transparent" />
         <div className="absolute inset-0 flex items-center">
           <div className="max-w-7xl mx-auto px-4 w-full">
             <motion.div
