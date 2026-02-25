@@ -1,10 +1,9 @@
 import { build as esbuild } from "esbuild";
 import { build as viteBuild } from "vite";
-import { rm, readFile } from "fs/promises";
+import { rm, readFile, writeFile, mkdir } from "fs/promises";
 import path from "path";
+import fs from "fs";
 
-// server deps to bundle to reduce openat(2) syscalls
-// which helps cold start times
 const allowlist = [
   "@google/generative-ai",
   "axios",
@@ -33,6 +32,56 @@ const allowlist = [
   "zod-validation-error",
 ];
 
+const routes = [
+  "/",
+  "/services/business-cards",
+  "/services/flyers-leaflets",
+  "/services/stickers-labels",
+  "/services/posters",
+  "/services/pvc-banners",
+  "/services/business-stationery",
+  "/services/restaurant-printing",
+  "/services/roller-banners",
+  "/services/party-banners",
+  "/services/booklets",
+  "/services/student-services",
+  "/services/personal-printing",
+  "/services/laminating-binding",
+];
+
+const existingMetaRegex = /<title>[\s\S]*?<\/title>\s*|<meta\s+name="description"[\s\S]*?\/>\s*|<meta\s+property="og:[\s\S]*?\/>\s*/g;
+
+async function preRenderPages() {
+  console.log("pre-rendering pages...");
+
+  const ssrPath = path.resolve("dist/ssr/entry-server.js");
+  if (!fs.existsSync(ssrPath)) {
+    throw new Error("SSR bundle not found at " + ssrPath);
+  }
+
+  const ssrModule = await import(ssrPath);
+  const render = ssrModule.render;
+  const template = await readFile(path.resolve("dist/public/index.html"), "utf-8");
+
+  for (const route of routes) {
+    const result = render(route);
+
+    let page = template.replace("<!--ssr-outlet-->", result.html);
+    page = page.replace(existingMetaRegex, "");
+    page = page.replace("</head>", `    ${result.metaTags}\n  </head>`);
+
+    const outDir = route === "/"
+      ? path.resolve("dist/public")
+      : path.resolve("dist/public", route.slice(1));
+
+    await mkdir(outDir, { recursive: true });
+    await writeFile(path.resolve(outDir, "index.html"), page);
+    console.log(`  ✓ ${route} → ${path.relative(".", outDir)}/index.html`);
+  }
+
+  console.log(`pre-rendered ${routes.length} pages`);
+}
+
 async function buildAll() {
   await rm("dist", { recursive: true, force: true });
 
@@ -52,6 +101,8 @@ async function buildAll() {
       noExternal: ["wouter"],
     },
   });
+
+  await preRenderPages();
 
   console.log("building server...");
   const pkg = JSON.parse(await readFile("package.json", "utf-8"));
