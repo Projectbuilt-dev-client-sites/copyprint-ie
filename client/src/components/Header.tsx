@@ -46,7 +46,7 @@ export default function Header() {
   };
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerClasses[style]}`}>
+    <header className={`fixed top-0 left-0 right-0 z-[10000] transition-all duration-300 ${headerClasses[style]}`}>
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
         <Link href="/" data-testid="link-logo">
           <img src="/images/logo.png" alt="Copyprint.ie" className="h-10 cursor-pointer hover:scale-105 transition-transform" />
