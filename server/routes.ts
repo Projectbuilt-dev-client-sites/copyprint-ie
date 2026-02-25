@@ -3,6 +3,8 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertContactSchema } from "@shared/schema";
 import { ZodError } from "zod";
+import { getUncachableStripeClient, getStripePublishableKey } from "./stripeClient";
+import pg from "pg";
 
 const serviceRoutes = [
   "/", "/services/business-cards", "/services/flyers-leaflets", "/services/stickers-labels",
@@ -89,6 +91,101 @@ export async function registerRoutes(
       } else {
         res.status(500).json({ error: "Failed to send message" });
       }
+    }
+  });
+
+  app.get("/api/stripe/publishable-key", async (_req, res) => {
+    try {
+      const key = await getStripePublishableKey();
+      res.json({ publishableKey: key });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to get Stripe key" });
+    }
+  });
+
+  app.get("/api/shop/products", async (_req, res) => {
+    try {
+      const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL, max: 2 });
+      const result = await pool.query(`
+        SELECT 
+          p.id as product_id,
+          p.name as product_name,
+          p.description as product_description,
+          p.metadata as product_metadata,
+          p.images as product_images,
+          pr.id as price_id,
+          pr.unit_amount,
+          pr.currency,
+          pr.active as price_active,
+          pr.metadata as price_metadata
+        FROM stripe.products p
+        LEFT JOIN stripe.prices pr ON pr.product = p.id AND pr.active = true
+        WHERE p.active = true
+        ORDER BY p.name, pr.unit_amount
+      `);
+      await pool.end();
+
+      const productsMap = new Map();
+      for (const row of result.rows) {
+        if (!productsMap.has(row.product_id)) {
+          productsMap.set(row.product_id, {
+            id: row.product_id,
+            name: row.product_name,
+            description: row.product_description,
+            metadata: row.product_metadata,
+            images: row.product_images,
+            prices: []
+          });
+        }
+        if (row.price_id) {
+          productsMap.get(row.product_id).prices.push({
+            id: row.price_id,
+            unit_amount: row.unit_amount,
+            currency: row.currency,
+            active: row.price_active,
+            metadata: row.price_metadata,
+          });
+        }
+      }
+
+      res.json({ data: Array.from(productsMap.values()) });
+    } catch (error: any) {
+      console.error("Error fetching products:", error);
+      res.status(500).json({ error: "Failed to fetch products" });
+    }
+  });
+
+  app.post("/api/shop/checkout", async (req, res) => {
+    try {
+      const { items } = req.body;
+      if (!items || !Array.isArray(items) || items.length === 0) {
+        return res.status(400).json({ error: "No items provided" });
+      }
+
+      const stripe = await getUncachableStripeClient();
+      const host = req.headers.host || 'localhost:5000';
+      const protocol = req.headers['x-forwarded-proto'] || req.protocol;
+
+      const line_items = items.map((item: { priceId: string; quantity: number }) => ({
+        price: item.priceId,
+        quantity: item.quantity || 1,
+      }));
+
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items,
+        mode: 'payment',
+        success_url: `${protocol}://${host}/shop?success=true`,
+        cancel_url: `${protocol}://${host}/shop?canceled=true`,
+        shipping_address_collection: {
+          allowed_countries: ['IE', 'GB'],
+        },
+      });
+
+      res.json({ url: session.url });
+    } catch (error: any) {
+      console.error("Checkout error:", error);
+      res.status(500).json({ error: "Failed to create checkout session" });
     }
   });
 

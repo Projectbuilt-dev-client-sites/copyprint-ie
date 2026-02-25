@@ -43,11 +43,20 @@ Business Cards, Flyers and Leaflets, Posters, Roller Banners, Business Stationer
 
 ## Routes
 - `/` - Homepage
+- `/shop` - Shop page with Stripe checkout (3 products: Business Cards, Flyers & Leaflets, Posters)
 - `/services/:slug` - Individual service pages (13 services)
 - `/printing` - All Dublin areas index
 - `/printing/:area/:service` - 714 local service pages (119 areas x 6 services)
 - `/blog` - Blog index
 - `/blog/:slug` - 8 individual blog posts
+
+## Stripe Integration
+- Stripe connected via Replit connector (sandbox mode for dev, auto-switches to live on deploy)
+- Products/prices created via `script/seed-products.ts` and synced to PostgreSQL `stripe` schema by `stripe-replit-sync`
+- Server files: `server/stripeClient.ts`, `server/webhookHandlers.ts`
+- Webhook route registered BEFORE express.json() in `server/index.ts`
+- API routes: GET `/api/shop/products`, POST `/api/shop/checkout`, GET `/api/stripe/publishable-key`
+- Never insert directly into stripe schema tables — use Stripe API only
 
 ## SEO Features
 - Meta keywords on all pages (home, service, location, blog)

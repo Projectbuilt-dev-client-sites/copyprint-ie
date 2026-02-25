@@ -11,6 +11,7 @@ import LocalServicePage from "@/pages/LocalServicePage";
 import PrintingIndex from "@/pages/PrintingIndex";
 import BlogIndex from "@/pages/BlogIndex";
 import BlogPost from "@/pages/BlogPost";
+import Shop from "@/pages/Shop";
 import NotFound from "@/pages/not-found";
 import { useEffect } from "react";
 import { useLocation } from "wouter";
@@ -29,6 +30,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/services/:slug" component={ServicePage} />
+      <Route path="/shop" component={Shop} />
       <Route path="/blog" component={BlogIndex} />
       <Route path="/blog/:slug" component={BlogPost} />
       <Route path="/printing" component={PrintingIndex} />

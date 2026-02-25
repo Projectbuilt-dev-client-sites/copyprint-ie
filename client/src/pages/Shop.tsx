@@ -1,0 +1,419 @@
+import { useState } from "react";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import { Link, useLocation } from "wouter";
+import { ShoppingCart, Plus, Minus, Trash2, ArrowRight, Upload, Check, X, Loader2, Package } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { apiRequest } from "@/lib/queryClient";
+
+interface Price {
+  id: string;
+  unit_amount: number;
+  currency: string;
+  active: boolean;
+  metadata: Record<string, string>;
+}
+
+interface Product {
+  id: string;
+  name: string;
+  description: string;
+  metadata: Record<string, string>;
+  images: string[];
+  prices: Price[];
+}
+
+interface CartItem {
+  priceId: string;
+  productName: string;
+  priceName: string;
+  unitAmount: number;
+  quantity: number;
+}
+
+function formatPrice(amount: number) {
+  return `€${(amount / 100).toFixed(2)}`;
+}
+
+function getPriceLabel(price: Price): string {
+  const parts: string[] = [];
+  if (price.metadata?.qty) parts.push(`Qty: ${price.metadata.qty}`);
+  if (price.metadata?.size) parts.push(price.metadata.size);
+  if (price.metadata?.print) parts.push(price.metadata.print);
+  return parts.length > 0 ? parts.join(" · ") : formatPrice(price.unit_amount);
+}
+
+function getOptionsFromMetadata(metadata: Record<string, string>, key: string): string[] {
+  const val = metadata?.[`options_${key}`];
+  return val ? val.split(",").map(s => s.trim()) : [];
+}
+
+function ProductCard({ product, onAddToCart }: { product: Product; onAddToCart: (item: CartItem) => void }) {
+  const printOptions = getOptionsFromMetadata(product.metadata, "print");
+  const qtyOptions = getOptionsFromMetadata(product.metadata, "qty");
+  const sizeOptions = getOptionsFromMetadata(product.metadata, "size");
+
+  const [selectedPrint, setSelectedPrint] = useState(printOptions[0] || "");
+  const [selectedQty, setSelectedQty] = useState(qtyOptions[0] || "");
+  const [selectedSize, setSelectedSize] = useState(sizeOptions[0] || "");
+
+  const matchingPrice = product.prices.find(p => {
+    const m = p.metadata || {};
+    if (selectedQty && m.qty !== selectedQty) return false;
+    if (selectedPrint && m.print !== selectedPrint) return false;
+    if (selectedSize && m.size !== selectedSize) return false;
+    return true;
+  });
+
+  const priceRange = product.prices.length > 0
+    ? `${formatPrice(Math.min(...product.prices.map(p => p.unit_amount)))} – ${formatPrice(Math.max(...product.prices.map(p => p.unit_amount)))}`
+    : "Price on request";
+
+  const serviceSlug = product.metadata?.slug;
+
+  return (
+    <div className="bg-white rounded-xl border border-gray-200 overflow-hidden" data-testid={`card-product-${product.id}`}>
+      <div className="bg-gray-100 aspect-[4/3] flex items-center justify-center">
+        {serviceSlug ? (
+          <Link href={`/services/${serviceSlug}`}>
+            <img
+              src={`/images/services/${serviceSlug}.jpg`}
+              alt={`${product.name} printing at Copyprint.ie`}
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                (e.target as HTMLImageElement).style.display = 'none';
+                (e.target as HTMLImageElement).parentElement!.innerHTML = `<div class="flex items-center justify-center w-full h-full"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>`;
+              }}
+            />
+          </Link>
+        ) : (
+          <Package className="w-12 h-12 text-gray-400" />
+        )}
+      </div>
+
+      <div className="p-5">
+        <h3 className="text-lg font-bold text-gray-900 mb-1" data-testid={`text-product-name-${product.id}`}>{product.name}</h3>
+        <p className="text-primary font-bold text-lg mb-3" data-testid={`text-product-price-${product.id}`}>{priceRange}</p>
+        <p className="text-gray-500 text-sm mb-4 leading-relaxed">{product.description}</p>
+
+        <div className="space-y-3 mb-4">
+          {printOptions.length > 0 && (
+            <div>
+              <label className="block text-xs font-semibold text-gray-700 mb-1.5">Print Options</label>
+              <div className="flex gap-2 flex-wrap">
+                {printOptions.map(opt => (
+                  <button
+                    key={opt}
+                    onClick={() => setSelectedPrint(opt)}
+                    className={`px-3 py-1.5 text-xs rounded-lg border transition-all ${selectedPrint === opt ? "border-primary bg-primary/10 text-primary font-semibold" : "border-gray-200 text-gray-600"}`}
+                    data-testid={`button-print-${opt.toLowerCase().replace(/\s/g, '-')}`}
+                  >
+                    {opt}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {qtyOptions.length > 0 && (
+            <div>
+              <label className="block text-xs font-semibold text-gray-700 mb-1.5">Quantity</label>
+              <div className="flex gap-2 flex-wrap">
+                {qtyOptions.map(opt => (
+                  <button
+                    key={opt}
+                    onClick={() => setSelectedQty(opt)}
+                    className={`px-3 py-1.5 text-xs rounded-lg border transition-all ${selectedQty === opt ? "border-primary bg-primary/10 text-primary font-semibold" : "border-gray-200 text-gray-600"}`}
+                    data-testid={`button-qty-${opt}`}
+                  >
+                    {opt}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {sizeOptions.length > 0 && (
+            <div>
+              <label className="block text-xs font-semibold text-gray-700 mb-1.5">Size</label>
+              <div className="flex gap-2 flex-wrap">
+                {sizeOptions.map(opt => (
+                  <button
+                    key={opt}
+                    onClick={() => setSelectedSize(opt)}
+                    className={`px-3 py-1.5 text-xs rounded-lg border transition-all ${selectedSize === opt ? "border-primary bg-primary/10 text-primary font-semibold" : "border-gray-200 text-gray-600"}`}
+                    data-testid={`button-size-${opt.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
+                  >
+                    {opt}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {matchingPrice && (
+          <div className="bg-gray-50 rounded-lg p-3 mb-4">
+            <div className="flex items-center justify-between">
+              <span className="text-sm text-gray-600">{getPriceLabel(matchingPrice)}</span>
+              <span className="text-lg font-bold text-gray-900">{formatPrice(matchingPrice.unit_amount)}</span>
+            </div>
+          </div>
+        )}
+
+        <div className="flex items-center gap-2 mb-3 text-xs text-gray-500">
+          <Upload className="w-3.5 h-3.5" />
+          <span>Upload artwork at checkout or email to info@copyprint.ie</span>
+        </div>
+
+        <Button
+          className="w-full gap-2"
+          disabled={!matchingPrice}
+          onClick={() => {
+            if (matchingPrice) {
+              onAddToCart({
+                priceId: matchingPrice.id,
+                productName: product.name,
+                priceName: getPriceLabel(matchingPrice),
+                unitAmount: matchingPrice.unit_amount,
+                quantity: 1,
+              });
+            }
+          }}
+          data-testid={`button-add-to-cart-${product.id}`}
+        >
+          <ShoppingCart className="w-4 h-4" />
+          {matchingPrice ? `Add to Cart - ${formatPrice(matchingPrice.unit_amount)}` : "Select Options"}
+        </Button>
+      </div>
+    </div>
+  );
+}
+
+function CartSidebar({ items, onUpdateQty, onRemove, onCheckout, isCheckingOut }: {
+  items: CartItem[];
+  onUpdateQty: (idx: number, qty: number) => void;
+  onRemove: (idx: number) => void;
+  onCheckout: () => void;
+  isCheckingOut: boolean;
+}) {
+  const total = items.reduce((sum, item) => sum + item.unitAmount * item.quantity, 0);
+
+  if (items.length === 0) {
+    return (
+      <div className="bg-white rounded-xl border border-gray-200 p-6 text-center">
+        <ShoppingCart className="w-10 h-10 text-gray-300 mx-auto mb-3" />
+        <p className="text-gray-500 text-sm">Your cart is empty</p>
+        <p className="text-gray-400 text-xs mt-1">Select options and add items above</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="bg-white rounded-xl border border-gray-200 p-5">
+      <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2" data-testid="text-cart-title">
+        <ShoppingCart className="w-5 h-5" />
+        Cart ({items.length})
+      </h3>
+
+      <div className="space-y-3 mb-4">
+        {items.map((item, idx) => (
+          <div key={idx} className="flex items-start gap-3 py-3 border-b border-gray-100 last:border-0" data-testid={`cart-item-${idx}`}>
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-semibold text-gray-900">{item.productName}</p>
+              <p className="text-xs text-gray-500 mt-0.5">{item.priceName}</p>
+              <p className="text-sm font-bold text-primary mt-1">{formatPrice(item.unitAmount * item.quantity)}</p>
+            </div>
+            <div className="flex items-center gap-1">
+              <button
+                onClick={() => onUpdateQty(idx, Math.max(1, item.quantity - 1))}
+                className="w-7 h-7 rounded border border-gray-200 flex items-center justify-center text-gray-500"
+                data-testid={`button-qty-minus-${idx}`}
+              >
+                <Minus className="w-3 h-3" />
+              </button>
+              <span className="w-7 text-center text-sm font-medium">{item.quantity}</span>
+              <button
+                onClick={() => onUpdateQty(idx, item.quantity + 1)}
+                className="w-7 h-7 rounded border border-gray-200 flex items-center justify-center text-gray-500"
+                data-testid={`button-qty-plus-${idx}`}
+              >
+                <Plus className="w-3 h-3" />
+              </button>
+              <button
+                onClick={() => onRemove(idx)}
+                className="w-7 h-7 rounded border border-gray-200 flex items-center justify-center text-red-400 ml-1"
+                data-testid={`button-remove-${idx}`}
+              >
+                <Trash2 className="w-3 h-3" />
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="border-t border-gray-200 pt-3 mb-4">
+        <div className="flex items-center justify-between">
+          <span className="text-sm font-semibold text-gray-700">Total</span>
+          <span className="text-xl font-bold text-gray-900" data-testid="text-cart-total">{formatPrice(total)}</span>
+        </div>
+        <p className="text-xs text-gray-400 mt-1">VAT included where applicable</p>
+      </div>
+
+      <Button
+        className="w-full gap-2"
+        size="lg"
+        onClick={onCheckout}
+        disabled={isCheckingOut}
+        data-testid="button-checkout"
+      >
+        {isCheckingOut ? (
+          <>
+            <Loader2 className="w-4 h-4 animate-spin" />
+            Redirecting to Stripe...
+          </>
+        ) : (
+          <>
+            Checkout <ArrowRight className="w-4 h-4" />
+          </>
+        )}
+      </Button>
+
+      <p className="text-xs text-gray-400 text-center mt-3">
+        Secure checkout powered by Stripe
+      </p>
+    </div>
+  );
+}
+
+export default function Shop() {
+  const [, setLocation] = useLocation();
+  const [cart, setCart] = useState<CartItem[]>([]);
+
+  const searchParams = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : new URLSearchParams();
+  const success = searchParams.get('success') === 'true';
+  const canceled = searchParams.get('canceled') === 'true';
+
+  const { data, isLoading, error } = useQuery<{ data: Product[] }>({
+    queryKey: ['/api/shop/products'],
+  });
+
+  const checkoutMutation = useMutation({
+    mutationFn: async (items: CartItem[]) => {
+      const res = await apiRequest('POST', '/api/shop/checkout', {
+        items: items.map(i => ({ priceId: i.priceId, quantity: i.quantity })),
+      });
+      return await res.json();
+    },
+    onSuccess: (data) => {
+      if (data.url) {
+        window.location.href = data.url;
+      }
+    },
+  });
+
+  const addToCart = (item: CartItem) => {
+    setCart(prev => {
+      const existing = prev.findIndex(i => i.priceId === item.priceId);
+      if (existing >= 0) {
+        const updated = [...prev];
+        updated[existing] = { ...updated[existing], quantity: updated[existing].quantity + 1 };
+        return updated;
+      }
+      return [...prev, item];
+    });
+  };
+
+  const updateQty = (idx: number, qty: number) => {
+    setCart(prev => {
+      const updated = [...prev];
+      updated[idx] = { ...updated[idx], quantity: qty };
+      return updated;
+    });
+  };
+
+  const removeItem = (idx: number) => {
+    setCart(prev => prev.filter((_, i) => i !== idx));
+  };
+
+  const products = data?.data || [];
+
+  return (
+    <div>
+      <section className="bg-[#32373c] py-12 md:py-16">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <h1 className="text-3xl md:text-4xl font-bold text-white mb-3" data-testid="text-shop-title">Shop Now</h1>
+          <p className="text-gray-300 max-w-2xl mx-auto">
+            Same Day Click & Collect | Bespoke Jobs Turned Around Fast | Local or Nationwide Delivery
+          </p>
+        </div>
+      </section>
+
+      <div className="max-w-7xl mx-auto px-4 py-10">
+        {success && (
+          <div className="bg-green-50 border border-green-200 rounded-xl p-4 mb-6 flex items-center gap-3" data-testid="alert-success">
+            <Check className="w-5 h-5 text-green-600 flex-shrink-0" />
+            <div>
+              <p className="text-green-800 font-semibold">Order placed successfully!</p>
+              <p className="text-green-600 text-sm">Thank you for your order. We'll email you confirmation shortly. Please email your artwork to info@copyprint.ie</p>
+            </div>
+          </div>
+        )}
+
+        {canceled && (
+          <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-6 flex items-center gap-3" data-testid="alert-canceled">
+            <X className="w-5 h-5 text-yellow-600 flex-shrink-0" />
+            <div>
+              <p className="text-yellow-800 font-semibold">Checkout canceled</p>
+              <p className="text-yellow-600 text-sm">Your cart items are still saved. Continue shopping when you're ready.</p>
+            </div>
+          </div>
+        )}
+
+        {isLoading && (
+          <div className="flex items-center justify-center py-20">
+            <Loader2 className="w-8 h-8 animate-spin text-primary" />
+          </div>
+        )}
+
+        {error && (
+          <div className="text-center py-20">
+            <p className="text-gray-500 mb-2">Unable to load products right now.</p>
+            <p className="text-gray-400 text-sm">Please try again in a moment.</p>
+          </div>
+        )}
+
+        {!isLoading && !error && products.length === 0 && (
+          <div className="text-center py-20">
+            <Package className="w-12 h-12 text-gray-300 mx-auto mb-3" />
+            <p className="text-gray-500">Products are being loaded. Please refresh in a moment.</p>
+          </div>
+        )}
+
+        {products.length > 0 && (
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <div className="lg:col-span-3">
+              <p className="text-sm text-gray-500 mb-6" data-testid="text-product-count">Showing all {products.length} results</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                {products.map(product => (
+                  <ProductCard key={product.id} product={product} onAddToCart={addToCart} />
+                ))}
+              </div>
+            </div>
+
+            <div className="lg:col-span-1">
+              <div className="sticky top-36">
+                <CartSidebar
+                  items={cart}
+                  onUpdateQty={updateQty}
+                  onRemove={removeItem}
+                  onCheckout={() => checkoutMutation.mutate(cart)}
+                  isCheckingOut={checkoutMutation.isPending}
+                />
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
