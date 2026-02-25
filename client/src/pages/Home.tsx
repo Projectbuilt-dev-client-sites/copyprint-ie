@@ -40,19 +40,23 @@ function HeroBanner() {
         <div className="absolute bottom-0 left-0 right-0 z-10 bg-[#32373c]">
           <div className="max-w-7xl mx-auto px-4 py-14">
             <div className="flex items-center justify-center gap-6 md:gap-8 flex-wrap" data-testid="hero-bar">
-              <span className="text-white/50 text-xs tracking-[0.15em] uppercase font-medium" data-testid="badge-established">
+              <span className="flex items-center gap-1.5 text-white/50 text-xs tracking-[0.15em] uppercase font-medium" data-testid="badge-established">
+                <Award className="w-3.5 h-3.5" />
                 Est. 1982
               </span>
               <span className="w-px h-4 bg-white/15" />
-              <span className="text-white font-semibold text-sm tracking-wide" data-testid="text-hero-title">
+              <span className="flex items-center gap-1.5 text-white font-semibold text-sm tracking-wide" data-testid="text-hero-title">
+                <Printer className="w-4 h-4" />
                 Dublin's #1 Print Shop
               </span>
               <span className="w-px h-4 bg-white/15 hidden sm:block" />
-              <span className="hidden sm:block text-white/50 text-xs tracking-[0.15em] uppercase font-medium">
+              <span className="hidden sm:flex items-center gap-1.5 text-white/50 text-xs tracking-[0.15em] uppercase font-medium">
+                <Zap className="w-3.5 h-3.5" />
                 Same Day
               </span>
               <span className="w-px h-4 bg-white/15 hidden sm:block" />
-              <span className="hidden sm:block text-white/50 text-xs tracking-[0.15em] uppercase font-medium">
+              <span className="hidden sm:flex items-center gap-1.5 text-white/50 text-xs tracking-[0.15em] uppercase font-medium">
+                <Package className="w-3.5 h-3.5" />
                 Click & Collect
               </span>
               <span className="w-px h-4 bg-white/15" />
