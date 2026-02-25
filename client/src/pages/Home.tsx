@@ -18,13 +18,74 @@ import { services } from "@/lib/services";
 import {
   Clock, Zap, BadgeDollarSign, Award, Star,
   ArrowRight, CheckCircle, Phone, MessageCircle,
-  ChevronLeft, ChevronRight, Package,
+  ChevronLeft, ChevronRight, Printer, Package, ShoppingCart,
 } from "lucide-react";
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
+
+function HeroBanner() {
+  return (
+    <section className="relative w-full overflow-hidden" data-testid="section-hero">
+      <div className="relative w-full" style={{ paddingTop: "56.25%" }}>
+        <iframe
+          src="https://player.vimeo.com/video/1168097892?badge=0&autopause=0&player_id=0&app_id=58479&background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&dnt=1"
+          className="absolute inset-0 w-full h-full z-0"
+          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          title="Copyprint.ie"
+        />
+        <div className="absolute bottom-0 left-0 right-0 z-10 bg-[#32373c]">
+          <div className="max-w-7xl mx-auto px-4 py-14 relative">
+            <div className="flex items-center justify-center gap-4 sm:gap-5 flex-wrap" data-testid="hero-bar">
+              <span className="flex items-center gap-1.5 text-primary font-semibold" data-testid="badge-established">
+                <Award className="w-4 h-4" />
+                Est. 1982
+              </span>
+              <span className="text-white/20">|</span>
+              <span className="flex items-center gap-1.5 text-white font-bold text-base sm:text-lg" data-testid="text-hero-title">
+                <Printer className="w-4 h-4 text-primary" />
+                Dublin's #1 <span className="text-primary ml-1">Print Shop</span>
+              </span>
+              <span className="text-white/20 hidden sm:inline">|</span>
+              <span className="hidden sm:flex items-center gap-1.5 text-white/80 font-medium text-sm">
+                <Zap className="w-3.5 h-3.5 text-primary" />
+                Same Day
+              </span>
+              <span className="text-white/20 hidden sm:inline">|</span>
+              <span className="hidden sm:flex items-center gap-1.5 text-white/80 font-medium text-sm">
+                <Package className="w-3.5 h-3.5 text-primary" />
+                Click & Collect
+              </span>
+              <span className="text-white/20">|</span>
+              <Button
+                size="sm"
+                className="px-5 font-semibold gap-1.5"
+                onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
+                data-testid="button-hero-order"
+              >
+                <ShoppingCart className="w-3.5 h-3.5" />
+                Order Now
+              </Button>
+              <Button
+                size="sm"
+                variant="outline"
+                className="px-5 font-semibold border-white/30 text-white hover:bg-white/10 gap-1.5"
+                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+                data-testid="button-hero-contact"
+              >
+                <MessageCircle className="w-3.5 h-3.5" />
+                Contact Us
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 function ServicesGrid() {
   return (
@@ -508,6 +569,7 @@ function ContactSection() {
 export default function Home() {
   return (
     <div>
+      <HeroBanner />
       <ServicesGrid />
       <CTABanner />
       <ContactBar />
