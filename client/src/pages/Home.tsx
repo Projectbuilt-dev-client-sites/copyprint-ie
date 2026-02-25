@@ -40,7 +40,7 @@ function HeroBanner() {
         <div className="absolute bottom-0 left-0 right-0 z-10 bg-[#32373c]">
           <div className="max-w-7xl mx-auto px-4 py-14">
             <div className="flex items-center justify-center gap-6 md:gap-8 flex-wrap" data-testid="hero-bar">
-              <span className="flex items-center gap-1.5 text-white/50 text-xs tracking-[0.15em] uppercase font-medium" data-testid="badge-established">
+              <span className="flex items-center gap-1.5 text-white/70 text-xs tracking-[0.15em] uppercase font-medium px-3 py-1.5 border border-white/20 rounded-sm bg-white/5" data-testid="badge-established">
                 <Award className="w-3.5 h-3.5" />
                 Est. 1982
               </span>
