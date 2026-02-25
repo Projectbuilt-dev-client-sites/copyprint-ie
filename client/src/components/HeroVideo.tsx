@@ -15,6 +15,7 @@ export default function HeroVideo() {
           referrerPolicy="strict-origin-when-cross-origin"
           title="Copyprint.ie"
         />
+        <div className="absolute inset-0 z-[1]" />
         <div className="absolute bottom-0 left-0 right-0 z-10 bg-[#32373c]">
           <div className="max-w-7xl mx-auto px-4 py-6 sm:py-10 md:py-14">
             <div className="flex items-center justify-center gap-6 md:gap-8 flex-wrap" data-testid="hero-bar">
