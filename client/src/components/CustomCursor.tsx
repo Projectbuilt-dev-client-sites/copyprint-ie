@@ -50,7 +50,7 @@ export default function CustomCursor() {
         top: pos.y - size / 2,
         width: size,
         height: size,
-        transition: "width 0.2s ease, height 0.2s ease, left 0.05s ease, top 0.05s ease",
+        transition: "width 0.2s ease, height 0.2s ease",
       }}
     >
       <svg width={size} height={size} viewBox="0 0 48 48" className="w-full h-full">
