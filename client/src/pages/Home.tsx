@@ -15,6 +15,7 @@ import {
   Form, FormControl, FormField, FormItem, FormLabel, FormMessage,
 } from "@/components/ui/form";
 import { services } from "@/lib/services";
+import { getKeywordsForHome } from "@/lib/seo-keywords";
 import {
   Clock, Zap, BadgeDollarSign, Award, Star,
   ArrowRight, CheckCircle, Phone, MessageCircle,
@@ -562,7 +563,119 @@ function ContactSection() {
   );
 }
 
+function SEOKeywordSection() {
+  return (
+    <section className="py-12 md:py-16 bg-gray-50 border-t border-gray-200" data-testid="section-seo-content">
+      <div className="max-w-5xl mx-auto px-4">
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6" data-testid="text-seo-heading">
+          Dublin's Leading Print Shop Since 1982
+        </h2>
+        <div className="text-gray-600 text-base leading-relaxed space-y-4">
+          <p>
+            Looking for a reliable <Link href="/services/business-cards" className="text-primary font-medium">business cards Dublin</Link> service? Copyprint.ie is your trusted <strong>print shop Dublin</strong> located on Dame Street in Dublin 2. We offer <strong>same day printing Dublin</strong> with click and collect, making us the go-to choice for <strong>fast printing Dublin</strong> needs. Whether you need <Link href="/services/flyers-leaflets" className="text-primary font-medium">flyers printing Dublin</Link> or <Link href="/services/posters" className="text-primary font-medium">poster printing Dublin</Link>, we deliver <strong>quality printing Dublin</strong> at competitive prices.
+          </p>
+          <p>
+            As a <strong>professional printing Dublin</strong> company established in 1982, we specialise in <strong>business printing Dublin</strong> including <Link href="/services/business-stationery" className="text-primary font-medium">letterheads, compliment slips, and business stationery</Link>. Our <strong>digital printing Dublin</strong> capabilities cover everything from <Link href="/services/stickers-labels" className="text-primary font-medium">sticker printing Dublin</Link> and <Link href="/services/pvc-banners" className="text-primary font-medium">banner printing Dublin</Link> to <Link href="/services/laminating-binding" className="text-primary font-medium">laminating and binding services</Link>. We also provide <strong>large format printing Dublin</strong> for exhibitions and events.
+          </p>
+          <p>
+            Need <strong>cheap printing Dublin</strong> without sacrificing quality? Our <strong>printing services Dublin 2</strong> location on Dame Street is just minutes from Trinity College, making us ideal for <Link href="/services/student-services" className="text-primary font-medium">student printing Dublin</Link>. We handle <Link href="/services/roller-banners" className="text-primary font-medium">roller banners</Link>, <Link href="/services/restaurant-printing" className="text-primary font-medium">restaurant printing Dublin</Link>, <Link href="/services/booklets" className="text-primary font-medium">booklet printing</Link>, and <Link href="/services/personal-printing" className="text-primary font-medium">personal printing</Link> including wedding invitations. Contact your local <strong>Dublin city printing</strong> experts today for <strong>next day printing Dublin</strong> and <strong>online printing Ireland</strong>.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
+  useEffect(() => {
+    const keywords = getKeywordsForHome();
+    let metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (!metaKeywords) {
+      metaKeywords = document.createElement("meta");
+      metaKeywords.setAttribute("name", "keywords");
+      document.head.appendChild(metaKeywords);
+    }
+    metaKeywords.setAttribute("content", keywords.join(", "));
+
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (!metaDesc) {
+      metaDesc = document.createElement("meta");
+      metaDesc.setAttribute("name", "description");
+      document.head.appendChild(metaDesc);
+    }
+    metaDesc.setAttribute("content", "Copyprint.ie - Dublin's #1 print shop since 1982. Same day printing, business cards, flyers, posters, banners, stickers & more. Click & collect from Dame Street, Dublin 2. Call 01 677 4234.");
+
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Copyprint.ie",
+      "description": "Dublin's leading print shop since 1982. Same day printing, business cards, flyers, posters, banners, and more.",
+      "url": "https://copyprint.ie",
+      "telephone": "+353-1-677-4234",
+      "email": "info@copyprint.ie",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Dame Street",
+        "addressLocality": "Dublin",
+        "postalCode": "Dublin 2",
+        "addressCountry": "IE"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 53.3441,
+        "longitude": -6.2675
+      },
+      "image": "https://copyprint.ie/images/logo.png",
+      "priceRange": "$$",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "17:30"
+        }
+      ],
+      "sameAs": [
+        "https://wa.me/353870687728"
+      ],
+      "foundingDate": "1982",
+      "areaServed": {
+        "@type": "City",
+        "name": "Dublin"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Print Services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Business Cards Printing" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Flyers & Leaflets Printing" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Poster Printing" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "PVC Banner Printing" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sticker & Label Printing" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Business Stationery" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Restaurant Printing" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Roller Banners" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Booklet Printing" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Laminating & Binding" } }
+        ]
+      }
+    };
+
+    let scriptTag = document.querySelector('script[data-schema="local-business"]');
+    if (!scriptTag) {
+      scriptTag = document.createElement("script");
+      scriptTag.setAttribute("type", "application/ld+json");
+      scriptTag.setAttribute("data-schema", "local-business");
+      document.head.appendChild(scriptTag);
+    }
+    scriptTag.textContent = JSON.stringify(jsonLd);
+
+    return () => {
+      metaKeywords?.remove();
+      scriptTag?.remove();
+    };
+  }, []);
+
   return (
     <div>
       <HeroBanner />
@@ -572,6 +685,7 @@ export default function Home() {
       <Testimonials />
       <WhyChooseUs />
       <AboutSection />
+      <SEOKeywordSection />
       <ContactSection />
     </div>
   );

@@ -6,15 +6,21 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Home from "@/pages/Home";
 import ServicePage from "@/pages/ServicePage";
+import BlogIndex from "@/pages/BlogIndex";
+import BlogPost from "@/pages/BlogPost";
 import NotFound from "@/pages/not-found";
 import { Switch, Route } from "wouter";
 import { getServiceBySlug } from "@/lib/services";
+import { getBlogPostBySlug } from "@/lib/blog-posts";
+import { getKeywordsForHome, getKeywordsForService } from "@/lib/seo-keywords";
 
 function AppRoutes() {
   return (
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/services/:slug" component={ServicePage} />
+      <Route path="/blog" component={BlogIndex} />
+      <Route path="/blog/:slug" component={BlogPost} />
       <Route component={NotFound} />
     </Switch>
   );
@@ -23,6 +29,7 @@ function AppRoutes() {
 interface RouteMeta {
   title: string;
   description: string;
+  keywords: string;
   ogTitle: string;
   ogDescription: string;
   ogType: string;
@@ -36,6 +43,7 @@ function getRouteMeta(url: string): RouteMeta {
     return {
       title: "Copyprint.ie - Dublin's #1 Print Shop Since 1982",
       description: "Dublin's #1 print shop for personal and business printing. Same day click & collect. Business cards, flyers, posters, banners and more. Est. 1982.",
+      keywords: getKeywordsForHome().join(", "),
       ogTitle: "Copyprint.ie - Dublin's #1 Print Shop Since 1982",
       ogDescription: "Professional printing services in Dublin since 1982. Business cards, flyers, posters, banners, stickers and more. Same day click & collect.",
       ogType: "website",
@@ -51,6 +59,7 @@ function getRouteMeta(url: string): RouteMeta {
       return {
         title: `${service.name} - Copyprint.ie | Dublin Print Shop`,
         description: service.shortDescription + " Same day click & collect available. Order online or visit us at 29-30 Dame St, Dublin 2.",
+        keywords: getKeywordsForService(slug).join(", "),
         ogTitle: `${service.name} - Copyprint.ie`,
         ogDescription: service.shortDescription,
         ogType: "website",
@@ -59,9 +68,39 @@ function getRouteMeta(url: string): RouteMeta {
     }
   }
 
+  if (path === "/blog") {
+    return {
+      title: "Blog - Copyprint.ie | Printing Tips & Guides",
+      description: "Expert printing tips, design guides, and industry insights from Dublin's #1 print shop. Learn about business cards, flyers, banners, and more.",
+      keywords: "printing blog, printing tips dublin, design guides, print shop blog, business card tips, flyer design guide",
+      ogTitle: "Blog - Copyprint.ie | Printing Tips & Guides",
+      ogDescription: "Expert printing tips, design guides, and industry insights from Dublin's #1 print shop.",
+      ogType: "website",
+      ogUrl: "https://copyprint.ie/blog",
+    };
+  }
+
+  const blogMatch = path.match(/^\/blog\/(.+)$/);
+  if (blogMatch) {
+    const slug = blogMatch[1];
+    const post = getBlogPostBySlug(slug);
+    if (post) {
+      return {
+        title: post.metaTitle,
+        description: post.metaDescription,
+        keywords: post.keywords.join(", "),
+        ogTitle: post.metaTitle,
+        ogDescription: post.metaDescription,
+        ogType: "article",
+        ogUrl: `https://copyprint.ie/blog/${slug}`,
+      };
+    }
+  }
+
   return {
     title: "Page Not Found - Copyprint.ie",
     description: "The page you're looking for could not be found. Visit Copyprint.ie for Dublin's best printing services.",
+    keywords: "",
     ogTitle: "Copyprint.ie - Dublin's #1 Print Shop",
     ogDescription: "Professional printing services in Dublin since 1982.",
     ogType: "website",
@@ -70,14 +109,18 @@ function getRouteMeta(url: string): RouteMeta {
 }
 
 function buildMetaTags(meta: RouteMeta): string {
-  return [
+  const tags = [
     `<title>${meta.title}</title>`,
     `<meta name="description" content="${meta.description}" />`,
     `<meta property="og:title" content="${meta.ogTitle}" />`,
     `<meta property="og:description" content="${meta.ogDescription}" />`,
     `<meta property="og:type" content="${meta.ogType}" />`,
     `<meta property="og:url" content="${meta.ogUrl}" />`,
-  ].join("\n    ");
+  ];
+  if (meta.keywords) {
+    tags.push(`<meta name="keywords" content="${meta.keywords}" />`);
+  }
+  return tags.join("\n    ");
 }
 
 export function render(url: string) {

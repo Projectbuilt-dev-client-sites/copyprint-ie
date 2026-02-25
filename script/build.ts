@@ -86,7 +86,19 @@ const localRoutes = dublinAreaNames.flatMap(area =>
   localServiceSlugs.map(svc => `/printing/${toSlug(area)}/${svc}`)
 );
 
-const routes = [...serviceRoutes, "/printing", ...localRoutes];
+const blogRoutes = [
+  "/blog",
+  "/blog/design-perfect-business-card-2025",
+  "/blog/same-day-printing-dublin",
+  "/blog/top-10-tips-flyer-design",
+  "/blog/restaurant-menu-printing-guide",
+  "/blog/student-printing-services-dublin",
+  "/blog/pvc-banners-vs-roller-banners",
+  "/blog/prepare-print-ready-files-guide",
+  "/blog/business-stationery-lasting-impression",
+];
+
+const routes = [...serviceRoutes, "/printing", ...localRoutes, ...blogRoutes];
 
 const existingMetaRegex = /<title>[\s\S]*?<\/title>\s*|<meta\s+name="description"[\s\S]*?\/>\s*|<meta\s+property="og:[\s\S]*?\/>\s*/g;
 

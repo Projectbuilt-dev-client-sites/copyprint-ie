@@ -18,6 +18,7 @@ const moreLinks = [
   { label: "Student Services", href: "/services/student-services" },
   { label: "Personal Printing", href: "/services/personal-printing" },
   { label: "Laminating & Binding", href: "/services/laminating-binding" },
+  { label: "Blog", href: "/blog" },
 ];
 
 export default function Footer() {

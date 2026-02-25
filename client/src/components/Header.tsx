@@ -26,6 +26,7 @@ const businessPrintingItems = [
 const extraItems = [
   { label: "Student Services", href: "/services/student-services" },
   { label: "Personal Printing", href: "/services/personal-printing" },
+  { label: "Blog", href: "/blog" },
 ];
 
 export default function Header() {
@@ -138,6 +139,12 @@ export default function Header() {
                 </span>
               </Link>
             ))}
+
+            <Link href="/blog" data-testid="link-nav-blog">
+              <span data-cursor-grow className={`px-3 py-1.5 text-[13px] font-medium transition-all cursor-none rounded-lg border border-transparent shadow-none hover:shadow-[0_4px_12px_rgba(250,204,21,0.5)] active:translate-y-[2px] ${location === "/blog" || location.startsWith("/blog/") ? "text-gray-900 bg-gray-100" : "text-gray-600 hover:text-gray-900 bg-transparent"}`}>
+                Blog
+              </span>
+            </Link>
 
             <div
               className="relative"

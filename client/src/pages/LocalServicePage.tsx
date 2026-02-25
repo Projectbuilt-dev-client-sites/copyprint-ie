@@ -3,6 +3,7 @@ import { dublinAreas, localServices } from "@/lib/dublin-areas";
 import { generateLocalContent } from "@/lib/spintax";
 import { areaData } from "@/lib/dublin-locations";
 import { getServiceHero, getServiceCtaHero } from "@/lib/service-heroes";
+import { getKeywordsForLocation } from "@/lib/seo-keywords";
 import { CheckCircle, ArrowRight, Phone, MessageCircle, MapPin, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
@@ -18,6 +19,15 @@ export default function LocalServicePage() {
       document.title = content.title;
       const metaDesc = document.querySelector('meta[name="description"]');
       if (metaDesc) metaDesc.setAttribute("content", content.metaDescription);
+
+      const keywords = getKeywordsForLocation(area.name, service.parentSlug);
+      let metaKeywords = document.querySelector('meta[name="keywords"]');
+      if (!metaKeywords) {
+        metaKeywords = document.createElement("meta");
+        metaKeywords.setAttribute("name", "keywords");
+        document.head.appendChild(metaKeywords);
+      }
+      metaKeywords.setAttribute("content", keywords.join(", "));
     }
   }, [area, service]);
 
@@ -145,6 +155,36 @@ export default function LocalServicePage() {
             </h2>
             <p className="text-gray-600 leading-relaxed mb-8" data-testid="text-delivery-body">
               Multiple ways to receive your order for {area.name} customers. Pop into our Dame St location for same or next-day collection, or we can deliver directly to {area.name}. <a href="/services/nationwide-delivery" className="text-blue-600 hover:underline" data-testid="link-nationwide-delivery">Nationwide delivery &raquo;</a> <a href="/#contact" className="text-blue-600 hover:underline" data-testid="link-contact-us">Contact us</a>
+            </p>
+
+            <h2 className="text-2xl font-bold text-gray-900 mb-4" data-testid="text-local-seo-heading">
+              {service.name} Services Near {area.name}, Dublin
+            </h2>
+            <p className="text-gray-600 leading-relaxed mb-4" data-testid="text-local-seo-body-1">
+              Copyprint.ie is your trusted <Link href={`/services/${service.parentSlug}`} className="text-blue-600 hover:underline" data-testid="link-seo-parent-service">{service.name.toLowerCase()} printing</Link> provider serving {area.name} and all surrounding Dublin areas. Whether you need same day {service.name.toLowerCase()} or bulk orders with fast turnaround, our Dame Street print shop delivers professional quality results at competitive prices. We have been providing premium printing services to businesses and individuals across Dublin since 1982.
+            </p>
+            <p className="text-gray-600 leading-relaxed mb-4" data-testid="text-local-seo-body-2">
+              Customers from {area.name} regularly choose Copyprint.ie for {service.name.toLowerCase()} because of our commitment to quality, speed, and value. Our state-of-the-art digital and large format printing equipment ensures vibrant, crisp results on every order. From custom designs to print-ready files, we handle it all with expert care and attention to detail.
+            </p>
+            <p className="text-gray-600 leading-relaxed mb-6" data-testid="text-local-seo-body-3">
+              We also offer a full range of printing services for {area.name} customers including{" "}
+              {localServices.filter(s => s.slug !== service.slug).slice(0, 4).map((s, i, arr) => (
+                <span key={s.slug}>
+                  <Link href={`/printing/${area.slug}/${s.slug}`} className="text-blue-600 hover:underline" data-testid={`link-seo-related-${s.slug}`}>
+                    {s.name.toLowerCase()}
+                  </Link>
+                  {i < arr.length - 1 ? ", " : ""}
+                </span>
+              ))}
+              {" "}and more. Explore {service.name.toLowerCase()} in nearby areas such as{" "}
+              {nearbyAreas.slice(0, 3).map((a, i, arr) => (
+                <span key={a.slug}>
+                  <Link href={`/printing/${a.slug}/${service.slug}`} className="text-blue-600 hover:underline" data-testid={`link-seo-nearby-${a.slug}`}>
+                    {a.name}
+                  </Link>
+                  {i < arr.length - 1 ? ", " : ""}
+                </span>
+              ))}.
             </p>
           </div>
         </div>
