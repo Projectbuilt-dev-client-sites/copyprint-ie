@@ -32,11 +32,11 @@ function HeroBanner() {
       <div className="relative w-full" style={{ paddingTop: "56.25%" }}>
         <iframe
           src="https://player.vimeo.com/video/1168097892?background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&quality=1080p"
-          className="absolute inset-0 w-full h-full"
+          className="absolute inset-0 w-full h-full z-0"
           allow="autoplay; fullscreen"
           title="Copyprint.ie Hero Video"
         />
-        <div className="absolute bottom-0 left-0 right-0 backdrop-blur-md bg-black/30">
+        <div className="absolute bottom-0 left-0 right-0 z-10 backdrop-blur-md bg-black/30">
           <div className="max-w-7xl mx-auto px-4 py-3">
             <div className="flex items-center justify-center gap-2 sm:gap-3 flex-wrap text-sm md:text-base" data-testid="hero-bar">
               <span className="text-white/80 font-medium" data-testid="badge-established">Est. 1982</span>
