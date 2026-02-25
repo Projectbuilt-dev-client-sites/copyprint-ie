@@ -42,44 +42,7 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#32373c]">
-      <div className="bg-[#32373c] border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 py-1 flex items-center justify-between">
-          <div className="flex items-center gap-5">
-            <a
-              href="tel:016774234"
-              className="flex items-center gap-1.5 text-white/60 text-xs tracking-wide transition-colors hover:text-white"
-              data-testid="link-phone"
-            >
-              <Phone className="w-3 h-3" />
-              <span className="hidden sm:inline">01 677 4234</span>
-            </a>
-            <a
-              href="https://wa.me/353870687728"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-green-400/80 text-xs tracking-wide transition-colors hover:text-green-300"
-              data-testid="link-whatsapp-top"
-            >
-              <MessageCircle className="w-3 h-3" />
-              <span className="hidden sm:inline">WhatsApp</span>
-            </a>
-            <a
-              href="mailto:info@copyprint.ie"
-              className="hidden md:flex items-center gap-1.5 text-white/60 text-xs tracking-wide transition-colors hover:text-white"
-              data-testid="link-email"
-            >
-              <Mail className="w-3 h-3" />
-              <span>info@copyprint.ie</span>
-            </a>
-          </div>
-          <div className="hidden md:flex items-center gap-1.5 text-white/40 text-xs tracking-wide">
-            <MapPin className="w-3 h-3" />
-            <span>29-30 Dame St, Dublin 2</span>
-          </div>
-        </div>
-      </div>
-
-      <nav className="bg-[#32373c]">
+      <nav>
         <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between gap-6">
           <Link href="/" data-testid="link-logo">
             <img src="/images/logo.png" alt="Copyprint.ie" className="h-7 md:h-9 cursor-pointer" />
