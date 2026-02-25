@@ -179,6 +179,48 @@ function ProductCard({ product, onAddToCart }: { product: Product; onAddToCart: 
   );
 }
 
+function UploadArtworkBox() {
+  const [fileName, setFileName] = useState<string | null>(null);
+
+  return (
+    <div className="bg-white rounded-xl border border-gray-200 p-5">
+      <h3 className="text-sm font-bold text-gray-900 mb-2 flex items-center gap-2">
+        <Upload className="w-4 h-4 text-primary" />
+        Upload Artwork
+      </h3>
+      <p className="text-xs text-gray-500 mb-3">
+        Upload your print-ready artwork file (PDF, JPG, PNG, AI, EPS)
+      </p>
+      <label
+        className="flex flex-col items-center justify-center w-full h-24 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-primary/50 hover:bg-primary/5 transition-all"
+        data-testid="upload-artwork"
+      >
+        {fileName ? (
+          <div className="flex items-center gap-2 text-sm text-primary font-medium">
+            <Check className="w-4 h-4" />
+            {fileName}
+          </div>
+        ) : (
+          <>
+            <Upload className="w-5 h-5 text-gray-400 mb-1" />
+            <span className="text-xs text-gray-500">Click to upload or drag & drop</span>
+          </>
+        )}
+        <input
+          type="file"
+          className="hidden"
+          accept=".pdf,.jpg,.jpeg,.png,.ai,.eps,.tiff,.tif"
+          onChange={(e) => setFileName(e.target.files?.[0]?.name || null)}
+          data-testid="input-artwork-file"
+        />
+      </label>
+      <p className="text-[11px] text-gray-400 mt-2 text-center">
+        Or email artwork to <a href="mailto:info@copyprint.ie" className="text-primary hover:underline">info@copyprint.ie</a>
+      </p>
+    </div>
+  );
+}
+
 function CartSidebar({ items, onUpdateQty, onRemove, onCheckout, isCheckingOut }: {
   items: CartItem[];
   onUpdateQty: (idx: number, qty: number) => void;
@@ -190,15 +232,19 @@ function CartSidebar({ items, onUpdateQty, onRemove, onCheckout, isCheckingOut }
 
   if (items.length === 0) {
     return (
-      <div className="bg-white rounded-xl border border-gray-200 p-6 text-center">
-        <ShoppingCart className="w-10 h-10 text-gray-300 mx-auto mb-3" />
-        <p className="text-gray-500 text-sm">Your cart is empty</p>
-        <p className="text-gray-400 text-xs mt-1">Select options and add items above</p>
+      <div className="space-y-4">
+        <div className="bg-white rounded-xl border border-gray-200 p-6 text-center">
+          <ShoppingCart className="w-10 h-10 text-gray-300 mx-auto mb-3" />
+          <p className="text-gray-500 text-sm">Your cart is empty</p>
+          <p className="text-gray-400 text-xs mt-1">Select options and add items above</p>
+        </div>
+        <UploadArtworkBox />
       </div>
     );
   }
 
   return (
+    <div className="space-y-4">
     <div className="bg-white rounded-xl border border-gray-200 p-5">
       <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2" data-testid="text-cart-title">
         <ShoppingCart className="w-5 h-5" />
@@ -271,6 +317,8 @@ function CartSidebar({ items, onUpdateQty, onRemove, onCheckout, isCheckingOut }
       <p className="text-xs text-gray-400 text-center mt-3">
         Secure checkout powered by Stripe
       </p>
+    </div>
+    <UploadArtworkBox />
     </div>
   );
 }
