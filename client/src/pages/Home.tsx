@@ -39,27 +39,24 @@ function HeroBanner() {
             title="Copyprint.ie Hero Video"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/20 to-transparent" />
-        <div className="absolute inset-0 flex items-center">
-          <div className="max-w-7xl mx-auto px-4 w-full">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-center px-4">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
-              className="max-w-xl"
             >
-              <span className="inline-flex items-center gap-2 bg-white/20 text-white px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold mb-4 border border-white/30 backdrop-blur-sm" data-testid="badge-established">
-                <Award className="w-3.5 h-3.5" />
-                Est. 1982
-              </span>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3 leading-tight" data-testid="text-hero-title">
+              <p className="text-white text-sm sm:text-base font-medium mb-2 drop-shadow-lg" data-testid="badge-established">Est. 1982</p>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-1 leading-tight drop-shadow-lg" data-testid="text-hero-title">
                 Dublin's #1
-                <span className="block text-primary">Print Shop</span>
               </h1>
-              <p className="text-white/80 text-sm sm:text-base md:text-lg mb-6 max-w-md">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-4 leading-tight drop-shadow-lg">
+                Print Shop
+              </h1>
+              <p className="text-white text-sm sm:text-base md:text-lg mb-6 max-w-xl mx-auto drop-shadow-lg">
                 Same Day Click & Collect. Professional printing for business & personal needs since 1982.
               </p>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-3 justify-center">
                 <Button
                   size="lg"
                   className="gap-2"
