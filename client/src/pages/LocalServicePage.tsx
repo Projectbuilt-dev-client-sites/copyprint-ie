@@ -2,6 +2,7 @@ import { useParams, Link } from "wouter";
 import { dublinAreas, localServices } from "@/lib/dublin-areas";
 import { generateLocalContent } from "@/lib/spintax";
 import { areaData } from "@/lib/dublin-locations";
+import { getServiceHero } from "@/lib/service-heroes";
 import { CheckCircle, ArrowRight, Phone, MessageCircle, MapPin, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
@@ -36,6 +37,7 @@ export default function LocalServicePage() {
   const seed = `${area.slug}-${service.slug}`;
   const content = generateLocalContent(area.name, service.name, seed);
   const locationData = areaData[area.slug] || null;
+  const heroImage = getServiceHero(service.slug, seed);
 
   const nearbyAreas = dublinAreas
     .filter(item => item.slug !== area.slug)
@@ -52,8 +54,19 @@ export default function LocalServicePage() {
 
   return (
     <div>
-      <section className="bg-[#32373c] py-16 md:py-24">
-        <div className="max-w-4xl mx-auto px-4 text-center">
+      <section className="relative bg-[#32373c] py-16 md:py-24 overflow-hidden">
+        {heroImage && (
+          <div className="absolute inset-0">
+            <img
+              src={heroImage}
+              alt={`${service.name} in ${area.name}`}
+              className="w-full h-full object-cover opacity-25"
+              data-testid="img-hero"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#32373c]/60 via-[#32373c]/70 to-[#32373c]" />
+          </div>
+        )}
+        <div className="relative max-w-4xl mx-auto px-4 text-center">
           <div className="flex items-center justify-center gap-2 text-white/50 text-sm mb-4">
             <Link href="/" className="hover:text-white transition-colors" data-testid="breadcrumb-home">Home</Link>
             <span>/</span>
