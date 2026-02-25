@@ -86,11 +86,6 @@ export default function Header() {
           </Link>
 
           <div className="hidden xl:flex items-center gap-1">
-            <Link href="/" data-testid="link-nav-shop">
-              <span className={`px-3 py-1.5 text-[13px] font-medium transition-all cursor-pointer rounded ${location === "/" ? "text-white bg-white/15" : "text-white/70 hover:text-white hover:bg-white/5"}`}>
-                Home
-              </span>
-            </Link>
             {navItems.map((item) => (
               <Link key={item.href} href={item.href} data-testid={`link-nav-${item.href.split("/").pop()}`}>
                 <span className={`px-3 py-1.5 text-[13px] font-medium transition-all cursor-pointer rounded ${location === item.href ? "text-white bg-white/15" : "text-white/70 hover:text-white hover:bg-white/5"}`}>
