@@ -43,7 +43,6 @@
       function setLanguage(lang) {
         var el = document.querySelector('.goog-te-combo');
         if (el) { el.value = lang; el.dispatchEvent(new Event('change')); }
-        document.getElementById('lang-menu').classList.add('hidden');
       }
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
