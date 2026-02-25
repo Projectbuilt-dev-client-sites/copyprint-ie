@@ -43,15 +43,15 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#32373c]">
       <nav>
-        <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between gap-6">
+        <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between gap-4">
           <Link href="/" data-testid="link-logo">
             <img src="/images/logo.png" alt="Copyprint.ie" className="h-7 md:h-9 cursor-pointer" />
           </Link>
 
-          <div className="hidden xl:flex items-center gap-1">
+          <div className="hidden lg:flex items-center gap-0.5">
             {navItems.map((item) => (
               <Link key={item.href} href={item.href} data-testid={`link-nav-${item.href.split("/").pop()}`}>
-                <span data-cursor-grow className={`px-3 py-1.5 text-[13px] font-medium transition-all cursor-none rounded hover:shadow-[0_4px_12px_rgba(250,204,21,0.5)] ${location === item.href ? "text-white bg-white/15" : "text-white/70 hover:text-white hover:bg-white/5"}`}>
+                <span data-cursor-grow className={`px-2.5 py-1 text-[12px] font-medium transition-all cursor-none rounded hover:shadow-[0_4px_12px_rgba(250,204,21,0.5)] ${location === item.href ? "text-white bg-white/15" : "text-white/70 hover:text-white hover:bg-white/5"}`}>
                   {item.label}
                 </span>
               </Link>
@@ -63,7 +63,7 @@ export default function Header() {
               onMouseLeave={() => setDropdownOpen(false)}
             >
               <button
-                className="flex items-center gap-1 px-3 py-1.5 text-[13px] font-medium text-white/70 hover:text-white transition-all rounded hover:bg-white/5 hover:shadow-[0_4px_12px_rgba(250,204,21,0.5)] cursor-none"
+                className="flex items-center gap-1 px-2.5 py-1 text-[12px] font-medium text-white/70 hover:text-white transition-all rounded hover:bg-white/5 hover:shadow-[0_4px_12px_rgba(250,204,21,0.5)] cursor-none"
                 data-cursor-grow
                 data-testid="button-business-printing-dropdown"
               >
@@ -104,7 +104,7 @@ export default function Header() {
 
             <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
               <SheetTrigger asChild>
-                <Button size="icon" variant="ghost" className="xl:hidden text-white/80 no-default-hover-elevate no-default-active-elevate" data-testid="button-mobile-menu">
+                <Button size="icon" variant="ghost" className="lg:hidden text-white/80 no-default-hover-elevate no-default-active-elevate" data-testid="button-mobile-menu">
                   <Menu className="w-5 h-5" />
                 </Button>
               </SheetTrigger>
