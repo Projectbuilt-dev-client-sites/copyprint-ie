@@ -10,6 +10,7 @@ import ServicePage from "@/pages/ServicePage";
 import NotFound from "@/pages/not-found";
 import { useEffect } from "react";
 import { useLocation } from "wouter";
+import CustomCursor from "@/components/CustomCursor";
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -42,6 +43,7 @@ function App() {
           <Footer />
         </div>
         <Toaster />
+        <CustomCursor />
       </TooltipProvider>
     </QueryClientProvider>
   );

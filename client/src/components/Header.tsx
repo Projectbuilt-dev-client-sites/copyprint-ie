@@ -88,7 +88,7 @@ export default function Header() {
           <div className="hidden xl:flex items-center gap-1">
             {navItems.map((item) => (
               <Link key={item.href} href={item.href} data-testid={`link-nav-${item.href.split("/").pop()}`}>
-                <span className={`px-3 py-1.5 text-[13px] font-medium transition-all cursor-pointer rounded hover:shadow-[0_4px_12px_rgba(250,204,21,0.5)] ${location === item.href ? "text-white bg-white/15" : "text-white/70 hover:text-white hover:bg-white/5"}`}>
+                <span data-cursor-grow className={`px-3 py-1.5 text-[13px] font-medium transition-all cursor-none rounded hover:shadow-[0_4px_12px_rgba(250,204,21,0.5)] ${location === item.href ? "text-white bg-white/15" : "text-white/70 hover:text-white hover:bg-white/5"}`}>
                   {item.label}
                 </span>
               </Link>
@@ -100,7 +100,8 @@ export default function Header() {
               onMouseLeave={() => setDropdownOpen(false)}
             >
               <button
-                className="flex items-center gap-1 px-3 py-1.5 text-[13px] font-medium text-white/70 hover:text-white transition-all rounded hover:bg-white/5"
+                className="flex items-center gap-1 px-3 py-1.5 text-[13px] font-medium text-white/70 hover:text-white transition-all rounded hover:bg-white/5 hover:shadow-[0_4px_12px_rgba(250,204,21,0.5)] cursor-none"
+                data-cursor-grow
                 data-testid="button-business-printing-dropdown"
               >
                 More Services
