@@ -6,7 +6,7 @@ export default function HeroVideo() {
   const [location] = useLocation();
 
   return (
-    <section className="relative w-full overflow-hidden" data-testid="section-hero">
+    <section className="relative w-full overflow-hidden pt-16" data-testid="section-hero">
       <div className="relative w-full" style={{ paddingTop: "clamp(75%, 56.25vw, 56.25%)" }}>
         <iframe
           src="https://player.vimeo.com/video/1168097892?badge=0&autopause=0&player_id=0&app_id=58479&background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&dnt=1"
