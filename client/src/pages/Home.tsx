@@ -231,6 +231,41 @@ const testimonials = [
     text: "Very fast turnaround and great prices. Business cards look great. I would highly recommend.",
     source: "online review",
   },
+  {
+    name: "Mark O'Brien",
+    text: "We've been using Copyprint for all our restaurant menus and promotional material for years. Always reliable, always top quality. The lads really know their stuff.",
+    source: "Google review",
+  },
+  {
+    name: "Sarah Kennedy",
+    text: "Had banners and flyers done for a charity event. They went above and beyond to get everything ready on time. The colours were vibrant and the finish was spot on.",
+    source: "Google review",
+  },
+  {
+    name: "David Nolan",
+    text: "Needed 500 business cards same day for a conference. Walked in at 10am, collected at 2pm. Perfect quality and very reasonable price. Lifesavers!",
+    source: "recommends Copyprint.ie",
+  },
+  {
+    name: "Aoife McCarthy",
+    text: "I got my wedding invitations printed here and they were absolutely gorgeous. The team helped me choose the right card stock and finish. So happy with the result!",
+    source: "Google review",
+  },
+  {
+    name: "Conor Fitzpatrick",
+    text: "Best print shop in Dublin, hands down. I've tried a few others but always come back to Copyprint. Consistent quality, fair prices, and genuinely helpful staff.",
+    source: "Google review",
+  },
+  {
+    name: "Emma Byrne",
+    text: "Got my thesis bound here and it looked so professional. They were really patient explaining the different binding options. Great service for students!",
+    source: "online review",
+  },
+  {
+    name: "Padraig Walsh",
+    text: "We order roller banners and posters for our trade shows regularly. Copyprint always delivers on time and the quality is excellent. Highly recommend for business printing.",
+    source: "recommends Copyprint.ie",
+  },
 ];
 
 function Testimonials() {
