@@ -6,7 +6,53 @@ import { getServiceHero, getServiceCtaHero } from "@/lib/service-heroes";
 import { getKeywordsForLocation } from "@/lib/seo-keywords";
 import { CheckCircle, ArrowRight, Phone, MessageCircle, MapPin, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { useEffect } from "react";
+
+function getLocationFAQs(areaName: string, serviceName: string, parentSlug: string) {
+  return [
+    {
+      question: `Where can I get ${serviceName} printed near ${areaName}?`,
+      answer: `Copyprint.ie at 29-30 Dame Street, Dublin 2 is conveniently located close to ${areaName}. We offer same day collection on most ${serviceName.toLowerCase()} orders, making us the ideal choice for customers in the ${areaName} area.`
+    },
+    {
+      question: `How much do ${serviceName} cost in Dublin?`,
+      answer: `We offer competitive pricing on all ${serviceName.toLowerCase()} at Copyprint.ie. Prices vary depending on size, quantity, and finish. Visit our ${serviceName} page for full pricing details or contact us for a custom quote.`
+    },
+    {
+      question: `Can I get same day ${serviceName} near ${areaName}?`,
+      answer: `Yes! For orders placed before 12pm, we offer same day ${serviceName.toLowerCase()} with click & collect from our Dame Street shop. This is perfect for customers in ${areaName} who need a fast turnaround.`
+    },
+    {
+      question: `Do you deliver ${serviceName} to ${areaName}?`,
+      answer: `Yes, we offer delivery of ${serviceName.toLowerCase()} to ${areaName} and all Dublin areas. We also provide nationwide delivery across Ireland for your convenience.`
+    },
+    {
+      question: `What quality ${serviceName} do you offer?`,
+      answer: `At Copyprint.ie, we use premium materials and professional finishes for all our ${serviceName.toLowerCase()}. Our state-of-the-art printing equipment ensures vibrant colours, sharp detail, and a flawless finish on every order.`
+    },
+    {
+      question: `Can I order ${serviceName} online for ${areaName} delivery?`,
+      answer: `Yes, you can order ${serviceName.toLowerCase()} online through our website or simply email your files to info@copyprint.ie. Your order will be printed and delivered directly to ${areaName} or available for collection at our Dame Street shop.`
+    },
+    {
+      question: `What file format should I send for ${serviceName}?`,
+      answer: `For ${serviceName.toLowerCase()}, we accept PDF, AI, PSD, and high-resolution JPG/PNG files. For best results, we recommend print-ready PDFs with 3mm bleed and fonts outlined or embedded.`
+    },
+    {
+      question: `Do you offer design services for ${serviceName} in ${areaName}?`,
+      answer: `Yes, we offer a professional design service for ${serviceName.toLowerCase()} for customers in ${areaName} and across Dublin. Our experienced designers can create eye-catching artwork tailored to your needs.`
+    },
+    {
+      question: `How long does ${serviceName} printing take?`,
+      answer: `Standard ${serviceName.toLowerCase()} orders take 2-3 business days. We also offer same day and next day rush options for urgent orders. Contact us to discuss your deadline requirements.`
+    },
+    {
+      question: `Why choose Copyprint.ie for ${serviceName} near ${areaName}?`,
+      answer: `Established in 1982, Copyprint.ie has over 40 years of experience in professional printing. We offer competitive prices, fast turnaround, premium quality, and convenient service for ${areaName} customers. Our Dame Street location is easily accessible, and we provide both collection and delivery options.`
+    }
+  ];
+}
 
 export default function LocalServicePage() {
   const params = useParams<{ area: string; service: string }>();
@@ -28,7 +74,33 @@ export default function LocalServicePage() {
         document.head.appendChild(metaKeywords);
       }
       metaKeywords.setAttribute("content", keywords.join(", "));
+
+      const faqs = getLocationFAQs(area.name, service.name, service.parentSlug);
+      const faqJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqs.map(faq => ({
+          "@type": "Question",
+          "name": faq.question,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.answer
+          }
+        }))
+      };
+      let faqScript = document.querySelector('script[data-faq-jsonld]') as HTMLScriptElement | null;
+      if (!faqScript) {
+        faqScript = document.createElement("script");
+        faqScript.setAttribute("type", "application/ld+json");
+        faqScript.setAttribute("data-faq-jsonld", "true");
+        document.head.appendChild(faqScript);
+      }
+      faqScript.textContent = JSON.stringify(faqJsonLd);
     }
+    return () => {
+      const existing = document.querySelector('script[data-faq-jsonld]');
+      if (existing) existing.remove();
+    };
   }, [area, service]);
 
   if (!area || !service) {
@@ -276,6 +348,24 @@ export default function LocalServicePage() {
           </div>
         </section>
       )}
+
+      <section className="py-16 bg-white" data-testid="section-location-faq">
+        <div className="max-w-4xl mx-auto px-4">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            {service.name} in {area.name} - Frequently Asked Questions
+          </h2>
+          <Accordion type="single" collapsible className="w-full">
+            {getLocationFAQs(area.name, service.name, service.parentSlug).map((faq, i) => (
+              <AccordionItem key={i} value={`faq-${i}`} data-testid={`accordion-location-faq-${i}`}>
+                <AccordionTrigger className="text-left">{faq.question}</AccordionTrigger>
+                <AccordionContent>
+                  <p className="text-gray-600">{faq.answer}</p>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </section>
 
       <section className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4">

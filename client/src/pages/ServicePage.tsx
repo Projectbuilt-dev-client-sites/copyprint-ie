@@ -202,9 +202,32 @@ export default function ServicePage() {
     }
     scriptTag.textContent = JSON.stringify(jsonLd);
 
+    const faqJsonLd = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": service.faqs.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer,
+        },
+      })),
+    };
+
+    let faqScriptTag = document.querySelector('script[data-service-faq-jsonld]');
+    if (!faqScriptTag) {
+      faqScriptTag = document.createElement("script");
+      faqScriptTag.setAttribute("type", "application/ld+json");
+      faqScriptTag.setAttribute("data-service-faq-jsonld", "true");
+      document.head.appendChild(faqScriptTag);
+    }
+    faqScriptTag.textContent = JSON.stringify(faqJsonLd);
+
     return () => {
       metaKeywords?.remove();
       scriptTag?.remove();
+      faqScriptTag?.remove();
     };
   }, [slug, service, keywords]);
 
