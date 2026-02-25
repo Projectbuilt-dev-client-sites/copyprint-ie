@@ -1,3 +1,12 @@
+import blogBusinessCards from "@assets/blog/business-card-design.png";
+import blogSameDayPrinting from "@assets/blog/same-day-printing.png";
+import blogFlyerDesign from "@assets/blog/flyer-design-tips.png";
+import blogRestaurantMenu from "@assets/blog/restaurant-menu-printing.png";
+import blogStudentPrinting from "@assets/blog/student-printing.png";
+import blogBannersComparison from "@assets/blog/banners-comparison.png";
+import blogPrintReadyFiles from "@assets/blog/print-ready-files.png";
+import blogBusinessStationery from "@assets/blog/business-stationery.png";
+
 export interface BlogPost {
   title: string;
   slug: string;
@@ -39,7 +48,7 @@ export const blogPosts: BlogPost[] = [
       "business card finishes",
     ],
     date: "2025-01-15",
-    featuredImage: "/images/business-cards.png",
+    featuredImage: blogBusinessCards,
     content: `<p>Your business card is often the first tangible representation of your brand that a potential client or partner will hold. In 2025, a well-designed <a href="/services/business-cards">business card</a> remains one of the most powerful networking tools available, bridging the gap between digital and physical branding. Here at CopyPrint on Dame Street, Dublin, we print thousands of business cards every month and we have seen firsthand what separates a great card from a forgettable one.</p>
 
 <h2>Getting the Basics Right: Size, Bleed and Resolution</h2>
@@ -111,7 +120,7 @@ export const blogPosts: BlogPost[] = [
       "walk in printing dublin",
     ],
     date: "2025-01-22",
-    featuredImage: "/images/hero-banner.png",
+    featuredImage: blogSameDayPrinting,
     content: `<p>When you need printed materials and you need them fast, knowing your options for <a href="/">same day printing in Dublin</a> can save you from unnecessary stress. Whether it is business cards for a meeting this afternoon, flyers for tonight's event, or a poster for your shop window, CopyPrint on Dame Street has you covered with reliable same day printing services.</p>
 
 <h2>What Can You Get Printed Same Day?</h2>
@@ -195,7 +204,7 @@ export const blogPosts: BlogPost[] = [
       "flyer call to action",
     ],
     date: "2025-02-05",
-    featuredImage: "/images/flyers-leaflets.png",
+    featuredImage: blogFlyerDesign,
     content: `<p>A well-designed flyer can be one of the most cost-effective marketing tools available. Whether you are promoting an event, advertising a sale, or launching a new service, a physical flyer cuts through the digital noise and puts your message directly into your customer's hands. At CopyPrint Dublin, we have printed millions of <a href="/services/flyers-leaflets">flyers and leaflets</a> over the years, and here are our top ten tips for creating designs that truly work.</p>
 
 <h2>1. Start with a Clear Objective</h2>
@@ -268,7 +277,7 @@ export const blogPosts: BlogPost[] = [
       "folded menu printing",
     ],
     date: "2025-02-12",
-    featuredImage: "/images/restaurant-printing.png",
+    featuredImage: blogRestaurantMenu,
     content: `<p>Your menu is the single most important piece of printed material in your restaurant. It is your primary sales tool, your brand ambassador, and often the first thing a customer interacts with after sitting down. At CopyPrint Dublin, we specialise in <a href="/services/restaurant-printing">restaurant printing</a> and have worked with hundreds of Dublin restaurants, cafes, and takeaways to create menus that look professional and stand up to daily use.</p>
 
 <h2>Choosing the Right Menu Size</h2>
@@ -353,7 +362,7 @@ export const blogPosts: BlogPost[] = [
       "affordable printing dublin",
     ],
     date: "2025-02-20",
-    featuredImage: "/images/student-services.png",
+    featuredImage: blogStudentPrinting,
     content: `<p>Dublin is one of Europe's great university cities, and every academic year thousands of students need reliable, affordable printing services. Whether you are submitting your final thesis, printing CVs for job applications, or preparing a design portfolio, knowing where to get quality <a href="/services/student-services">student printing in Dublin</a> is essential. CopyPrint on Dame Street is located in the heart of Dublin 2, just minutes from Trinity College, and we have been serving students for years.</p>
 
 <h2>Thesis Printing and Binding</h2>
@@ -428,7 +437,7 @@ export const blogPosts: BlogPost[] = [
       "weatherproof banners dublin",
     ],
     date: "2025-03-01",
-    featuredImage: "/images/pvc-banners.png",
+    featuredImage: blogBannersComparison,
     content: `<p>Banners are one of the most versatile and impactful forms of visual advertising. Whether you are promoting your business, exhibiting at a trade show, or advertising an event, a professionally printed banner grabs attention and communicates your message effectively. But which type of banner is right for your needs? In this guide, we compare <a href="/services/pvc-banners">PVC banners</a> and <a href="/services/roller-banners">roller banners</a> to help you make the right choice.</p>
 
 <h2>What is a PVC Banner?</h2>
@@ -517,7 +526,7 @@ export const blogPosts: BlogPost[] = [
       "artwork guidelines printing",
     ],
     date: "2025-03-10",
-    featuredImage: "/images/order-now-cta.png",
+    featuredImage: blogPrintReadyFiles,
     content: `<p>Submitting correctly prepared files is the single most important thing you can do to ensure your printed materials look exactly as you intended. Poorly prepared artwork is the number one cause of delays, reprints, and disappointing results. This guide walks you through everything you need to know about preparing <a href="/">print-ready files for professional printing</a>.</p>
 
 <h2>Resolution: Why 300 DPI Matters</h2>
@@ -603,7 +612,7 @@ export const blogPosts: BlogPost[] = [
       "stationery printing dame street",
     ],
     date: "2025-03-18",
-    featuredImage: "/images/business-stationery.png",
+    featuredImage: blogBusinessStationery,
     content: `<p>In an increasingly digital world, physical <a href="/services/business-stationery">business stationery</a> has become more distinctive, not less. A professionally printed letterhead, a quality compliment slip, or a branded envelope signals credibility and attention to detail. It tells your clients and partners that you take your business seriously. At CopyPrint Dublin, we help businesses of all sizes create stationery that reinforces their brand at every touchpoint.</p>
 
 <h2>Letterheads: Your Brand on Every Page</h2>
