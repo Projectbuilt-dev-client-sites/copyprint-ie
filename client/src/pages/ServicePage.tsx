@@ -241,7 +241,7 @@ export default function ServicePage() {
         <div className="absolute inset-0 overflow-hidden">
           <img
             src={service.image}
-            alt={service.name}
+            alt={`${service.name} printing services at Copyprint.ie Dublin`}
             className="w-full h-full object-cover opacity-20"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#32373c] via-[#32373c]/95 to-[#32373c]/80" />

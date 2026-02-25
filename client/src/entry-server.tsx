@@ -108,14 +108,67 @@ function getRouteMeta(url: string): RouteMeta {
   };
 }
 
+function buildBreadcrumbJsonLd(url: string): string {
+  const path = url.split("?")[0];
+  const items: { name: string; url: string }[] = [
+    { name: "Home", url: "https://copyprint.ie/" },
+  ];
+
+  if (path.startsWith("/services/")) {
+    items.push({ name: "Services", url: "https://copyprint.ie/" });
+    const slug = path.replace("/services/", "");
+    const service = getServiceBySlug(slug);
+    if (service) {
+      items.push({ name: service.name, url: `https://copyprint.ie${path}` });
+    }
+  } else if (path === "/blog") {
+    items.push({ name: "Blog", url: "https://copyprint.ie/blog" });
+  } else if (path.startsWith("/blog/")) {
+    items.push({ name: "Blog", url: "https://copyprint.ie/blog" });
+    const slug = path.replace("/blog/", "");
+    const post = getBlogPostBySlug(slug);
+    if (post) {
+      items.push({ name: post.title, url: `https://copyprint.ie${path}` });
+    }
+  } else if (path === "/printing") {
+    items.push({ name: "Dublin Areas", url: "https://copyprint.ie/printing" });
+  } else if (path.startsWith("/printing/")) {
+    items.push({ name: "Dublin Areas", url: "https://copyprint.ie/printing" });
+    const parts = path.replace("/printing/", "").split("/");
+    if (parts.length === 2) {
+      const areaSlug = parts[0];
+      const areaName = areaSlug.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+      items.push({ name: areaName, url: `https://copyprint.ie${path}` });
+    }
+  }
+
+  if (items.length <= 1) return "";
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": items.map((item, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": item.name,
+      "item": item.url,
+    })),
+  };
+
+  return `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`;
+}
+
 function buildMetaTags(meta: RouteMeta): string {
   const tags = [
     `<title>${meta.title}</title>`,
     `<meta name="description" content="${meta.description}" />`,
+    `<link rel="canonical" href="${meta.ogUrl}" />`,
     `<meta property="og:title" content="${meta.ogTitle}" />`,
     `<meta property="og:description" content="${meta.ogDescription}" />`,
     `<meta property="og:type" content="${meta.ogType}" />`,
     `<meta property="og:url" content="${meta.ogUrl}" />`,
+    `<meta property="og:site_name" content="Copyprint.ie" />`,
+    `<meta property="og:locale" content="en_IE" />`,
     `<meta property="og:image" content="https://copyprint.ie/images/og-logo.jpg" />`,
     `<meta property="og:image:width" content="1200" />`,
     `<meta property="og:image:height" content="400" />`,
@@ -149,6 +202,8 @@ export function render(url: string) {
 
   const meta = getRouteMeta(url);
   const metaTags = buildMetaTags(meta);
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd(url);
+  const fullMetaTags = breadcrumbJsonLd ? `${metaTags}\n    ${breadcrumbJsonLd}` : metaTags;
 
-  return { html, metaTags };
+  return { html, metaTags: fullMetaTags };
 }

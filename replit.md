@@ -51,11 +51,15 @@ Business Cards, Flyers and Leaflets, Posters, Roller Banners, Business Stationer
 
 ## SEO Features
 - Meta keywords on all pages (home, service, location, blog)
-- JSON-LD structured data: LocalBusiness (home), Service (service pages), FAQPage (all pages with FAQs), Article (blog posts)
+- JSON-LD structured data: LocalBusiness (home), Service (service pages), FAQPage (all pages with FAQs), Article (blog posts), BreadcrumbList (all inner pages), WebSite+SearchAction (global)
+- Canonical URLs on all SSR pages via `<link rel="canonical">`
+- OpenGraph: og:title, og:description, og:type, og:url, og:site_name, og:locale (en_IE), og:image
 - Keyword-rich content sections with internal links
 - 10 FAQs per service page, 10 FAQs per location page, 12 FAQs on home page
-- SSG pre-rendering for all pages
-- OpenGraph meta tags
+- SSG pre-rendering for all 730+ pages
+- robots.txt, llms.txt, sitemap.xml (dynamic server route + build-time)
+- Proper heading hierarchy (h1 on every page)
+- Descriptive image alt text
 
 ## API
 - `POST /api/contact` - Contact form submission (in-memory storage)

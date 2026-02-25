@@ -43,6 +43,7 @@ function HeroBanner() {
         />
         <div className="absolute bottom-0 left-0 right-0 z-10 bg-[#32373c]">
           <div className="max-w-7xl mx-auto px-4 py-14 relative">
+            <h1 className="sr-only">Copyprint.ie - Dublin's #1 Print Shop Since 1982 | Same Day Printing, Business Cards, Flyers, Posters & Banners</h1>
             <div className="flex items-center justify-center gap-3 sm:gap-4 flex-wrap" data-testid="hero-bar">
               <span className="flex items-center gap-1.5 text-white font-semibold text-[13px] px-3 py-1.5 rounded-lg bg-transparent border border-white/15 shadow-[0_3px_0_rgba(0,0,0,0.3),0_4px_8px_rgba(0,0,0,0.2)] hover:shadow-[0_3px_0_rgba(0,0,0,0.3),0_4px_12px_rgba(250,204,21,0.5)] active:shadow-[0_1px_0_rgba(0,0,0,0.3)] active:translate-y-[2px] transition-all select-none" data-testid="badge-established">
                 <Award className="w-4 h-4 text-white/70" />
@@ -154,9 +155,9 @@ function CTABanner() {
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2" data-testid="text-cta-line1">
                 Business Cards | Flyers & Leaflets
               </h2>
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-600 mb-6">
+              <p className="text-2xl md:text-3xl font-bold text-gray-600 mb-6">
                 PVC Banners | Poster Printing
-              </h2>
+              </p>
               <Button
                 size="lg"
                 className="gap-2 text-base"
@@ -169,7 +170,7 @@ function CTABanner() {
             <div className="flex-1 max-w-md">
               <img
                 src="/images/order-now-cta.png"
-                alt="Order printing online"
+                alt="Order printing online at Copyprint.ie Dublin - same day click and collect"
                 className="w-full rounded-md shadow-xl"
               />
             </div>
