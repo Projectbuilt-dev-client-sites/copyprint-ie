@@ -412,8 +412,20 @@ export default function Shop() {
 
   return (
     <div>
-      <section className="bg-[#32373c] py-12 md:py-16">
-        <div className="max-w-7xl mx-auto px-4 text-center">
+      <section className="relative bg-[#32373c] py-16 md:py-20 overflow-hidden">
+        <div className="absolute inset-0 flex">
+          <div className="flex-1 relative">
+            <img src={businessCards1} alt="Business cards printing Dublin" className="absolute inset-0 w-full h-full object-cover opacity-25" />
+          </div>
+          <div className="flex-1 relative">
+            <img src={flyersLeaflets1} alt="Flyers and leaflets printing Dublin" className="absolute inset-0 w-full h-full object-cover opacity-25" />
+          </div>
+          <div className="flex-1 relative hidden md:block">
+            <img src={posters1} alt="Poster printing Dublin" className="absolute inset-0 w-full h-full object-cover opacity-25" />
+          </div>
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#32373c] via-[#32373c]/70 to-[#32373c]/50" />
+        <div className="relative max-w-7xl mx-auto px-4 text-center z-10">
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-3" data-testid="text-shop-title">Shop Now</h1>
           <p className="text-gray-300 max-w-2xl mx-auto">
             Same Day Click & Collect · Bespoke Jobs Fast · Local or Nationwide Delivery
