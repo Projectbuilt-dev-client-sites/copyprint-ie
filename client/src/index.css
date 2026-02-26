@@ -306,3 +306,15 @@ body > .skiptranslate {
     inset: -1px;
   }
 }
+
+@media (orientation: portrait) and (max-width: 767px) {
+  .hero-video-wrap {
+    padding-top: 0 !important;
+    height: 65vh;
+  }
+  .hero-video-wrap iframe {
+    width: 300%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
