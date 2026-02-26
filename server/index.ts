@@ -9,6 +9,14 @@ import { WebhookHandlers } from "./webhookHandlers";
 const app = express();
 const httpServer = createServer(app);
 
+process.on("uncaughtException", (err) => {
+  console.error("[server] Uncaught exception (keeping process alive):", err);
+});
+
+process.on("unhandledRejection", (reason) => {
+  console.error("[server] Unhandled promise rejection (keeping process alive):", reason);
+});
+
 declare module "http" {
   interface IncomingMessage {
     rawBody: unknown;
