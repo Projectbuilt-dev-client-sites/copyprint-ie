@@ -2,23 +2,9 @@ import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { serveStatic } from "./static";
 import { createServer } from "http";
-let runMigrations: any;
-let getStripeSync: any;
-let WebhookHandlers: any;
-
-const _origStderrWrite = process.stderr.write.bind(process.stderr);
-process.stderr.write = ((chunk: any, ...args: any[]) => {
-  const str = typeof chunk === 'string' ? chunk : chunk.toString();
-  if (str.includes('PostCSS') || str.includes('postcss')) return true;
-  return (_origStderrWrite as any)(chunk, ...args);
-}) as any;
-
-const _origConsoleWarn = console.warn;
-console.warn = (...args: any[]) => {
-  const msg = typeof args[0] === 'string' ? args[0] : '';
-  if (msg.includes('PostCSS') || msg.includes('postcss')) return;
-  _origConsoleWarn.apply(console, args);
-};
+import { runMigrations } from 'stripe-replit-sync';
+import { getStripeSync } from "./stripeClient";
+import { WebhookHandlers } from "./webhookHandlers";
 
 const app = express();
 const httpServer = createServer(app);
@@ -48,11 +34,6 @@ async function initStripe() {
   }
 
   try {
-    const stripeSyncModule = await import('stripe-replit-sync');
-    runMigrations = stripeSyncModule.runMigrations;
-    const stripeClientModule = await import('./stripeClient');
-    getStripeSync = stripeClientModule.getStripeSync;
-
     log('Initializing Stripe schema...', 'stripe');
     await runMigrations({ databaseUrl, schema: 'stripe' });
     log('Stripe schema ready', 'stripe');
@@ -125,10 +106,6 @@ app.post(
         return res.status(500).json({ error: 'Webhook processing error' });
       }
 
-      if (!WebhookHandlers) {
-        const whModule = await import('./webhookHandlers');
-        WebhookHandlers = whModule.WebhookHandlers;
-      }
       await WebhookHandlers.processWebhook(req.body as Buffer, sig);
       res.status(200).json({ received: true });
     } catch (error: any) {
@@ -206,11 +183,7 @@ app.use((req, res, next) => {
     },
     () => {
       log(`serving on port ${port}`);
-      if (process.env.NODE_ENV === "production") {
-        initStripe().catch((err) => console.error("Stripe init error:", err));
-      } else {
-        log("Skipping Stripe sync in development to save memory", "stripe");
-      }
+      initStripe().catch((err) => console.error("Stripe init error:", err));
     },
   );
 })();
