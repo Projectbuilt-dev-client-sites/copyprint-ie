@@ -43,4 +43,4 @@ args = "while true; do NODE_ENV=production node dist/index.cjs; echo 'Server exi
 waitForPort = 5000
 
 [agent]
-integrations = ["stripe:2.0.0"]
+integrations = ["stripe:2.0.0", "google-mail:1.0.0"]
