@@ -34,16 +34,16 @@ const sectionVariants = {
 function HeroBanner() {
   return (
     <section className="relative w-full overflow-hidden" data-testid="section-hero">
-      <div className="relative w-full" style={{ paddingTop: "56.25%" }}>
+      <div className="relative w-full h-[70vh] md:h-auto md:pt-[56.25%]">
         <iframe
           src="https://player.vimeo.com/video/1168097892?badge=0&autopause=0&player_id=0&app_id=58479&background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&dnt=1"
-          className="absolute inset-0 w-full h-full z-0"
+          className="absolute inset-0 w-[300%] h-full md:w-full left-1/2 -translate-x-1/2 md:left-0 md:translate-x-0 z-0 object-cover"
           allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
           referrerPolicy="strict-origin-when-cross-origin"
           title="Copyprint.ie"
         />
         <div className="absolute bottom-0 left-0 right-0 z-10 bg-[#32373c]">
-          <div className="max-w-7xl mx-auto px-4 py-14 relative">
+          <div className="max-w-7xl mx-auto px-4 py-8 md:py-14 relative">
             <h1 className="sr-only">Copyprint.ie - Dublin's #1 Print Shop Since 1982 | Same Day Printing, Business Cards, Flyers, Posters & Banners</h1>
             <div className="flex items-center justify-center gap-3 sm:gap-4 flex-wrap" data-testid="hero-bar">
               <span className="flex items-center gap-1.5 text-white font-semibold text-[13px] px-3 py-1.5 rounded-lg bg-transparent border border-white/15 shadow-[0_3px_0_rgba(0,0,0,0.3),0_4px_8px_rgba(0,0,0,0.2)] hover:shadow-[0_3px_0_rgba(0,0,0,0.3),0_4px_12px_rgba(250,204,21,0.5)] active:shadow-[0_1px_0_rgba(0,0,0,0.3)] active:translate-y-[2px] transition-all select-none" data-testid="badge-established">
