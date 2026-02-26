@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import { API_BASE } from "@/lib/queryClient";
 import {
   Upload, User, Mail, Phone, Check, Loader2, ArrowRight, X, FileText,
 } from "lucide-react";
@@ -60,7 +61,7 @@ export default function ArtworkUploadForm({ serviceName }: ArtworkUploadFormProp
       formData.append("phone", tel.trim());
       if (serviceName) formData.append("service", serviceName);
       artworkFiles.forEach((file) => formData.append("artwork", file));
-      const res = await fetch("/api/artwork-submit", { method: "POST", body: formData });
+      const res = await fetch(`${API_BASE}/api/artwork-submit`, { method: "POST", body: formData });
       if (!res.ok) throw new Error("Failed");
       setSubmitted(true);
       toast({ title: "Artwork details submitted", description: "We'll be in touch shortly about your order." });
