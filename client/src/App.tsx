@@ -12,6 +12,7 @@ import PrintingIndex from "@/pages/PrintingIndex";
 import BlogIndex from "@/pages/BlogIndex";
 import BlogPost from "@/pages/BlogPost";
 import Shop from "@/pages/Shop";
+import PrintReadyChecklist from "@/pages/PrintReadyChecklist";
 import NotFound from "@/pages/not-found";
 import { useEffect } from "react";
 import { useLocation } from "wouter";
@@ -33,6 +34,7 @@ function Router() {
       <Route path="/shop" component={Shop} />
       <Route path="/blog" component={BlogIndex} />
       <Route path="/blog/:slug" component={BlogPost} />
+      <Route path="/print-ready-checklist" component={PrintReadyChecklist} />
       <Route path="/printing" component={PrintingIndex} />
       <Route path="/printing/:area/:service" component={LocalServicePage} />
       <Route component={NotFound} />

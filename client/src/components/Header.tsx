@@ -26,6 +26,7 @@ const businessPrintingItems = [
 const extraItems = [
   { label: "Student Services", href: "/services/student-services" },
   { label: "Personal Printing", href: "/services/personal-printing" },
+  { label: "Print Ready Checklist", href: "/print-ready-checklist" },
   { label: "Blog", href: "/blog" },
 ];
 

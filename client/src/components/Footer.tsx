@@ -18,6 +18,7 @@ const moreLinks = [
   { label: "Student Services", href: "/services/student-services" },
   { label: "Personal Printing", href: "/services/personal-printing" },
   { label: "Laminating & Binding", href: "/services/laminating-binding" },
+  { label: "Print Ready Checklist", href: "/print-ready-checklist" },
   { label: "Blog", href: "/blog" },
 ];
 
