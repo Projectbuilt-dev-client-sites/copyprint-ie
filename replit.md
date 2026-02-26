@@ -82,6 +82,12 @@ Business Cards, Flyers and Leaflets, Posters, Roller Banners, Business Stationer
 - Optional GMAIL_USER secret (defaults to copyprintdublin@gmail.com)
 - Emails sent to copyprintdublin@gmail.com with artwork file attached
 
+## Dev Workflow
+- Workflow command: `NODE_ENV=production npx tsx server/index.ts`
+- Serves the **pre-built** frontend from `dist/public/` (no Vite dev server — avoids 8GB cgroup OOM crashes)
+- After making frontend code changes, run `npm run build` before restarting the workflow to see updates
+- `server/static.ts` uses `process.cwd()` to locate `dist/public`, compatible with both tsx (ESM) and the compiled CJS bundle
+
 ## Contact Details
 - Phone: 01 677 4234
 - WhatsApp: +353 870 687 728
