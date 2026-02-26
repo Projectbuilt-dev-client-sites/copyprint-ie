@@ -5,18 +5,19 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Home from "@/pages/Home";
-import ServicePage from "@/pages/ServicePage";
-import LocalServicePage from "@/pages/LocalServicePage";
-import PrintingIndex from "@/pages/PrintingIndex";
-import BlogIndex from "@/pages/BlogIndex";
-import BlogPost from "@/pages/BlogPost";
-import Shop from "@/pages/Shop";
-import PrintReadyChecklist from "@/pages/PrintReadyChecklist";
 import NotFound from "@/pages/not-found";
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import { useLocation } from "wouter";
 import CustomCursor from "@/components/CustomCursor";
+
+const Home = lazy(() => import("@/pages/Home"));
+const ServicePage = lazy(() => import("@/pages/ServicePage"));
+const LocalServicePage = lazy(() => import("@/pages/LocalServicePage"));
+const PrintingIndex = lazy(() => import("@/pages/PrintingIndex"));
+const BlogIndex = lazy(() => import("@/pages/BlogIndex"));
+const BlogPost = lazy(() => import("@/pages/BlogPost"));
+const Shop = lazy(() => import("@/pages/Shop"));
+const PrintReadyChecklist = lazy(() => import("@/pages/PrintReadyChecklist"));
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -26,19 +27,29 @@ function ScrollToTop() {
   return null;
 }
 
+function LazyFallback() {
+  return (
+    <div className="min-h-[60vh] flex items-center justify-center">
+      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+    </div>
+  );
+}
+
 function Router() {
   return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/services/:slug" component={ServicePage} />
-      <Route path="/shop" component={Shop} />
-      <Route path="/blog" component={BlogIndex} />
-      <Route path="/blog/:slug" component={BlogPost} />
-      <Route path="/print-ready-checklist" component={PrintReadyChecklist} />
-      <Route path="/printing" component={PrintingIndex} />
-      <Route path="/printing/:area/:service" component={LocalServicePage} />
-      <Route component={NotFound} />
-    </Switch>
+    <Suspense fallback={<LazyFallback />}>
+      <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/services/:slug" component={ServicePage} />
+        <Route path="/shop" component={Shop} />
+        <Route path="/blog" component={BlogIndex} />
+        <Route path="/blog/:slug" component={BlogPost} />
+        <Route path="/print-ready-checklist" component={PrintReadyChecklist} />
+        <Route path="/printing" component={PrintingIndex} />
+        <Route path="/printing/:area/:service" component={LocalServicePage} />
+        <Route component={NotFound} />
+      </Switch>
+    </Suspense>
   );
 }
 
