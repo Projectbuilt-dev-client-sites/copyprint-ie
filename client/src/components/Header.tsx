@@ -205,36 +205,38 @@ export default function Header() {
                   <Menu className="w-5 h-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="bg-white border-gray-200 w-[300px]">
-                <SheetHeader>
+              <SheetContent side="right" className="bg-white border-gray-200 w-[300px] flex flex-col overflow-hidden">
+                <SheetHeader className="flex-shrink-0">
                   <SheetTitle className="text-left">
                     <img src="/images/logo.webp" alt="Copyprint.ie" className="h-9" />
                   </SheetTitle>
                 </SheetHeader>
-                <div className="flex flex-col gap-0.5 mt-6">
-                  {allMobileItems.map((item) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      onClick={() => setMobileOpen(false)}
-                      data-testid={`link-mobile-${item.href === "/" ? "home" : item.href.split("/").pop()}`}
-                    >
-                      <span className={`block px-3 py-2.5 text-sm font-medium rounded cursor-pointer transition-all ${location === item.href ? "text-blue-600 bg-gray-100" : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"}`}>
-                        {item.label}
-                      </span>
-                    </Link>
-                  ))}
-                </div>
-                <div className="mt-6 pt-6 border-t border-gray-200 space-y-3">
-                  <a href="tel:016774234" className="flex items-center gap-2 text-gray-500 text-sm hover:text-gray-900 transition-colors" data-testid="link-mobile-phone">
-                    <Phone className="w-4 h-4" /> 01 677 4234
-                  </a>
-                  <a href="https://wa.me/353870687728" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-green-600 text-sm hover:text-green-700 transition-colors" data-testid="link-mobile-whatsapp">
-                    <MessageCircle className="w-4 h-4" /> WhatsApp Us
-                  </a>
-                  <a href="mailto:info@copyprint.ie" className="flex items-center gap-2 text-gray-500 text-sm hover:text-gray-900 transition-colors" data-testid="link-mobile-email">
-                    <Mail className="w-4 h-4" /> info@copyprint.ie
-                  </a>
+                <div className="flex-1 overflow-y-auto mt-6 -mx-6 px-6">
+                  <div className="flex flex-col gap-0.5">
+                    {allMobileItems.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={() => setMobileOpen(false)}
+                        data-testid={`link-mobile-${item.href === "/" ? "home" : item.href.split("/").pop()}`}
+                      >
+                        <span className={`block px-3 py-2.5 text-sm font-medium rounded cursor-pointer transition-all ${location === item.href ? "text-blue-600 bg-gray-100" : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"}`}>
+                          {item.label}
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                  <div className="mt-6 pt-6 border-t border-gray-200 space-y-3 pb-6">
+                    <a href="tel:016774234" className="flex items-center gap-2 text-gray-500 text-sm hover:text-gray-900 transition-colors" data-testid="link-mobile-phone">
+                      <Phone className="w-4 h-4" /> 01 677 4234
+                    </a>
+                    <a href="https://wa.me/353870687728" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-green-600 text-sm hover:text-green-700 transition-colors" data-testid="link-mobile-whatsapp">
+                      <MessageCircle className="w-4 h-4" /> WhatsApp Us
+                    </a>
+                    <a href="mailto:info@copyprint.ie" className="flex items-center gap-2 text-gray-500 text-sm hover:text-gray-900 transition-colors" data-testid="link-mobile-email">
+                      <Mail className="w-4 h-4" /> info@copyprint.ie
+                    </a>
+                  </div>
                 </div>
               </SheetContent>
             </Sheet>
