@@ -4,6 +4,12 @@ export default function CustomCursor() {
   const [pos, setPos] = useState({ x: -100, y: -100 });
   const [hovering, setHovering] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  useEffect(() => {
+    const hasTouchScreen = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+    if (hasTouchScreen) setIsTouchDevice(true);
+  }, []);
 
   const onMouseMove = useCallback((e: MouseEvent) => {
     setPos({ x: e.clientX, y: e.clientY });
@@ -38,7 +44,7 @@ export default function CustomCursor() {
     };
   }, [onMouseMove]);
 
-  if (!visible) return null;
+  if (!visible || isTouchDevice) return null;
 
   const size = hovering ? 48 : 32;
 
