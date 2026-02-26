@@ -1,9 +1,16 @@
-// Stripe integration via Replit connector
 import Stripe from 'stripe';
 
 let connectionSettings: any;
 
-async function getCredentials() {
+async function getCredentials(): Promise<{ publishableKey: string; secretKey: string }> {
+  if (process.env.STRIPE_SECRET_KEY) {
+    console.log('Using STRIPE_SECRET_KEY environment variable');
+    return {
+      publishableKey: process.env.STRIPE_PUBLISHABLE_KEY || '',
+      secretKey: process.env.STRIPE_SECRET_KEY,
+    };
+  }
+
   const hostname = process.env.REPLIT_CONNECTORS_HOSTNAME;
   const xReplitToken = process.env.REPL_IDENTITY
     ? 'repl ' + process.env.REPL_IDENTITY
@@ -11,8 +18,8 @@ async function getCredentials() {
       ? 'depl ' + process.env.WEB_REPL_RENEWAL
       : null;
 
-  if (!xReplitToken) {
-    throw new Error('X-Replit-Token not found for repl/depl');
+  if (!hostname || !xReplitToken) {
+    throw new Error('No Stripe credentials available. Set STRIPE_SECRET_KEY or use Replit Stripe integration.');
   }
 
   const connectorName = 'stripe';
