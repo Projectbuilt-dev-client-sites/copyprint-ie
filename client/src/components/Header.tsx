@@ -128,9 +128,9 @@ export default function Header() {
       </div>
 
       <nav className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-6">
+        <div className="max-w-7xl mx-auto px-4 py-1.5 sm:py-3 flex items-center justify-between gap-6">
           <Link href="/" data-testid="link-logo">
-            <img src="/images/logo.webp" alt="Copyprint.ie" className="h-14 md:h-12 cursor-pointer" />
+            <img src="/images/logo.webp" alt="Copyprint.ie" className="h-10 sm:h-14 md:h-12 cursor-pointer" />
           </Link>
 
           <div className="hidden xl:flex items-center gap-1">
