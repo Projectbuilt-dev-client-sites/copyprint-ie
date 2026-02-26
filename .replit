@@ -39,7 +39,7 @@ outputType = "webview"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "NODE_ENV=production npx tsx server/index.ts"
+args = "while true; do NODE_ENV=production node dist/index.cjs; echo 'Server exited, restarting in 2s...'; sleep 2; done"
 waitForPort = 5000
 
 [agent]
