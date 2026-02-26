@@ -95,3 +95,70 @@ export async function sendArtworkNotification(
   await transporter.sendMail(msg);
   console.log(`[email] Artwork notification sent to ${NOTIFY_EMAIL} for ${data.name}${attachments.length ? " (with attachment)" : ""}`);
 }
+
+export async function sendContactNotification(data: {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}): Promise<void> {
+  const transporter = getTransporter();
+
+  if (!transporter) {
+    console.log("[email] Gmail not configured. Logging contact submission:");
+    console.log(`[email] From: ${data.name} <${data.email}> | Subject: ${data.subject}`);
+    return;
+  }
+
+  const msg = {
+    from: `"Copyprint.ie Website" <${process.env.GMAIL_USER || NOTIFY_EMAIL}>`,
+    to: NOTIFY_EMAIL,
+    replyTo: data.email,
+    subject: `Contact Form: ${data.subject}`,
+    text: [
+      "New contact form submission from copyprint.ie:",
+      "",
+      `Name: ${data.name}`,
+      `Email: ${data.email}`,
+      `Subject: ${data.subject}`,
+      "",
+      "Message:",
+      data.message,
+    ].join("\n"),
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <div style="background: #32373c; padding: 20px; text-align: center;">
+          <h2 style="color: white; margin: 0;">New Contact Form Message</h2>
+          <p style="color: #9ca3af; margin: 4px 0 0; font-size: 13px;">Copyprint.ie</p>
+        </div>
+        <div style="padding: 24px; border: 1px solid #e5e7eb; border-top: none;">
+          <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+              <td style="padding: 10px 0; font-weight: bold; width: 90px; vertical-align: top; color: #374151;">Name:</td>
+              <td style="padding: 10px 0; color: #111827;">${data.name}</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 0; font-weight: bold; vertical-align: top; color: #374151;">Email:</td>
+              <td style="padding: 10px 0;"><a href="mailto:${data.email}" style="color: #f97316;">${data.email}</a></td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 0; font-weight: bold; vertical-align: top; color: #374151;">Subject:</td>
+              <td style="padding: 10px 0; color: #111827;">${data.subject}</td>
+            </tr>
+          </table>
+          <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 16px 0;" />
+          <p style="font-weight: bold; color: #374151; margin: 0 0 8px;">Message:</p>
+          <p style="color: #111827; white-space: pre-wrap; margin: 0;">${data.message}</p>
+          <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 16px 0;" />
+          <p style="color: #6b7280; font-size: 13px; margin: 0;">Reply directly to this email to respond to ${data.name}.</p>
+        </div>
+        <div style="background: #f9fafb; padding: 12px 24px; border: 1px solid #e5e7eb; border-top: none; text-align: center;">
+          <p style="color: #9ca3af; font-size: 11px; margin: 0;">Sent automatically from copyprint.ie</p>
+        </div>
+      </div>
+    `,
+  };
+
+  await transporter.sendMail(msg);
+  console.log(`[email] Contact notification sent to ${NOTIFY_EMAIL} from ${data.name}`);
+}

@@ -3,7 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertContactSchema, insertArtworkSchema } from "@shared/schema";
 import { ZodError } from "zod";
-import { sendArtworkNotification } from "./email";
+import { sendArtworkNotification, sendContactNotification } from "./email";
 import { getUncachableStripeClient, getStripePublishableKey } from "./stripeClient";
 import pg from "pg";
 import multer from "multer";
@@ -102,6 +102,9 @@ export async function registerRoutes(
     try {
       const data = insertContactSchema.parse(req.body);
       const message = await storage.createContactMessage(data);
+      sendContactNotification(data).catch((err) =>
+        console.error("Failed to send contact email:", err)
+      );
       res.json({ success: true, id: message.id });
     } catch (error) {
       if (error instanceof ZodError) {
