@@ -83,6 +83,25 @@ async function initStripe() {
   }
 }
 
+const allowedOrigins = [
+  'https://copyprint-ie.pages.dev',
+  'https://copyprint.ie',
+  'https://www.copyprint.ie',
+];
+
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  if (origin && allowedOrigins.some(o => origin.startsWith(o) || origin.endsWith('.pages.dev'))) {
+    res.header('Access-Control-Allow-Origin', origin);
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, stripe-signature');
+  }
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(204);
+  }
+  next();
+});
+
 // Stripe webhook route MUST be registered BEFORE express.json()
 app.post(
   '/api/stripe/webhook',

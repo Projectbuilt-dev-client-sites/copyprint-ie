@@ -243,8 +243,10 @@ export async function registerRoutes(
       }
 
       const stripe = await getUncachableStripeClient();
+      const origin = req.headers.origin;
       const host = req.headers.host || 'localhost:5000';
       const protocol = req.headers['x-forwarded-proto'] || req.protocol;
+      const baseUrl = origin || `${protocol}://${host}`;
 
       const line_items = items.map((item: { priceId: string; quantity: number }) => ({
         price: item.priceId,
@@ -255,8 +257,8 @@ export async function registerRoutes(
         payment_method_types: ['card'],
         line_items,
         mode: 'payment',
-        success_url: `${protocol}://${host}/shop?success=true`,
-        cancel_url: `${protocol}://${host}/shop?canceled=true`,
+        success_url: `${baseUrl}/shop?success=true`,
+        cancel_url: `${baseUrl}/shop?canceled=true`,
         shipping_address_collection: {
           allowed_countries: ['IE', 'GB'],
         },
