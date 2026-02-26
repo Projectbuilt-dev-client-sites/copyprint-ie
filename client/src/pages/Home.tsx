@@ -34,10 +34,10 @@ const sectionVariants = {
 function HeroBanner() {
   return (
     <section className="relative w-full overflow-hidden" data-testid="section-hero">
-      <div className="relative w-full h-[75vh] min-h-[400px] md:h-auto md:min-h-0 md:aspect-video">
+      <div className="relative w-full" style={{ paddingTop: "56.25%" }}>
         <iframe
           src="https://player.vimeo.com/video/1168097892?badge=0&autopause=0&player_id=0&app_id=58479&background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&dnt=1"
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-auto z-0 md:inset-0 md:top-0 md:left-0 md:translate-x-0 md:translate-y-0 md:w-full md:h-full md:min-w-0 md:min-h-0"
+          className="absolute inset-0 w-full h-full z-0"
           allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
           referrerPolicy="strict-origin-when-cross-origin"
           title="Copyprint.ie"
