@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@media (orientation: portrait) and (max-width: 767px) {
+  .hero-portrait-fix {
+    padding-top: 100% !important;
+  }
+}
 
 /* LIGHT MODE */
 :root {

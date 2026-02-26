@@ -34,7 +34,7 @@ const sectionVariants = {
 function HeroBanner() {
   return (
     <section className="relative w-full overflow-hidden" data-testid="section-hero">
-      <div className="relative w-full" style={{ paddingTop: "56.25%" }}>
+      <div className="relative w-full hero-portrait-fix" style={{ paddingTop: "56.25%" }}>
         <iframe
           src="https://player.vimeo.com/video/1168097892?badge=0&autopause=0&player_id=0&app_id=58479&background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&dnt=1"
           className="absolute inset-0 w-full h-full z-0 border-0"
