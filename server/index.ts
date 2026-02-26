@@ -6,6 +6,20 @@ import { runMigrations } from 'stripe-replit-sync';
 import { getStripeSync } from "./stripeClient";
 import { WebhookHandlers } from "./webhookHandlers";
 
+const originalWarn = console.warn;
+console.warn = (...args: any[]) => {
+  const msg = typeof args[0] === 'string' ? args[0] : '';
+  if (msg.includes('postcss.parse') || msg.includes('PostCSS')) return;
+  originalWarn.apply(console, args);
+};
+
+const originalStderrWrite = process.stderr.write.bind(process.stderr);
+process.stderr.write = (chunk: any, ...args: any[]) => {
+  const str = typeof chunk === 'string' ? chunk : chunk.toString();
+  if (str.includes('postcss.parse') || str.includes('PostCSS')) return true;
+  return (originalStderrWrite as any)(chunk, ...args);
+};
+
 const app = express();
 const httpServer = createServer(app);
 
