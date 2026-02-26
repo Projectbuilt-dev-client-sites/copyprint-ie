@@ -21,7 +21,7 @@ const upload = multer({
       cb(null, uniqueName);
     },
   }),
-  limits: { fileSize: 50 * 1024 * 1024 },
+  limits: { fileSize: 20 * 1024 * 1024 },
 });
 
 const serviceRoutes = [
@@ -115,17 +115,19 @@ export async function registerRoutes(
     }
   });
 
-  app.post("/api/artwork-submit", upload.single("artwork"), async (req, res) => {
+  app.post("/api/artwork-submit", upload.array("artwork", 5), async (req, res) => {
     try {
+      const files = (req.files as Express.Multer.File[]) || [];
+      const fileNames = files.map((f) => f.originalname).join(", ") || req.body.fileName || null;
       const data = insertArtworkSchema.parse({
         name: req.body.name,
         email: req.body.email,
         phone: req.body.phone,
-        fileName: req.file?.originalname || req.body.fileName || null,
+        fileName: fileNames,
       });
       const submission = await storage.createArtworkSubmission(data);
-      const filePath = req.file?.path;
-      sendArtworkNotification(data, filePath).catch((err) =>
+      const filePaths = files.map((f) => ({ filename: f.originalname, filePath: f.path }));
+      sendArtworkNotification(data, filePaths).catch((err) =>
         console.error("Failed to send artwork email:", err)
       );
       res.json({ success: true, id: submission.id });

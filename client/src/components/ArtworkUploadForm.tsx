@@ -2,11 +2,21 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import {
-  Upload, User, Mail, Phone, Check, Loader2, ArrowRight,
+  Upload, User, Mail, Phone, Check, Loader2, ArrowRight, X, FileText,
 } from "lucide-react";
+
+const MAX_FILE_SIZE_MB = 20;
+const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
+const MAX_FILES = 5;
+const ACCEPTED_TYPES = ".pdf,.jpg,.jpeg,.png,.ai,.eps,.tiff,.tif";
 
 interface ArtworkUploadFormProps {
   serviceName?: string;
+}
+
+function formatFileSize(bytes: number): string {
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(0)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
 export default function ArtworkUploadForm({ serviceName }: ArtworkUploadFormProps) {
@@ -14,11 +24,31 @@ export default function ArtworkUploadForm({ serviceName }: ArtworkUploadFormProp
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [tel, setTel] = useState("");
-  const [artworkFile, setArtworkFile] = useState<File | null>(null);
+  const [artworkFiles, setArtworkFiles] = useState<File[]>([]);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
   const isFormValid = name.trim() && email.trim() && tel.trim();
+
+  function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const selected = Array.from(e.target.files || []);
+    const oversized = selected.filter((f) => f.size > MAX_FILE_SIZE_BYTES);
+    if (oversized.length > 0) {
+      toast({
+        title: "File too large",
+        description: `${oversized.map((f) => f.name).join(", ")} exceeds the ${MAX_FILE_SIZE_MB}MB limit.`,
+        variant: "destructive",
+      });
+    }
+    const valid = selected.filter((f) => f.size <= MAX_FILE_SIZE_BYTES);
+    const combined = [...artworkFiles, ...valid].slice(0, MAX_FILES);
+    setArtworkFiles(combined);
+    e.target.value = "";
+  }
+
+  function removeFile(index: number) {
+    setArtworkFiles((prev) => prev.filter((_, i) => i !== index));
+  }
 
   async function handleSubmit() {
     if (!isFormValid) return;
@@ -29,9 +59,7 @@ export default function ArtworkUploadForm({ serviceName }: ArtworkUploadFormProp
       formData.append("email", email.trim());
       formData.append("phone", tel.trim());
       if (serviceName) formData.append("service", serviceName);
-      if (artworkFile) {
-        formData.append("artwork", artworkFile);
-      }
+      artworkFiles.forEach((file) => formData.append("artwork", file));
       const res = await fetch("/api/artwork-submit", { method: "POST", body: formData });
       if (!res.ok) throw new Error("Failed");
       setSubmitted(true);
@@ -60,7 +88,7 @@ export default function ArtworkUploadForm({ serviceName }: ArtworkUploadFormProp
         Upload Artwork
       </h3>
       <p className="text-xs text-gray-500 mb-3">
-        Enter your details and upload your print-ready file
+        Enter your details and upload your print-ready files
       </p>
 
       <div className="space-y-2 mb-3">
@@ -99,36 +127,52 @@ export default function ArtworkUploadForm({ serviceName }: ArtworkUploadFormProp
         </div>
       </div>
 
-      <label
-        className={`flex flex-col items-center justify-center w-full h-20 border-2 border-dashed rounded-lg transition-all mb-3 ${
-          isFormValid
-            ? "border-gray-300 cursor-pointer hover:border-primary/50 hover:bg-primary/5"
-            : "border-gray-200 cursor-not-allowed bg-gray-50"
-        }`}
-        data-testid="upload-artwork"
-      >
-        {artworkFile ? (
-          <div className="flex items-center gap-2 text-sm text-primary font-medium">
-            <Check className="w-4 h-4" />
-            {artworkFile.name}
-          </div>
-        ) : (
-          <>
-            <Upload className={`w-5 h-5 mb-1 ${isFormValid ? "text-gray-400" : "text-gray-300"}`} />
-            <span className={`text-xs ${isFormValid ? "text-gray-500" : "text-gray-400"}`}>
-              {isFormValid ? "Click to attach file (optional)" : "Fill in details above first"}
-            </span>
-          </>
-        )}
-        <input
-          type="file"
-          className="hidden"
-          accept=".pdf,.jpg,.jpeg,.png,.ai,.eps,.tiff,.tif"
-          disabled={!isFormValid}
-          onChange={(e) => setArtworkFile(e.target.files?.[0] || null)}
-          data-testid="input-artwork-file"
-        />
-      </label>
+      {artworkFiles.length > 0 && (
+        <div className="space-y-1 mb-3">
+          {artworkFiles.map((file, i) => (
+            <div key={i} className="flex items-center gap-2 px-3 py-1.5 bg-primary/5 border border-primary/20 rounded-lg">
+              <FileText className="w-3.5 h-3.5 text-primary shrink-0" />
+              <span className="text-xs text-gray-700 flex-1 truncate">{file.name}</span>
+              <span className="text-xs text-gray-400 shrink-0">{formatFileSize(file.size)}</span>
+              <button
+                type="button"
+                onClick={() => removeFile(i)}
+                className="text-gray-400 hover:text-red-500 transition-colors"
+                data-testid={`button-remove-file-${i}`}
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {artworkFiles.length < MAX_FILES && (
+        <label
+          className={`flex flex-col items-center justify-center w-full h-20 border-2 border-dashed rounded-lg transition-all mb-3 ${
+            isFormValid
+              ? "border-gray-300 cursor-pointer hover:border-primary/50 hover:bg-primary/5"
+              : "border-gray-200 cursor-not-allowed bg-gray-50"
+          }`}
+          data-testid="upload-artwork"
+        >
+          <Upload className={`w-5 h-5 mb-1 ${isFormValid ? "text-gray-400" : "text-gray-300"}`} />
+          <span className={`text-xs ${isFormValid ? "text-gray-500" : "text-gray-400"}`}>
+            {isFormValid
+              ? `Click to attach files (up to ${MAX_FILES}, ${MAX_FILE_SIZE_MB}MB each)`
+              : "Fill in details above first"}
+          </span>
+          <input
+            type="file"
+            className="hidden"
+            accept={ACCEPTED_TYPES}
+            multiple
+            disabled={!isFormValid}
+            onChange={handleFileChange}
+            data-testid="input-artwork-file"
+          />
+        </label>
+      )}
 
       <Button
         className="w-full gap-2"

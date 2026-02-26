@@ -58,6 +58,17 @@ async function getUncachableGmailClient() {
   return google.gmail({ version: "v1", auth: oauth2Client });
 }
 
+const FILE_MIME_TYPES: Record<string, string> = {
+  ".pdf": "application/pdf",
+  ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
+  ".png": "image/png",
+  ".ai": "application/postscript",
+  ".eps": "application/postscript",
+  ".tiff": "image/tiff",
+  ".tif": "image/tiff",
+};
+
 function makeRawEmail(opts: {
   from: string;
   to: string;
@@ -65,8 +76,11 @@ function makeRawEmail(opts: {
   subject: string;
   text: string;
   html: string;
-  attachment?: { filename: string; filePath: string };
+  attachments?: { filename: string; filePath: string }[];
 }): string {
+  const validAttachments = (opts.attachments || []).filter(
+    (a) => fs.existsSync(a.filePath)
+  );
   const mixedBoundary = "mixed_copyprint_" + Date.now();
   const altBoundary = "alt_copyprint_" + (Date.now() + 1);
 
@@ -78,8 +92,7 @@ function makeRawEmail(opts: {
     `MIME-Version: 1.0`,
   ];
 
-  if (opts.attachment) {
-    // multipart/mixed wraps both body and attachment
+  if (validAttachments.length > 0) {
     headers.push(`Content-Type: multipart/mixed; boundary="${mixedBoundary}"`);
     const lines = [
       ...headers,
@@ -101,35 +114,24 @@ function makeRawEmail(opts: {
       "",
     ];
 
-    // Read file and encode as base64
-    const fileData = fs.readFileSync(opts.attachment.filePath);
-    const fileBase64 = fileData.toString("base64");
-    const ext = path.extname(opts.attachment.filename).toLowerCase();
-    const mimeTypes: Record<string, string> = {
-      ".pdf": "application/pdf",
-      ".jpg": "image/jpeg",
-      ".jpeg": "image/jpeg",
-      ".png": "image/png",
-      ".ai": "application/postscript",
-      ".eps": "application/postscript",
-      ".tiff": "image/tiff",
-      ".tif": "image/tiff",
-    };
-    const mimeType = mimeTypes[ext] || "application/octet-stream";
-
-    lines.push(
-      `--${mixedBoundary}`,
-      `Content-Type: ${mimeType}; name="${opts.attachment.filename}"`,
-      `Content-Transfer-Encoding: base64`,
-      `Content-Disposition: attachment; filename="${opts.attachment.filename}"`,
-      "",
-      fileBase64,
-      "",
-      `--${mixedBoundary}--`,
-    );
+    for (const att of validAttachments) {
+      const fileData = fs.readFileSync(att.filePath);
+      const fileBase64 = fileData.toString("base64");
+      const ext = path.extname(att.filename).toLowerCase();
+      const mimeType = FILE_MIME_TYPES[ext] || "application/octet-stream";
+      lines.push(
+        `--${mixedBoundary}`,
+        `Content-Type: ${mimeType}; name="${att.filename}"`,
+        `Content-Transfer-Encoding: base64`,
+        `Content-Disposition: attachment; filename="${att.filename}"`,
+        "",
+        fileBase64,
+        "",
+      );
+    }
+    lines.push(`--${mixedBoundary}--`);
     return Buffer.from(lines.join("\r\n")).toString("base64url");
   } else {
-    // No attachment — simple multipart/alternative
     headers.push(`Content-Type: multipart/alternative; boundary="${altBoundary}"`);
     const lines = [
       ...headers,
@@ -152,15 +154,13 @@ function makeRawEmail(opts: {
 
 export async function sendArtworkNotification(
   data: InsertArtwork,
-  filePath?: string
+  filePaths: { filename: string; filePath: string }[] = []
 ): Promise<void> {
   try {
     const gmail = await getUncachableGmailClient();
-
-    const attachment =
-      filePath && data.fileName && fs.existsSync(filePath)
-        ? { filename: data.fileName, filePath }
-        : undefined;
+    const fileLabel = filePaths.length > 0
+      ? filePaths.map((f) => f.filename).join(", ") + ` (${filePaths.length} file${filePaths.length > 1 ? "s" : ""} attached)`
+      : "Not uploaded — customer may email separately";
 
     const raw = makeRawEmail({
       from: `"Copyprint.ie Website" <${NOTIFY_EMAIL}>`,
@@ -173,7 +173,7 @@ export async function sendArtworkNotification(
         `Name: ${data.name}`,
         `Email: ${data.email}`,
         `Phone: ${data.phone}`,
-        `File: ${data.fileName || "Not uploaded"}`,
+        `Files: ${filePaths.length > 0 ? filePaths.map((f) => f.filename).join(", ") : "Not uploaded"}`,
         "",
         "Please follow up with the customer.",
       ].join("\n"),
@@ -198,8 +198,8 @@ export async function sendArtworkNotification(
                 <td style="padding: 10px 0;"><a href="tel:${data.phone}" style="color: #f97316;">${data.phone}</a></td>
               </tr>
               <tr>
-                <td style="padding: 10px 0; font-weight: bold; vertical-align: top; color: #374151;">File:</td>
-                <td style="padding: 10px 0; color: #111827;">${data.fileName ? `${data.fileName} (attached)` : "Not uploaded — customer may email separately"}</td>
+                <td style="padding: 10px 0; font-weight: bold; vertical-align: top; color: #374151;">Files:</td>
+                <td style="padding: 10px 0; color: #111827;">${fileLabel}</td>
               </tr>
             </table>
             <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 16px 0;" />
@@ -210,7 +210,7 @@ export async function sendArtworkNotification(
           </div>
         </div>
       `,
-      attachment,
+      attachments: filePaths,
     });
 
     await gmail.users.messages.send({ userId: "me", requestBody: { raw } });
