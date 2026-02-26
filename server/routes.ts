@@ -147,50 +147,84 @@ export async function registerRoutes(
 
   app.get("/api/shop/products", async (_req, res) => {
     try {
-      const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL, max: 2 });
-      const result = await pool.query(`
-        SELECT 
-          p.id as product_id,
-          p.name as product_name,
-          p.description as product_description,
-          p.metadata as product_metadata,
-          p.images as product_images,
-          pr.id as price_id,
-          pr.unit_amount,
-          pr.currency,
-          pr.active as price_active,
-          pr.metadata as price_metadata
-        FROM stripe.products p
-        LEFT JOIN stripe.prices pr ON pr.product = p.id AND pr.active = true
-        WHERE p.active = true
-        ORDER BY p.name, pr.unit_amount
-      `);
-      await pool.end();
+      let products: any[] = [];
 
-      const productsMap = new Map();
-      for (const row of result.rows) {
-        if (!productsMap.has(row.product_id)) {
-          productsMap.set(row.product_id, {
-            id: row.product_id,
-            name: row.product_name,
-            description: row.product_description,
-            metadata: row.product_metadata,
-            images: row.product_images,
-            prices: []
-          });
+      try {
+        const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL, max: 2 });
+        const result = await pool.query(`
+          SELECT 
+            p.id as product_id,
+            p.name as product_name,
+            p.description as product_description,
+            p.metadata as product_metadata,
+            p.images as product_images,
+            pr.id as price_id,
+            pr.unit_amount,
+            pr.currency,
+            pr.active as price_active,
+            pr.metadata as price_metadata
+          FROM stripe.products p
+          LEFT JOIN stripe.prices pr ON pr.product = p.id AND pr.active = true
+          WHERE p.active = true
+          ORDER BY p.name, pr.unit_amount
+        `);
+        await pool.end();
+
+        const productsMap = new Map();
+        for (const row of result.rows) {
+          if (!productsMap.has(row.product_id)) {
+            productsMap.set(row.product_id, {
+              id: row.product_id,
+              name: row.product_name,
+              description: row.product_description,
+              metadata: row.product_metadata,
+              images: row.product_images,
+              prices: []
+            });
+          }
+          if (row.price_id) {
+            productsMap.get(row.product_id).prices.push({
+              id: row.price_id,
+              unit_amount: row.unit_amount,
+              currency: row.currency,
+              active: row.price_active,
+              metadata: row.price_metadata,
+            });
+          }
         }
-        if (row.price_id) {
-          productsMap.get(row.product_id).prices.push({
-            id: row.price_id,
-            unit_amount: row.unit_amount,
-            currency: row.currency,
-            active: row.price_active,
-            metadata: row.price_metadata,
-          });
+        products = Array.from(productsMap.values());
+      } catch (dbErr: any) {
+        console.error("DB product fetch failed, falling back to Stripe API:", dbErr.message);
+      }
+
+      if (products.length === 0) {
+        try {
+          const stripe = await getUncachableStripeClient();
+          const stripeProducts = await stripe.products.list({ active: true, limit: 100 });
+          for (const prod of stripeProducts.data) {
+            const pricesList = await stripe.prices.list({ product: prod.id, active: true, limit: 100 });
+            products.push({
+              id: prod.id,
+              name: prod.name,
+              description: prod.description,
+              metadata: prod.metadata,
+              images: prod.images,
+              prices: pricesList.data.map((p: any) => ({
+                id: p.id,
+                unit_amount: p.unit_amount,
+                currency: p.currency,
+                active: p.active,
+                metadata: p.metadata,
+              }))
+            });
+          }
+          products.sort((a, b) => a.name.localeCompare(b.name));
+        } catch (stripeErr: any) {
+          console.error("Stripe API fallback also failed:", stripeErr.message);
         }
       }
 
-      res.json({ data: Array.from(productsMap.values()) });
+      res.json({ data: products });
     } catch (error: any) {
       console.error("Error fetching products:", error);
       res.status(500).json({ error: "Failed to fetch products" });
