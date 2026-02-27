@@ -805,29 +805,23 @@ function SEOKeywordSection() {
         <div className="text-center mb-10">
           <span className="text-primary text-xs tracking-[0.3em] uppercase font-bold mb-2 block">Since 1982</span>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900" data-testid="text-seo-heading">
-            About Copyprint.ie
+            Dublin's Leading Print Shop Since 1982
           </h2>
         </div>
 
-        <div className="text-gray-700 text-lg leading-relaxed text-center max-w-3xl mx-auto mb-12">
+        <div className="text-gray-700 text-base md:text-lg leading-relaxed max-w-3xl mx-auto space-y-5">
           <p>
-            Based in Dame St, Dublin 2, we have been proudly serving Dublin since 1982. We take great pride in every commercial or personal print job, no matter how big or small. From a single poster to thousands of business cards, every order gets the same care and attention.
+            Copyprint.ie has been Dublin's trusted print shop for over 40 years. Based on Dame Street in Dublin 2, we specialise in everything from business cards and flyers to posters, banners, and stickers — all with same day click and collect available for those urgent jobs.
           </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-          <div className="p-6 bg-white rounded-xl shadow-sm border border-primary/10">
-            <h3 className="font-bold text-gray-900 mb-2">Same Day Click & Collect</h3>
-            <p className="text-sm text-gray-600">Order online, pick up in store</p>
-          </div>
-          <div className="p-6 bg-white rounded-xl shadow-sm border border-primary/10">
-            <h3 className="font-bold text-gray-900 mb-2">Bespoke Jobs Turned Around Fast</h3>
-            <p className="text-sm text-gray-600">Custom work delivered on time</p>
-          </div>
-          <div className="p-6 bg-white rounded-xl shadow-sm border border-primary/10">
-            <h3 className="font-bold text-gray-900 mb-2">Local or Nationwide or International Delivery</h3>
-            <p className="text-sm text-gray-600">We deliver anywhere in Ireland</p>
-          </div>
+          <p>
+            Whether you're a business needing professional letterheads, compliment slips, or business stationery, or a restaurant looking for menus and promotional leaflets, our team delivers quality printing at competitive Dublin prices. We also handle large format work including roller banners and PVC banners for exhibitions, events, and retail displays.
+          </p>
+          <p>
+            Just minutes from Trinity College, we're the go-to choice for student printing — from thesis binding and CVs to portfolios and course materials. And for personal projects like wedding invitations or custom stickers, we bring the same care and attention to every job no matter the size.
+          </p>
+          <p>
+            Need it fast? We offer next day printing and same day turnaround on most products, with nationwide delivery across Ireland or click and collect from our Dame Street store. Get in touch with Dublin's favourite local print shop today.
+          </p>
         </div>
       </div>
     </section>
