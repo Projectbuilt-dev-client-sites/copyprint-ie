@@ -30,7 +30,7 @@ function HeroBanner() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          const t = setTimeout(() => setLoadVideo(true), 2000);
+          const t = setTimeout(() => setLoadVideo(true), 200);
           observer.disconnect();
           return () => clearTimeout(t);
         }
@@ -48,7 +48,7 @@ function HeroBanner() {
           src="/images/hero-banner.webp"
           alt=""
           role="presentation"
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${loadVideo ? "opacity-0" : "opacity-40"}`}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${loadVideo ? "opacity-0" : "opacity-100"}`}
           width="1024"
           height="558"
         />
