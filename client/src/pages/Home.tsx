@@ -454,21 +454,29 @@ const features = [
     icon: Clock,
     title: "Same Day Click & Collect",
     description: "Order online and collect from our Dame St shop the same day.",
+    iconColor: "text-blue-600",
+    bgColor: "bg-blue-100",
   },
   {
     icon: Zap,
     title: "Fast Turnaround",
     description: "Quick production times without compromising on quality.",
+    iconColor: "text-amber-600",
+    bgColor: "bg-amber-100",
   },
   {
     icon: BadgeDollarSign,
     title: "Competitive Prices",
     description: "The best prices in Dublin for premium quality printing.",
+    iconColor: "text-green-600",
+    bgColor: "bg-green-100",
   },
   {
     icon: Award,
     title: "Established 1982",
     description: "Over 40 years of trusted printing expertise in Dublin.",
+    iconColor: "text-purple-600",
+    bgColor: "bg-purple-100",
   },
 ];
 
@@ -498,9 +506,9 @@ function WhyChooseUs() {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
             >
-              <div className="bg-gray-50 border border-gray-200 rounded-md p-6 text-center h-full">
-                <div className="w-14 h-14 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-4">
-                  <feature.icon className="w-7 h-7 text-gray-700" />
+              <div className="bg-white border border-gray-200 rounded-xl p-6 text-center h-full shadow-md hover:shadow-lg transition-shadow">
+                <div className={`w-14 h-14 rounded-full ${feature.bgColor} flex items-center justify-center mx-auto mb-4`}>
+                  <feature.icon className={`w-7 h-7 ${feature.iconColor}`} />
                 </div>
                 <h3 className="text-gray-900 font-semibold mb-2" data-testid={`text-feature-${index}`}>{feature.title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed">{feature.description}</p>
