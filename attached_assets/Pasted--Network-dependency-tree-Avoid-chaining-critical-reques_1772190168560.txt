@@ -1,0 +1,60 @@
+
+Network dependency tree
+Avoid chaining critical requests by reducing the length of chains, reducing the download size of resources, or deferring the download of unnecessary resources to improve page load.LCPUnscored
+Maximum critical path latency: 504 ms
+Initial Navigation
+https://copyprint.ie
+- 131 ms, 13.75 KiB
+/css2?family=…(fonts.googleapis.com)
+- 130 ms, 2.61 KiB
+…v31/JTUSjIg1_….woff2(fonts.gstatic.com)
+- 242 ms, 21.78 KiB
+…v31/JTUSjIg1_….woff2(fonts.gstatic.com)
+- 241 ms, 35.47 KiB
+…cloudflare-static/email-decode.min.js(copyprint.ie)
+- 172 ms, 1.18 KiB
+/translate_a/element.js?cb=googleTranslateElementInit(translate.google.com)
+- 152 ms, 28.46 KiB
+/assets/index-B9imjaVE.js(copyprint.ie)
+- 260 ms, 99.56 KiB
+/assets/Home-DQdXiFUT.js(copyprint.ie)
+- 504 ms, 44.92 KiB
+/assets/shopping-cart-jiivLjKy.js(copyprint.ie)
+- 484 ms, 1.90 KiB
+/assets/seo-keywo….js(copyprint.ie)
+- 487 ms, 6.13 KiB
+/assets/services-BhwEnmzk.js(copyprint.ie)
+- 496 ms, 11.97 KiB
+/assets/posters-1-BXZkhF8D.js(copyprint.ie)
+- 485 ms, 0.85 KiB
+/assets/file-text-CaQ-pqXM.js(copyprint.ie)
+- 485 ms, 0.92 KiB
+/assets/layers-BHzUKYj4.js(copyprint.ie)
+- 495 ms, 1.04 KiB
+/assets/proxy-D_rpBWJf.js(copyprint.ie)
+- 494 ms, 37.37 KiB
+/assets/arrow-rig….js(copyprint.ie)
+- 494 ms, 0.87 KiB
+/assets/index-DNQkr-wH.css(copyprint.ie)
+- 192 ms, 16.27 KiB
+…rs=AN8SPfp0A…/m=el_main_css(www.gstatic.com)
+- 321 ms, 4.87 KiB
+Preconnected origins
+preconnect hints help the browser establish a connection earlier in the page load, saving time when the first request for that origin is made. The following are the origins that the page preconnected to.
+Origin
+	
+Source
+https://fonts.googleapis.com/
+	
+head > link
+<link rel="preconnect" href="https://fonts.googleapis.com">
+https://fonts.gstatic.com/
+	
+head > link
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+https://fonts.googleapis.com
+	
+<https://fonts.googleapis.com>; rel="preconnect"
+Preconnect candidates
+Add preconnect hints to your most important origins, but try to use no more than 4.
+No additional origins are good candidates for preconnecting
