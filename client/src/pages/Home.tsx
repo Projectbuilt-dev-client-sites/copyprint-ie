@@ -800,24 +800,34 @@ function FAQSection() {
 
 function SEOKeywordSection() {
   return (
-    <section className="py-12 md:py-16 bg-gray-50 border-t border-gray-200" data-testid="section-seo-content">
+    <section className="py-12 md:py-16 bg-primary/5 border-t border-primary/10" data-testid="section-seo-content">
       <div className="max-w-5xl mx-auto px-4">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6" data-testid="text-seo-heading">
-          Dublin's Leading Print Shop Since 1982
-        </h2>
-        <div className="text-gray-600 text-base leading-relaxed space-y-4">
+        <div className="text-center mb-10">
+          <span className="text-primary text-xs tracking-[0.3em] uppercase font-bold mb-2 block">Since 1982</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900" data-testid="text-seo-heading">
+            About Copyprint.ie
+          </h2>
+        </div>
+
+        <div className="text-gray-700 text-lg leading-relaxed text-center max-w-3xl mx-auto mb-12">
           <p>
-            Copyprint.ie has been Dublin's trusted <strong>print shop</strong> for over 40 years. Based on Dame Street in Dublin 2, we specialise in everything from <Link href="/services/business-cards" className="text-primary font-medium">business cards</Link> and <Link href="/services/flyers-leaflets" className="text-primary font-medium">flyers</Link> to <Link href="/services/posters" className="text-primary font-medium">posters</Link>, <Link href="/services/pvc-banners" className="text-primary font-medium">banners</Link>, and <Link href="/services/stickers-labels" className="text-primary font-medium">stickers</Link> — all with <strong>same day click and collect</strong> available for those urgent jobs.
+            Based in Dame St, Dublin 2, we have been proudly serving Dublin since 1982. We take great pride in every commercial or personal print job, no matter how big or small. From a single poster to thousands of business cards, every order gets the same care and attention.
           </p>
-          <p>
-            Whether you're a business needing professional <Link href="/services/business-stationery" className="text-primary font-medium">letterheads, compliment slips, or business stationery</Link>, or a restaurant looking for <Link href="/services/restaurant-printing" className="text-primary font-medium">menus and promotional leaflets</Link>, our team delivers quality printing at competitive Dublin prices. We also handle large format work including <Link href="/services/roller-banners" className="text-primary font-medium">roller banners</Link> and <Link href="/services/pvc-banners" className="text-primary font-medium">PVC banners</Link> for exhibitions, events, and retail displays.
-          </p>
-          <p>
-            Just minutes from Trinity College, we're the go-to choice for <Link href="/services/student-services" className="text-primary font-medium">student printing</Link> — from thesis <Link href="/services/laminating-binding" className="text-primary font-medium">binding</Link> and CVs to portfolios and course materials. And for personal projects like wedding invitations or custom stickers, we bring the same care and attention to every job no matter the size.
-          </p>
-          <p>
-            Need it fast? We offer <strong>next day printing</strong> and <strong>same day turnaround</strong> on most products, with nationwide delivery across Ireland or click and collect from our Dame Street store. Get in touch with Dublin's favourite local print shop today.
-          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+          <div className="p-6 bg-white rounded-xl shadow-sm border border-primary/10">
+            <h3 className="font-bold text-gray-900 mb-2">Same Day Click & Collect</h3>
+            <p className="text-sm text-gray-600">Order online, pick up in store</p>
+          </div>
+          <div className="p-6 bg-white rounded-xl shadow-sm border border-primary/10">
+            <h3 className="font-bold text-gray-900 mb-2">Bespoke Jobs Turned Around Fast</h3>
+            <p className="text-sm text-gray-600">Custom work delivered on time</p>
+          </div>
+          <div className="p-6 bg-white rounded-xl shadow-sm border border-primary/10">
+            <h3 className="font-bold text-gray-900 mb-2">Local or Nationwide or International Delivery</h3>
+            <p className="text-sm text-gray-600">We deliver anywhere in Ireland</p>
+          </div>
         </div>
       </div>
     </section>

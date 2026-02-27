@@ -122,18 +122,18 @@ export default function LocalServicePage() {
   const heroImage = getServiceHero(service.slug, seed);
   const ctaImage = getServiceCtaHero(service.slug, seed);
 
-  const nearbyAreas = dublinAreas
+  const nearbyAreas = area ? dublinAreas
     .filter(item => item.slug !== area.slug)
     .sort((itemA, itemB) => {
       let hA = 0;
-      const sA = area.slug + itemA.slug;
+      const sA = (area?.slug || "") + itemA.slug;
       for (let i = 0; i < sA.length; i++) hA = Math.imul(31, hA) + sA.charCodeAt(i) | 0;
       let hB = 0;
-      const sB = area.slug + itemB.slug;
+      const sB = (area?.slug || "") + itemB.slug;
       for (let i = 0; i < sB.length; i++) hB = Math.imul(31, hB) + sB.charCodeAt(i) | 0;
       return ((hA >>> 0) / 4294967296) - ((hB >>> 0) / 4294967296);
     })
-    .slice(0, 8);
+    .slice(0, 8) : [];
 
   return (
     <div>
