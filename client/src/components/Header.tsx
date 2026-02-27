@@ -133,23 +133,23 @@ export default function Header() {
             <img src="/images/logo.webp" alt="Copyprint.ie" className="h-9 md:h-11 cursor-pointer" width="360" height="98" />
           </Link>
 
-          <div className="hidden xl:flex items-center gap-1">
+          <div className="hidden xl:flex items-center gap-2">
             <Link href="/shop" data-testid="link-nav-shop">
-              <span data-cursor-grow className={`px-3 py-1.5 text-[13px] font-medium transition-all cursor-none rounded-lg border border-transparent shadow-none hover:shadow-[0_4px_12px_rgba(250,204,21,0.5)] active:translate-y-[2px] ${location === "/shop" ? "text-primary font-bold bg-primary/5" : "text-primary hover:text-primary/80 bg-transparent"}`}>
-                Shop Now
+              <span data-cursor-grow className={`px-4 py-2 text-sm font-semibold transition-all cursor-none rounded-full border border-primary/20 hover:border-primary hover:bg-primary hover:text-white active:scale-95 shadow-sm hover:shadow-primary/20 ${location === "/shop" ? "bg-primary text-white border-primary" : "text-primary bg-white"}`}>
+                Shop Online
               </span>
             </Link>
 
             {navItems.map((item) => (
               <Link key={item.href} href={item.href} data-testid={`link-nav-${item.href.split("/").pop()}`}>
-                <span data-cursor-grow className={`px-3 py-1.5 text-[13px] font-medium transition-all cursor-none rounded-lg border border-transparent shadow-none hover:shadow-[0_4px_12px_rgba(250,204,21,0.5)] active:translate-y-[2px] ${location === item.href ? "text-gray-900 bg-gray-100" : "text-gray-600 hover:text-gray-900 bg-transparent"}`}>
+                <span data-cursor-grow className={`px-3 py-2 text-sm font-medium transition-all cursor-none rounded-lg hover:bg-gray-50 active:scale-95 ${location === item.href ? "text-gray-900 font-bold underline underline-offset-8 decoration-primary decoration-2" : "text-gray-600 hover:text-gray-900"}`}>
                   {item.label}
                 </span>
               </Link>
             ))}
 
             <Link href="/blog" data-testid="link-nav-blog">
-              <span data-cursor-grow className={`px-3 py-1.5 text-[13px] font-medium transition-all cursor-none rounded-lg border border-transparent shadow-none hover:shadow-[0_4px_12px_rgba(250,204,21,0.5)] active:translate-y-[2px] ${location === "/blog" || location.startsWith("/blog/") ? "text-gray-900 bg-gray-100" : "text-gray-600 hover:text-gray-900 bg-transparent"}`}>
+              <span data-cursor-grow className={`px-3 py-2 text-sm font-medium transition-all cursor-none rounded-lg hover:bg-gray-50 active:scale-95 ${location === "/blog" || location.startsWith("/blog/") ? "text-gray-900 font-bold underline underline-offset-8 decoration-primary decoration-2" : "text-gray-600 hover:text-gray-900"}`}>
                 Blog
               </span>
             </Link>
@@ -160,19 +160,19 @@ export default function Header() {
               onMouseLeave={() => setDropdownOpen(false)}
             >
               <button
-                className="flex items-center gap-1 px-3 py-1.5 text-[13px] font-medium text-gray-600 hover:text-gray-900 transition-all rounded-lg bg-transparent border border-transparent shadow-none hover:shadow-[0_4px_12px_rgba(250,204,21,0.5)] active:translate-y-[2px] cursor-none"
+                className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-all rounded-lg hover:bg-gray-50 active:scale-95 cursor-none"
                 data-cursor-grow
                 data-testid="button-business-printing-dropdown"
               >
                 More Services
-                <ChevronDown className={`w-3 h-3 transition-transform ${dropdownOpen ? "rotate-180" : ""}`} />
+                <ChevronDown className={`w-4 h-4 transition-transform ${dropdownOpen ? "rotate-180" : ""}`} />
               </button>
               {dropdownOpen && (
                 <div className="absolute top-full left-0 pt-2 z-50">
-                  <div className="bg-white rounded-lg shadow-2xl py-2 min-w-[220px] border border-gray-200">
+                  <div className="bg-white rounded-xl shadow-xl py-2 min-w-[240px] border border-gray-100 overflow-hidden">
                     {[...businessPrintingItems, ...extraItems].map((item) => (
                       <Link key={item.href} href={item.href} data-testid={`link-dropdown-${item.href.split("/").pop()}`}>
-                        <span data-cursor-grow className={`block px-4 py-2.5 text-[13px] cursor-none transition-all hover:shadow-[0_4px_12px_rgba(250,204,21,0.5)] ${location === item.href ? "text-blue-600 bg-gray-50" : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"}`}>
+                        <span data-cursor-grow className={`block px-5 py-3 text-sm cursor-none transition-all hover:bg-primary/5 ${location === item.href ? "text-primary font-bold bg-primary/5" : "text-gray-600 hover:text-primary"}`}>
                           {item.label}
                         </span>
                       </Link>
