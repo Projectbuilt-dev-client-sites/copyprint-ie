@@ -1,0 +1,197 @@
+
+Improve image delivery Est savings of 1,050 KiB
+Reducing the download time of images can improve the perceived load time of the page and LCP. Learn more about optimizing image sizeLCPFCPUnscored
+	
+URL
+	
+Resource Size
+	
+Est Savings
+copyprint.ie
+1st party
+		1,107.2 KiB
+	1,050.2 KiB
+Roller Banners
+<img src="/assets/roller-banners-1-CT95Tc7Y.webp" alt="Roller Banners" class="w-full h-full object-cover transition-transform duration-500 group-hover:s…">
+	
+/assets/roller-ba….webp(copyprint.ie)
+	
+175.0 KiB
+	
+166.0 KiB
+	
+Increasing the image compression factor could improve this image's download size.
+		
+47.6 KiB
+	
+This image file is larger than it needs to be (1020x768) for its displayed dimensions (318x174). Use responsive images to reduce the image download size.
+		
+162.7 KiB
+Stickers & Labels
+<img src="/images/stickers-labels.webp" alt="Stickers &amp; Labels" class="w-full h-full object-cover transition-transform duration-500 group-hover:s…">
+	
+/images/stickers-labels.webp(copyprint.ie)
+	
+117.3 KiB
+	
+112.5 KiB
+	
+This image file is larger than it needs to be (1187x896) for its displayed dimensions (248x174). Use responsive images to reduce the image download size.
+		
+112.5 KiB
+Party Banners
+<img src="/images/party-banners.webp" alt="Party Banners" class="w-full h-full object-cover transition-transform duration-500 group-hover:s…">
+	
+/images/party-banners.webp(copyprint.ie)
+	
+106.4 KiB
+	
+102.2 KiB
+	
+This image file is larger than it needs to be (1197x896) for its displayed dimensions (248x174). Use responsive images to reduce the image download size.
+		
+102.2 KiB
+Personal Printing
+<img src="/images/personal-printing.webp" alt="Personal Printing" class="w-full h-full object-cover transition-transform duration-500 group-hover:s…">
+	
+/images/personal-printing.webp(copyprint.ie)
+	
+102.1 KiB
+	
+98.0 KiB
+	
+This image file is larger than it needs to be (1197x896) for its displayed dimensions (248x174). Use responsive images to reduce the image download size.
+		
+98.0 KiB
+Flyers & Leaflets
+<img src="/assets/flyers-and-leaflets-1-BK3ymfeU.webp" alt="Flyers &amp; Leaflets" class="w-full h-full object-cover transition-transform duration-500 group-hover:s…">
+	
+/assets/flyers-an….webp(copyprint.ie)
+	
+83.4 KiB
+	
+77.5 KiB
+	
+This image file is larger than it needs to be (1027x768) for its displayed dimensions (318x174). Use responsive images to reduce the image download size.
+		
+77.5 KiB
+Student Services
+<img src="/images/student-services.webp" alt="Student Services" class="w-full h-full object-cover transition-transform duration-500 group-hover:s…">
+	
+/images/student-services.webp(copyprint.ie)
+	
+78.1 KiB
+	
+75.0 KiB
+	
+This image file is larger than it needs to be (1192x896) for its displayed dimensions (248x174). Use responsive images to reduce the image download size.
+		
+75.0 KiB
+Restaurant Printing
+<img src="/assets/restaurant-printing-1-BpAE-JsA.webp" alt="Restaurant Printing" class="w-full h-full object-cover transition-transform duration-500 group-hover:s…">
+	
+/assets/restauran….webp(copyprint.ie)
+	
+76.6 KiB
+	
+71.2 KiB
+	
+This image file is larger than it needs to be (1027x768) for its displayed dimensions (318x174). Use responsive images to reduce the image download size.
+		
+71.2 KiB
+Laminating & Binding
+<img src="/images/laminating-binding.webp" alt="Laminating &amp; Binding" class="w-full h-full object-cover transition-transform duration-500 group-hover:s…">
+	
+/images/laminating-binding.webp(copyprint.ie)
+	
+73.2 KiB
+	
+70.3 KiB
+	
+This image file is larger than it needs to be (1187x896) for its displayed dimensions (248x174). Use responsive images to reduce the image download size.
+		
+70.3 KiB
+Booklets
+<img src="/images/booklets.webp" alt="Booklets" class="w-full h-full object-cover transition-transform duration-500 group-hover:s…">
+	
+/images/booklets.webp(copyprint.ie)
+	
+60.4 KiB
+	
+58.0 KiB
+	
+This image file is larger than it needs to be (1197x896) for its displayed dimensions (248x174). Use responsive images to reduce the image download size.
+		
+58.0 KiB
+PVC Banners
+<img src="/images/pvc-banners.webp" alt="PVC Banners" class="w-full h-full object-cover transition-transform duration-500 group-hover:s…">
+	
+/images/pvc-banners.webp(copyprint.ie)
+	
+59.2 KiB
+	
+56.8 KiB
+	
+This image file is larger than it needs to be (1197x896) for its displayed dimensions (248x174). Use responsive images to reduce the image download size.
+		
+56.8 KiB
+Business Stationery
+<img src="/assets/business-stationery-1-DBbs2U24.webp" alt="Business Stationery" class="w-full h-full object-cover transition-transform duration-500 group-hover:s…">
+	
+/assets/business-….webp(copyprint.ie)
+	
+57.6 KiB
+	
+53.5 KiB
+	
+This image file is larger than it needs to be (1020x768) for its displayed dimensions (318x174). Use responsive images to reduce the image download size.
+		
+53.5 KiB
+Posters
+<img src="/assets/posters-1-7iOAS2ZA.webp" alt="Posters" class="w-full h-full object-cover transition-transform duration-500 group-hover:s…">
+	
+/assets/posters-1-7iOAS2ZA.webp(copyprint.ie)
+	
+47.8 KiB
+	
+44.4 KiB
+	
+This image file is larger than it needs to be (1027x768) for its displayed dimensions (318x174). Use responsive images to reduce the image download size.
+		
+44.4 KiB
+Business Cards
+<img src="/assets/business-cards-1-C5UHfxG5.webp" alt="Business Cards" class="w-full h-full object-cover transition-transform duration-500 group-hover:s…">
+	
+/assets/business-….webp(copyprint.ie)
+	
+41.9 KiB
+	
+38.9 KiB
+	
+This image file is larger than it needs to be (1020x768) for its displayed dimensions (318x174). Use responsive images to reduce the image download size.
+		
+38.9 KiB
+Order printing online at Copyprint.ie Dublin - same day click and collect
+<img src="/images/order-now-cta.webp" alt="Order printing online at Copyprint.ie Dublin - same day click and collect" class="w-full rounded-md shadow-xl">
+	
+/images/order-now-cta.webp(copyprint.ie)
+	
+17.4 KiB
+	
+15.3 KiB
+	
+This image file is larger than it needs to be (1280x896) for its displayed dimensions (448x314). Use responsive images to reduce the image download size.
+		
+15.3 KiB
+Copyprint.ie
+<img src="/images/logo.webp" alt="Copyprint.ie" class="h-12 cursor-pointer">
+	
+/images/logo.webp(copyprint.ie)
+	
+10.7 KiB
+	
+10.5 KiB
+	
+This image file is larger than it needs to be (1211x329) for its displayed dimensions (177x48). Use responsive images to reduce the image download size.
+		
+10.5 KiB
