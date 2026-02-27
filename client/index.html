@@ -92,14 +92,6 @@
           frames.forEach(function(f) { f.style.display = 'none'; });
           var skips = document.querySelectorAll('body > .skiptranslate');
           skips.forEach(function(s) { s.style.display = 'none'; });
-          var header = document.querySelector('header');
-          if (header) {
-            var fonts = header.querySelectorAll('font');
-            fonts.forEach(function(f) {
-              while (f.firstChild) f.parentNode.insertBefore(f.firstChild, f);
-              f.parentNode.removeChild(f);
-            });
-          }
         });
         observer.observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['style', 'class'] });
       })();
