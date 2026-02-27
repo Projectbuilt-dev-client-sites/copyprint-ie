@@ -39,8 +39,8 @@
       #root.ssr-pending { opacity: 0; transition: opacity 0.15s ease; }
       #root.hydrated { opacity: 1; }
     </style>
-    <script type="module" crossorigin src="/assets/index-BiVff_DY.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-D4PFrq9y.css">
+    <script type="module" crossorigin src="/assets/index-CIiZuywj.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BuOgRj1x.css">
       <title>Page Not Found - Copyprint.ie</title>
     <meta name="description" content="The page you're looking for could not be found. Visit Copyprint.ie for Dublin's best printing services." />
     <link rel="canonical" href="https://copyprint.ie/" />
@@ -88,6 +88,26 @@
         document.cookie = 'googtrans=/en/' + lang + '; path=/; domain=.' + location.hostname;
         location.reload();
       }
+      window.setLanguage = setLanguage;
+      (function() {
+        var observer = new MutationObserver(function() {
+          document.body.style.setProperty('top', '0px', 'important');
+          document.body.style.setProperty('position', 'static', 'important');
+          var frames = document.querySelectorAll('.goog-te-banner-frame, iframe.goog-te-banner-frame');
+          frames.forEach(function(f) { f.style.display = 'none'; });
+          var skips = document.querySelectorAll('body > .skiptranslate');
+          skips.forEach(function(s) { s.style.display = 'none'; });
+          var header = document.querySelector('header');
+          if (header) {
+            var fonts = header.querySelectorAll('font');
+            fonts.forEach(function(f) {
+              while (f.firstChild) f.parentNode.insertBefore(f.firstChild, f);
+              f.parentNode.removeChild(f);
+            });
+          }
+        });
+        observer.observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['style', 'class'] });
+      })();
     </script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
   </body>

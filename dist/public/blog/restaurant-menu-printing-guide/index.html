@@ -39,8 +39,8 @@
       #root.ssr-pending { opacity: 0; transition: opacity 0.15s ease; }
       #root.hydrated { opacity: 1; }
     </style>
-    <script type="module" crossorigin src="/assets/index-BiVff_DY.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-D4PFrq9y.css">
+    <script type="module" crossorigin src="/assets/index-CIiZuywj.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BuOgRj1x.css">
       <title>Restaurant Menu Printing Guide - Sizes, Materials & Costs | CopyPrint Dublin</title>
     <meta name="description" content="Complete guide to restaurant menu printing in Dublin. Learn about menu sizes, paper stocks, lamination options, and costs. Fast turnaround for Dublin restaurants and cafes." />
     <link rel="canonical" href="https://copyprint.ie/blog/restaurant-menu-printing-guide" />
@@ -146,6 +146,26 @@
         document.cookie = 'googtrans=/en/' + lang + '; path=/; domain=.' + location.hostname;
         location.reload();
       }
+      window.setLanguage = setLanguage;
+      (function() {
+        var observer = new MutationObserver(function() {
+          document.body.style.setProperty('top', '0px', 'important');
+          document.body.style.setProperty('position', 'static', 'important');
+          var frames = document.querySelectorAll('.goog-te-banner-frame, iframe.goog-te-banner-frame');
+          frames.forEach(function(f) { f.style.display = 'none'; });
+          var skips = document.querySelectorAll('body > .skiptranslate');
+          skips.forEach(function(s) { s.style.display = 'none'; });
+          var header = document.querySelector('header');
+          if (header) {
+            var fonts = header.querySelectorAll('font');
+            fonts.forEach(function(f) {
+              while (f.firstChild) f.parentNode.insertBefore(f.firstChild, f);
+              f.parentNode.removeChild(f);
+            });
+          }
+        });
+        observer.observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['style', 'class'] });
+      })();
     </script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
   </body>
