@@ -180,6 +180,8 @@ function CTABanner() {
                 src="/images/order-now-cta.webp"
                 alt="Order printing online at Copyprint.ie Dublin - same day click and collect"
                 className="w-full rounded-md shadow-xl"
+                width="900"
+                height="630"
               />
             </div>
           </div>
@@ -199,7 +201,7 @@ function ContactBar() {
           viewport={{ once: true }}
           variants={sectionVariants}
         >
-          <img src="/images/logo.webp" alt="Copyprint.ie" className="h-10 mx-auto mb-2" />
+          <img src="/images/logo.webp" alt="Copyprint.ie" className="h-10 mx-auto mb-2" width="360" height="98" />
           <p className="text-gray-500 text-sm mb-6">
             Click to Call or Send WhatsApp Message
           </p>
