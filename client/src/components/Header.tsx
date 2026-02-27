@@ -134,7 +134,7 @@ export default function Header() {
             <img src="/images/logo.webp" alt="Copyprint.ie" className="h-9 md:h-11 cursor-pointer" width="360" height="98" />
           </Link>
 
-          <div className="hidden xl:flex items-center gap-1">
+          <div className="hidden xl:flex items-center gap-0">
             <Link href="/shop" data-testid="link-nav-shop">
               <span data-cursor-grow className={`px-3 py-1.5 text-[13px] font-medium transition-all cursor-none rounded-lg border border-transparent shadow-none hover:shadow-[0_4px_12px_rgba(250,204,21,0.5)] active:translate-y-[2px] ${location === "/shop" ? "text-primary font-bold bg-primary/5" : "text-primary hover:text-primary/80 bg-transparent"}`}>
                 Shop Now
