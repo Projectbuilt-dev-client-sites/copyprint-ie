@@ -41,7 +41,7 @@ function HeroBanner() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          const t = setTimeout(() => setLoadVideo(true), 500);
+          const t = setTimeout(() => setLoadVideo(true), 2000);
           observer.disconnect();
           return () => clearTimeout(t);
         }

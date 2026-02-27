@@ -1,0 +1,30 @@
+
+Touch targets do not have sufficient size or spacing.
+Touch targets with sufficient size and spacing help users who may have difficulty targeting small controls to activate the targets. Learn more about touch targets.
+Failing Elements
+div.max-w-7xl > div.flex > div.flex > button.w-2.5
+<button class="w-2.5 h-2.5 rounded-full transition-colors bg-primary" data-testid="button-testimonial-dot-0">
+div.max-w-7xl > div.flex > div.flex > button.w-2.5
+<button class="w-2.5 h-2.5 rounded-full transition-colors bg-gray-300" data-testid="button-testimonial-dot-1">
+div.max-w-7xl > div.flex > div.flex > button.w-2.5
+<button class="w-2.5 h-2.5 rounded-full transition-colors bg-gray-300" data-testid="button-testimonial-dot-1">
+div.max-w-7xl > div.flex > div.flex > button.w-2.5
+<button class="w-2.5 h-2.5 rounded-full transition-colors bg-primary" data-testid="button-testimonial-dot-0">
+div.max-w-7xl > div.flex > div.flex > button.w-2.5
+<button class="w-2.5 h-2.5 rounded-full transition-colors bg-gray-300" data-testid="button-testimonial-dot-2">
+div.max-w-7xl > div.flex > div.flex > button.w-2.5
+<button class="w-2.5 h-2.5 rounded-full transition-colors bg-gray-300" data-testid="button-testimonial-dot-2">
+div.max-w-7xl > div.flex > div.flex > button.w-2.5
+<button class="w-2.5 h-2.5 rounded-full transition-colors bg-gray-300" data-testid="button-testimonial-dot-1">
+div.max-w-7xl > div.flex > div.flex > button.w-2.5
+<button class="w-2.5 h-2.5 rounded-full transition-colors bg-gray-300" data-testid="button-testimonial-dot-3">
+div.max-w-7xl > div.flex > div.flex > button.w-2.5
+<button class="w-2.5 h-2.5 rounded-full transition-colors bg-gray-300" data-testid="button-testimonial-dot-3">
+div.max-w-7xl > div.flex > div.flex > button.w-2.5
+<button class="w-2.5 h-2.5 rounded-full transition-colors bg-gray-300" data-testid="button-testimonial-dot-2">
+div.max-w-7xl > div.flex > div.flex > button.w-2.5
+<button class="w-2.5 h-2.5 rounded-full transition-colors bg-gray-300" data-testid="button-testimonial-dot-4">
+div.max-w-7xl > div.flex > div.flex > button.w-2.5
+<button class="w-2.5 h-2.5 rounded-full transition-colors bg-gray-300" data-testid="button-testimonial-dot-4">
+div.max-w-7xl > div.flex > div.flex > button.w-2.5
+<button class="w-2.5 h-2.5 rounded-full transition-colors bg-gray-300" data-testid="button-testimonial-dot-3">

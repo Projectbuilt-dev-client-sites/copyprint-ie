@@ -39,7 +39,7 @@
       #root.ssr-pending { opacity: 0; transition: opacity 0.15s ease; }
       #root.hydrated { opacity: 1; }
     </style>
-    <script type="module" crossorigin src="/assets/index-BboM3h3_.js"></script>
+    <script type="module" crossorigin src="/assets/index-CtleTHkV.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-DtGjeGKw.css">
       <title>Same Day Printing in Dublin - Everything You Need to Know | CopyPrint</title>
     <meta name="description" content="Complete guide to same day printing in Dublin. Business cards, flyers, posters and more available for same day collection. Order before 12pm at CopyPrint Dame Street." />
@@ -156,7 +156,19 @@
         });
         obs.observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['style', 'class'] });
       })();
+      (function loadTranslateLater() {
+        function load() {
+          var s = document.createElement('script');
+          s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+          s.async = true;
+          document.body.appendChild(s);
+        }
+        if (window.requestIdleCallback) {
+          requestIdleCallback(function() { setTimeout(load, 1500); });
+        } else {
+          setTimeout(load, 3000);
+        }
+      })();
     </script>
-    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
   </body>
 </html>

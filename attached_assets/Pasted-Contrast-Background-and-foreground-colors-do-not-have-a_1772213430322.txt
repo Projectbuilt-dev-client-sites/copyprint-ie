@@ -1,0 +1,38 @@
+Contrast
+Background and foreground colors do not have a sufficient contrast ratio.
+Low-contrast text is difficult or impossible for many users to read. Learn how to provide sufficient color contrast.
+Failing Elements
+Google Review
+<p class="text-gray-400 text-xs">
+"I reached out to five different companies, and Susan at Copy Print was by far …
+<div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm flex flex-col" data-testid="card-testimonial-0" style="opacity: 1; transform: none;">
+Google Review
+<p class="text-gray-400 text-xs">
+"Excellent service. Fast, affordable & very friendly. Thanks Alan!" Jennifer M…
+<div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm flex flex-col" data-testid="card-testimonial-1" style="opacity: 1; transform: none;">
+Google Review
+<p class="text-gray-400 text-xs">
+"Great service! I was able to email them a document last minute and they had it…
+<div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm flex flex-col" data-testid="card-testimonial-2" style="opacity: 1; transform: none;">
+Google Review
+<p class="text-gray-400 text-xs">
+"I had recently made an order for flyers where I had accidentally gotten the or…
+<div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm flex flex-col" data-testid="card-testimonial-3" style="opacity: 1; transform: none;">
+Google Review
+<p class="text-gray-400 text-xs">
+"Alan was super helpful and did a great job on my order. The price was super re…
+<div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm flex flex-col" data-testid="card-testimonial-4" style="opacity: 1; transform: none;">
+SINCE 1982
+<span class="text-primary text-xs tracking-[0.3em] uppercase font-bold mb-2 block">
+SINCE 1982 Dublin's Leading Print Shop Since 1982 Copyprint.ie has been Dublin…
+<section class="py-12 md:py-16 bg-primary/5 border-t border-primary/10" data-testid="section-seo-content">
+body
+<body style="top: 0px !important; position: relative; min-height: 100%;">
+© 2026 Copyprint.ie. All rights reserved.
+<p data-testid="text-copyright">
+Dublin's #1 print shop for personal and business printing. Proudly serving Dubl…
+<footer class="bg-[#32373c] text-gray-300">
+Read our Google Reviews
+<span>
+Dublin's #1 print shop for personal and business printing. Proudly serving Dubl…
+<footer class="bg-[#32373c] text-gray-300">
