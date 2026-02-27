@@ -108,7 +108,8 @@ export default function Header() {
                     {languages.map((lang) => (
                       <button
                         key={lang.code}
-                        className="w-full flex items-center gap-2.5 px-3.5 py-2 text-[13px] text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-all text-left"
+                        className="notranslate w-full flex items-center gap-2.5 px-3.5 py-2 text-[13px] text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-all text-left"
+                        translate="no"
                         onClick={() => {
                           (window as any).setLanguage?.(lang.code);
                           setLangOpen(false);
