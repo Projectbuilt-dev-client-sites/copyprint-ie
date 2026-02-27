@@ -200,6 +200,16 @@ body > .skiptranslate {
   display: none !important;
 }
 
+body {
+  top: 0 !important;
+}
+
+.goog-te-banner-frame.skiptranslate,
+iframe.goog-te-banner-frame {
+  display: none !important;
+  height: 0 !important;
+}
+
 /**
  * Using the elevate system.
  * Automatic contrast adjustment.

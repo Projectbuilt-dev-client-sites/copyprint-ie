@@ -39,8 +39,8 @@
       #root.ssr-pending { opacity: 0; transition: opacity 0.15s ease; }
       #root.hydrated { opacity: 1; }
     </style>
-    <script type="module" crossorigin src="/assets/index-BEGPfYLs.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-DNQkr-wH.css">
+    <script type="module" crossorigin src="/assets/index-CuWEXjyx.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-D_9F3Y7O.css">
       <title>PVC Banners vs Roller Banners - Which is Right for Your Event? | CopyPrint Dublin</title>
     <meta name="description" content="PVC banners vs roller banners compared. Learn which banner type is best for your event, exhibition, or business. Expert banner printing in Dublin from CopyPrint." />
     <link rel="canonical" href="https://copyprint.ie/blog/pvc-banners-vs-roller-banners" />
@@ -151,6 +151,16 @@
         location.reload();
       }
       window.setLanguage = setLanguage;
+      (function() {
+        var obs = new MutationObserver(function() {
+          document.body.style.setProperty('top', '0px', 'important');
+          var f = document.querySelectorAll('.goog-te-banner-frame, iframe.goog-te-banner-frame');
+          f.forEach(function(el) { el.style.display = 'none'; });
+          var s = document.querySelectorAll('body > .skiptranslate');
+          s.forEach(function(el) { el.style.display = 'none'; });
+        });
+        obs.observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['style', 'class'] });
+      })();
     </script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
   </body>
