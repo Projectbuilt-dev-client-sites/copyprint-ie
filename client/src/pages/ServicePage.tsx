@@ -244,8 +244,8 @@ export default function ServicePage() {
             src={service.image}
             alt={`${service.name} printing services at Copyprint.ie Dublin`}
             className="w-full h-full object-cover opacity-30"
-            width="1280"
-            height="896"
+            width="640"
+            height="448"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#32373c] via-[#32373c]/90 to-[#32373c]/60" />
         </div>
@@ -286,8 +286,8 @@ export default function ServicePage() {
                 src={service.image}
                 alt={`${service.name} - Copyprint.ie Dublin`}
                 className="w-full rounded-lg shadow-2xl border border-white/10"
-                width="1280"
-                height="896"
+                width="640"
+                height="448"
                 loading="lazy"
                 data-testid="img-service-hero"
               />
@@ -489,8 +489,8 @@ export default function ServicePage() {
                         src={s.image}
                         alt={s.name}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        width="571"
-                        height="400"
+                        width="640"
+                        height="448"
                         loading="lazy"
                       />
                     </div>

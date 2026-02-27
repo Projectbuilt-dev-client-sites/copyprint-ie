@@ -144,8 +144,8 @@ export default function LocalServicePage() {
               src={heroImage}
               alt={`${service.name} in ${area.name}`}
               className="w-full h-full object-cover"
-              width="1280"
-              height="896"
+              width="640"
+              height="448"
               data-testid="img-hero"
             />
           </div>
@@ -271,8 +271,8 @@ export default function LocalServicePage() {
               src={ctaImage}
               alt={`Order ${service.name} in ${area.name}`}
               className="w-full h-full object-cover"
-              width="1280"
-              height="896"
+              width="640"
+              height="448"
               loading="lazy"
             />
             <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { SiGoogle } from "react-icons/si";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
@@ -32,21 +32,45 @@ const sectionVariants = {
 };
 
 function HeroBanner() {
-  const [videoReady, setVideoReady] = useState(false);
+  const [loadVideo, setLoadVideo] = useState(false);
+  const heroRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    const t = setTimeout(() => setVideoReady(true), 800);
-    return () => clearTimeout(t);
+    const el = heroRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          const t = setTimeout(() => setLoadVideo(true), 500);
+          observer.disconnect();
+          return () => clearTimeout(t);
+        }
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
+
   return (
     <section className="relative w-full overflow-hidden" data-testid="section-hero">
-      <div className="relative w-full hero-video-wrap bg-[#32373c]" style={{ paddingTop: "56.25%" }}>
-        {videoReady && (
+      <div ref={heroRef} className="relative w-full hero-video-wrap bg-[#32373c]" style={{ paddingTop: "56.25%" }}>
+        <img
+          src="/images/hero-banner.webp"
+          alt=""
+          role="presentation"
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${loadVideo ? "opacity-0" : "opacity-40"}`}
+          width="1024"
+          height="558"
+        />
+        {loadVideo && (
         <iframe
           src="https://player.vimeo.com/video/1168097892?badge=0&autopause=0&player_id=0&app_id=58479&background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&dnt=1"
           className="absolute inset-0 w-full h-full z-0"
           allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
           referrerPolicy="strict-origin-when-cross-origin"
-          title="Copyprint.ie"
+          title="Copyprint.ie hero video"
+          loading="lazy"
         />
         )}
         <div className="absolute bottom-0 left-0 right-0 z-10 bg-[#32373c]">
@@ -131,8 +155,8 @@ function ServicesGrid() {
                       src={service.image}
                       alt={service.name}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      width="571"
-                      height="400"
+                      width="640"
+                      height="448"
                       loading="lazy"
                     />
                   </div>

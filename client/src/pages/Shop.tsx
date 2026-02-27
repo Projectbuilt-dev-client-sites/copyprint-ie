@@ -111,8 +111,8 @@ function ProductCard({ product, onAddToCart }: { product: Product; onAddToCart: 
               src={productImages[serviceSlug]}
               alt={`${product.name} printing at Copyprint.ie`}
               className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-              width="571"
-              height="400"
+              width="640"
+              height="448"
               loading="lazy"
             />
           </Link>
@@ -347,13 +347,13 @@ export default function Shop() {
       <section className="relative bg-[#32373c] py-16 md:py-20 overflow-hidden">
         <div className="absolute inset-0 flex">
           <div className="flex-1 relative">
-            <img src={businessCards1} alt="" role="presentation" className="absolute inset-0 w-full h-full object-cover opacity-25" width="1280" height="896" />
+            <img src={businessCards1} alt="" role="presentation" className="absolute inset-0 w-full h-full object-cover opacity-25" width="640" height="448" />
           </div>
           <div className="flex-1 relative">
-            <img src={flyersLeaflets1} alt="" role="presentation" className="absolute inset-0 w-full h-full object-cover opacity-25" width="1280" height="896" />
+            <img src={flyersLeaflets1} alt="" role="presentation" className="absolute inset-0 w-full h-full object-cover opacity-25" width="640" height="448" />
           </div>
           <div className="flex-1 relative hidden md:block">
-            <img src={posters1} alt="" role="presentation" className="absolute inset-0 w-full h-full object-cover opacity-25" width="1280" height="896" />
+            <img src={posters1} alt="" role="presentation" className="absolute inset-0 w-full h-full object-cover opacity-25" width="640" height="448" />
           </div>
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-[#32373c] via-[#32373c]/70 to-[#32373c]/50" />

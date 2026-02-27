@@ -48,8 +48,8 @@ export default function BlogIndex() {
           src={blogHeroImage}
           alt="Copyprint.ie Blog"
           className="absolute inset-0 w-full h-full object-cover"
-          width="1280"
-          height="896"
+          width="640"
+          height="448"
         />
         <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
         <div className="relative max-w-5xl mx-auto px-4">
@@ -87,8 +87,8 @@ export default function BlogIndex() {
                         src={post.featuredImage}
                         alt={post.title}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        width="1280"
-                        height="896"
+                        width="640"
+                        height="448"
                         loading="lazy"
                       />
                     </div>
