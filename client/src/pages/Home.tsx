@@ -32,9 +32,15 @@ const sectionVariants = {
 };
 
 function HeroBanner() {
+  const [videoReady, setVideoReady] = useState(false);
+  useEffect(() => {
+    const t = setTimeout(() => setVideoReady(true), 800);
+    return () => clearTimeout(t);
+  }, []);
   return (
     <section className="relative w-full overflow-hidden" data-testid="section-hero">
-      <div className="relative w-full hero-video-wrap" style={{ paddingTop: "56.25%" }}>
+      <div className="relative w-full hero-video-wrap bg-[#32373c]" style={{ paddingTop: "56.25%" }}>
+        {videoReady && (
         <iframe
           src="https://player.vimeo.com/video/1168097892?badge=0&autopause=0&player_id=0&app_id=58479&background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&dnt=1"
           className="absolute inset-0 w-full h-full z-0"
@@ -42,6 +48,7 @@ function HeroBanner() {
           referrerPolicy="strict-origin-when-cross-origin"
           title="Copyprint.ie"
         />
+        )}
         <div className="absolute bottom-0 left-0 right-0 z-10 bg-[#32373c]">
           <div className="max-w-7xl mx-auto px-4 py-8 md:py-14 relative">
             <h1 className="sr-only">Copyprint.ie - Dublin's #1 Print Shop Since 1982 | Same Day Printing, Business Cards, Flyers, Posters & Banners</h1>
