@@ -223,7 +223,8 @@ function CartSidebar({ items, onUpdateQty, onRemove, onCheckout, isCheckingOut }
             <div className="flex items-center gap-1">
               <button
                 onClick={() => onUpdateQty(idx, Math.max(1, item.quantity - 1))}
-                className="w-7 h-7 rounded border border-gray-200 flex items-center justify-center text-gray-500"
+                className="w-8 h-8 rounded border border-gray-200 flex items-center justify-center text-gray-500"
+                aria-label="Decrease quantity"
                 data-testid={`button-qty-minus-${idx}`}
               >
                 <Minus className="w-3 h-3" />
@@ -231,14 +232,16 @@ function CartSidebar({ items, onUpdateQty, onRemove, onCheckout, isCheckingOut }
               <span className="w-7 text-center text-sm font-medium">{item.quantity}</span>
               <button
                 onClick={() => onUpdateQty(idx, item.quantity + 1)}
-                className="w-7 h-7 rounded border border-gray-200 flex items-center justify-center text-gray-500"
+                className="w-8 h-8 rounded border border-gray-200 flex items-center justify-center text-gray-500"
+                aria-label="Increase quantity"
                 data-testid={`button-qty-plus-${idx}`}
               >
                 <Plus className="w-3 h-3" />
               </button>
               <button
                 onClick={() => onRemove(idx)}
-                className="w-7 h-7 rounded border border-gray-200 flex items-center justify-center text-red-400 ml-1"
+                className="w-8 h-8 rounded border border-gray-200 flex items-center justify-center text-red-400 ml-1"
+                aria-label="Remove item"
                 data-testid={`button-remove-${idx}`}
               >
                 <Trash2 className="w-3 h-3" />

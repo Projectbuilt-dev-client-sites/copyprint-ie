@@ -134,11 +134,12 @@ export default function ArtworkUploadForm({ serviceName }: ArtworkUploadFormProp
             <div key={i} className="flex items-center gap-2 px-3 py-1.5 bg-primary/5 border border-primary/20 rounded-lg">
               <FileText className="w-3.5 h-3.5 text-primary shrink-0" />
               <span className="text-xs text-gray-700 flex-1 truncate">{file.name}</span>
-              <span className="text-xs text-gray-400 shrink-0">{formatFileSize(file.size)}</span>
+              <span className="text-xs text-gray-500 shrink-0">{formatFileSize(file.size)}</span>
               <button
                 type="button"
                 onClick={() => removeFile(i)}
-                className="text-gray-400 hover:text-red-500 transition-colors"
+                className="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-red-500 transition-colors"
+                aria-label={`Remove ${file.name}`}
                 data-testid={`button-remove-file-${i}`}
               >
                 <X className="w-3.5 h-3.5" />

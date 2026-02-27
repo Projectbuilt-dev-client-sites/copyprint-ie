@@ -1,0 +1,365 @@
+Insights
+Improve image delivery Est savings of 429 KiB
+	
+	
+	
+		
+	
+	
+	
+	
+	
+		
+	
+		
+	
+	
+	
+	
+		
+	
+	
+	
+	
+		
+	
+	
+	
+	
+		
+	
+		
+	
+	
+	
+	
+		
+	
+	
+	
+	
+		
+	
+	
+	
+	
+		
+	
+	
+	
+	
+		
+	
+	
+	
+	
+		
+	
+	
+	
+	
+		
+	
+	
+	
+	
+		
+	
+	
+	
+	
+		
+	
+	
+	
+	
+		
+	
+	
+	
+	
+		
+LCP request discovery
+
+Network dependency tree
+	
+	
+	
+	
+Use efficient cache lifetimes Est savings of 30 KiB
+	
+	
+		
+	
+	
+	
+	
+	
+	
+		
+	
+	
+Render blocking requests
+	
+	
+	
+	
+	
+	
+LCP breakdown
+	
+	
+	
+	
+	
+3rd parties
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+These insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.
+Diagnostics
+Reduce unused CSS Est savings of 32 KiB
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+Reduce unused JavaScript Est savings of 339 KiB
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+Avoid long main-thread tasks 3 long tasks found
+	
+	
+		
+	
+	
+		
+	
+	
+		
+	
+	
+User Timing marks and measures 2 user timings
+	
+	
+	
+	
+	
+	
+	
+	
+	
+Avoid non-composited animations 1 animated element found
+	
+	
+	
+More information about the performance of your application. These numbers don't directly affect the Performance score.
+Passed audits (15)
+Show
+
+	
+	
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+79
+Accessibility
+These checks highlight opportunities to improve the accessibility of your web app. Automatic detection can only detect a subset of issues and does not guarantee the accessibility of your web app, so manual testing is also encouraged.
+Names and labels
+Buttons do not have an accessible name
+Links do not have a discernible name
+Image elements do not have [alt] attributes that are redundant text.
+These are opportunities to improve the semantics of the controls in your application. This may enhance the experience for users of assistive technology, like a screen reader.
+Best practices
+[user-scalable="no"] is used in the <meta name="viewport"> element or the [maximum-scale] attribute is less than 5.
+Touch targets do not have sufficient size or spacing.
+These items highlight common accessibility best practices.
+Contrast
+Background and foreground colors do not have a sufficient contrast ratio.
+These are opportunities to improve the legibility of your content.
+Additional items to manually check (10)
+Show
+These items address areas which an automated testing tool cannot cover. Learn more in our guide on conducting an accessibility review.
+Passed audits (21)
+Show
+Not applicable (33)
+Show
+73
+Best Practices
+General
+Uses third-party cookies 2 cookies found
+Third-party cookies may be blocked in some contexts. Learn more about preparing for third-party cookie restrictions.
+Name
+	
+URL
+Vimeo
+video
+	
+__cf_bm
+	
+/video/116…?badge=…(player.vimeo.com)
+_cfuvid
+	
+/video/116…?badge=…(player.vimeo.com)
+Issues were logged in the Issues panel in Chrome Devtools
+Issues logged to the Issues panel in Chrome Devtools indicate unresolved problems. They can come from network request failures, insufficient security controls, and other browser concerns. Open up the Issues panel in Chrome DevTools for more details on each issue.
+Issue type
+Cookie
+/video/116…?badge=…(player.vimeo.com)
+User Experience
+Displays images with incorrect aspect ratio
+	
+	
+	
+			
+	
+	
+	
+	
+	
+	
+	
+	
+	
+Trust and Safety
+Ensure CSP is effective against XSS attacks
+	
+	
+		
+Use a strong HSTS policy
+	
+	
+		
+Ensure proper origin isolation with COOP
+	
+	
+		
+Mitigate clickjacking with XFO or CSP
+	
+	
+Mitigate DOM-based XSS with Trusted Types
+	
+	

@@ -39,7 +39,8 @@ export default function Footer() {
                 href="https://www.facebook.com/copyprintdublin"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-md bg-white/10 flex items-center justify-center transition-colors"
+                className="w-10 h-10 rounded-md bg-white/10 flex items-center justify-center transition-colors"
+                aria-label="Facebook"
                 data-testid="link-facebook"
               >
                 <SiFacebook className="w-4 h-4 text-white/80" />
@@ -48,7 +49,8 @@ export default function Footer() {
                 href="https://www.instagram.com/copyprintdublin"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-md bg-white/10 flex items-center justify-center transition-colors"
+                className="w-10 h-10 rounded-md bg-white/10 flex items-center justify-center transition-colors"
+                aria-label="Instagram"
                 data-testid="link-instagram"
               >
                 <SiInstagram className="w-4 h-4 text-white/80" />
@@ -57,7 +59,8 @@ export default function Footer() {
                 href="https://www.google.com/search?si=AL3DRZHrmvnFAVQPOO2Bzhf8AX9KZZ6raUI_dT7DG_z0kV2_x4Phr9a942m0NIuT4LKKqgon7w6EFwPA183kMjG7hN1FNCsirFu89uh8HE36CXW54WPYZi79thdNRKKCEsCdyxecJHLm&q=Copy+Print+Reviews"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-md bg-white/10 flex items-center justify-center transition-colors"
+                className="w-10 h-10 rounded-md bg-white/10 flex items-center justify-center transition-colors"
+                aria-label="Google Reviews"
                 data-testid="link-google-reviews"
               >
                 <SiGoogle className="w-4 h-4 text-white/80" />
@@ -153,7 +156,7 @@ export default function Footer() {
 
       <div className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-gray-500">
-          <p data-testid="text-copyright">&copy; {new Date().getFullYear()} Copyprint.ie. All rights reserved.</p>
+          <p className="text-gray-400" data-testid="text-copyright">&copy; {new Date().getFullYear()} Copyprint.ie. All rights reserved.</p>
           <a
             href="https://www.google.com/search?si=AL3DRZHrmvnFAVQPOO2Bzhf8AX9KZZ6raUI_dT7DG_z0kV2_x4Phr9a942m0NIuT4LKKqgon7w6EFwPA183kMjG7hN1FNCsirFu89uh8HE36CXW54WPYZi79thdNRKKCEsCdyxecJHLm&q=Copy+Print+Reviews"
             target="_blank"

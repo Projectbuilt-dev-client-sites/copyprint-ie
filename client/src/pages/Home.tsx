@@ -415,7 +415,8 @@ function Testimonials() {
           <button
             onClick={() => setPage((p) => Math.max(0, p - 1))}
             disabled={page === 0}
-            className="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+            className="w-11 h-11 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+            aria-label="Previous testimonials"
             data-testid="button-testimonial-prev"
           >
             <ChevronLeft className="w-5 h-5" />
@@ -425,7 +426,8 @@ function Testimonials() {
               <button
                 key={i}
                 onClick={() => setPage(i)}
-                className={`w-2.5 h-2.5 rounded-full transition-colors ${i === page ? "bg-primary" : "bg-gray-300"}`}
+                className={`w-3 h-3 rounded-full transition-colors ${i === page ? "bg-primary" : "bg-gray-300"}`}
+                aria-label={`Go to testimonial page ${i + 1}`}
                 data-testid={`button-testimonial-dot-${i}`}
               />
             ))}
@@ -433,7 +435,8 @@ function Testimonials() {
           <button
             onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
             disabled={page === totalPages - 1}
-            className="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+            className="w-11 h-11 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+            aria-label="Next testimonials"
             data-testid="button-testimonial-next"
           >
             <ChevronRight className="w-5 h-5" />

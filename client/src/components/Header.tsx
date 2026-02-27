@@ -88,13 +88,13 @@ export default function Header() {
             </a>
           </div>
           <div className="hidden md:flex items-center gap-4">
-            <span className="flex items-center gap-1.5 text-gray-400 text-xs tracking-wide">
+            <span className="flex items-center gap-1.5 text-gray-500 text-xs tracking-wide">
               <MapPin className="w-3 h-3" />
               29-30 Dame St, Dublin 2
             </span>
             <div className="relative">
               <button
-                className="flex items-center gap-1.5 text-gray-400 text-xs tracking-wide transition-colors hover:text-gray-900"
+                className="flex items-center gap-1.5 text-gray-500 text-xs tracking-wide transition-colors hover:text-gray-900"
                 onClick={() => setLangOpen(!langOpen)}
                 data-testid="button-language"
               >
@@ -202,7 +202,7 @@ export default function Header() {
 
             <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
               <SheetTrigger asChild>
-                <Button size="icon" variant="ghost" className="xl:hidden text-gray-700 no-default-hover-elevate no-default-active-elevate" data-testid="button-mobile-menu">
+                <Button size="icon" variant="ghost" className="xl:hidden text-gray-700 no-default-hover-elevate no-default-active-elevate" aria-label="Open menu" data-testid="button-mobile-menu">
                   <Menu className="w-5 h-5" />
                 </Button>
               </SheetTrigger>
