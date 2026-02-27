@@ -29,7 +29,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           <div>
             <Link href="/" data-testid="link-footer-logo">
-              <img src="/images/logo.webp" alt="Copyprint.ie - Dublin print shop" className="h-12 cursor-pointer" width="360" height="98" />
+              <img src="/images/logo.webp" alt="Copyprint.ie - Dublin print shop" className="h-12 w-auto cursor-pointer" width="360" height="98" />
             </Link>
             <p className="mt-4 text-sm leading-relaxed">
               Dublin's #1 print shop for personal and business printing. Proudly serving Dublin since 1982.
