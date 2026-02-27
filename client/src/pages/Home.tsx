@@ -515,57 +515,51 @@ function WhyChooseUs() {
 
 function AboutSection() {
   return (
-    <section className="py-16 md:py-24 bg-[#32373c]" data-testid="section-about">
+    <section className="py-16 md:py-24 bg-primary/5" data-testid="section-about">
       <div className="max-w-5xl mx-auto px-4">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={sectionVariants}
-          className="grid md:grid-cols-2 gap-10 md:gap-16 items-center"
+          className="flex flex-col items-center text-center mb-12"
         >
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="h-px w-10 bg-white/50" />
-              <span className="text-white/70 text-xs tracking-[0.3em] uppercase font-medium">Since 1982</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6" data-testid="text-about-title">About Copyprint.ie</h2>
-            <p className="text-white/70 text-base md:text-lg leading-relaxed">
-              Based in Dame St, Dublin 2, we have been proudly serving Dublin since 1982.
-              We take great pride in every commercial or personal print job, no matter how big or small.
-              From a single poster to thousands of business cards, every order gets the same care and attention.
-            </p>
+          <div className="flex items-center gap-3 mb-4">
+            <div className="h-px w-10 bg-primary/30" />
+            <span className="text-primary/70 text-xs tracking-[0.3em] uppercase font-bold">Since 1982</span>
+            <div className="h-px w-10 bg-primary/30" />
           </div>
-          <div className="flex flex-col gap-4">
-            <div className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-lg p-5">
-              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
-                <Zap className="w-5 h-5 text-white/70" />
-              </div>
-              <div>
-                <span className="text-white font-semibold text-sm">Same Day Click & Collect</span>
-                <p className="text-white/50 text-xs mt-0.5">Order online, pick up in store</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-lg p-5">
-              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
-                <Clock className="w-5 h-5 text-white/70" />
-              </div>
-              <div>
-                <span className="text-white font-semibold text-sm">Bespoke Jobs Turned Around Fast</span>
-                <p className="text-white/50 text-xs mt-0.5">Custom work delivered on time</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-lg p-5">
-              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
-                <Package className="w-5 h-5 text-white/70" />
-              </div>
-              <div>
-                <span className="text-white font-semibold text-sm">Local or Nationwide or International Delivery</span>
-                <p className="text-white/50 text-xs mt-0.5">We deliver anywhere in Ireland</p>
-              </div>
-            </div>
-          </div>
+          <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-6" data-testid="text-about-title">About Copyprint.ie</h2>
+          <p className="text-gray-600 text-lg md:text-xl leading-relaxed max-w-3xl">
+            Based in Dame St, Dublin 2, we have been proudly serving Dublin since 1982.
+            We take great pride in every commercial or personal print job, no matter how big or small.
+            From a single poster to thousands of business cards, every order gets the same care and attention.
+          </p>
         </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center text-center">
+            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+              <Zap className="w-6 h-6 text-primary" />
+            </div>
+            <h3 className="text-gray-900 font-bold text-lg mb-2">Same Day Click & Collect</h3>
+            <p className="text-gray-500 text-sm">Order online and pick up from our Dame St shop the very same day.</p>
+          </div>
+          <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center text-center">
+            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+              <Clock className="w-6 h-6 text-primary" />
+            </div>
+            <h3 className="text-gray-900 font-bold text-lg mb-2">Bespoke Jobs Turned Around Fast</h3>
+            <p className="text-gray-500 text-sm">Custom printing projects delivered with speed and precision.</p>
+          </div>
+          <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center text-center">
+            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+              <Package className="w-6 h-6 text-primary" />
+            </div>
+            <h3 className="text-gray-900 font-bold text-lg mb-2">Delivery Options</h3>
+            <p className="text-gray-500 text-sm">We offer local, nationwide, and international delivery for all orders.</p>
+          </div>
+        </div>
       </div>
     </section>
   );
