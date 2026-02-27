@@ -95,6 +95,10 @@ export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
+  app.get("/google90c42bd5c8367b01.html", (_req, res) => {
+    res.type("html").send("google-site-verification: google90c42bd5c8367b01.html");
+  });
+
   app.get("/sitemap.xml", (_req, res) => {
     res.type("application/xml").send(generateSitemapXml());
   });
