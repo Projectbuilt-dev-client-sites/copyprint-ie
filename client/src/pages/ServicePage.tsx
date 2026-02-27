@@ -47,7 +47,7 @@ const serviceKeywordContent: Record<string, { paragraphs: string[]; relatedSlugs
       "Need same day stickers in Dublin? We offer bulk stickers at cheap prices with professional quality. Our custom labels are perfect for branding, events, and product packaging. Roll labels printing is also available for high-volume requirements. Visit our Dame Street shop or order online for fast sticker printing near you.",
     ],
     relatedSlugs: ["business-cards", "flyers-leaflets", "pvc-banners", "personal-printing"],
-    locationSlugs: ["dublin-2", "smithfield", "portobello", "sandyford"],
+    locationSlugs: [],
   },
   "posters": {
     paragraphs: [
@@ -56,7 +56,7 @@ const serviceKeywordContent: Record<string, { paragraphs: string[]; relatedSlugs
       "Located on Dame Street in Dublin 2, our poster printing services are fast, affordable, and professional. We handle custom poster sizes, exhibition posters, concert posters, and promotional posters. Need a quick turnaround? Our fast poster printing service means you can have your posters the same day. Art print posters and high quality posters are our specialty.",
     ],
     relatedSlugs: ["pvc-banners", "roller-banners", "flyers-leaflets", "laminating-binding"],
-    locationSlugs: ["dublin-2", "temple-bar", "rathmines", "dun-laoghaire"],
+    locationSlugs: ["dublin-2", "rathmines", "dun-laoghaire", "drumcondra"],
   },
   "pvc-banners": {
     paragraphs: [
@@ -65,7 +65,7 @@ const serviceKeywordContent: Record<string, { paragraphs: string[]; relatedSlugs
       "Our banner printing service near Dame Street covers everything from small promotional banners to massive outdoor displays. We provide banner design services and can print durable banners that last 3-5 years outdoors. Cheap banners in Dublin don't have to mean low quality - our bulk banners offer excellent value without compromising on print quality.",
     ],
     relatedSlugs: ["roller-banners", "party-banners", "posters", "stickers-labels"],
-    locationSlugs: ["dublin-2", "tallaght", "blanchardstown", "swords"],
+    locationSlugs: [],
   },
   "business-stationery": {
     paragraphs: [
@@ -83,7 +83,7 @@ const serviceKeywordContent: Record<string, { paragraphs: string[]; relatedSlugs
       "Our hospitality printing services extend to tent cards, specials boards, and restaurant marketing materials. We understand the unique needs of Dublin's restaurants and cafes. From waterproof menus for outdoor dining to cheap menu printing for startups, Copyprint.ie is the trusted choice for restaurant printing near Dame Street.",
     ],
     relatedSlugs: ["flyers-leaflets", "stickers-labels", "business-cards", "posters"],
-    locationSlugs: ["dublin-2", "temple-bar", "ranelagh", "rathmines"],
+    locationSlugs: ["dublin-2", "ranelagh", "rathmines", "drumcondra"],
   },
   "roller-banners": {
     paragraphs: [
@@ -101,7 +101,7 @@ const serviceKeywordContent: Record<string, { paragraphs: string[]; relatedSlugs
       "Need a same day party banner in Dublin? Our Dame Street print shop can turn around party banners quickly when you need them most. From cheap party banners to premium photo banners with multiple images, we offer personalised PVC banners in any size. Custom photo banners and party decorations printing available with next day delivery across Ireland.",
     ],
     relatedSlugs: ["pvc-banners", "roller-banners", "posters", "personal-printing"],
-    locationSlugs: ["dublin-2", "tallaght", "clondalkin", "lucan"],
+    locationSlugs: [],
   },
   "booklets": {
     paragraphs: [
@@ -110,7 +110,7 @@ const serviceKeywordContent: Record<string, { paragraphs: string[]; relatedSlugs
       "We offer cheap booklet printing with fast turnaround in Dublin. Short run booklets, custom booklets, and bulk booklets are all available at competitive prices. Our booklet design service helps you create professional layouts for corporate brochures and presentation booklets. Same day booklets available for urgent orders at our Dame Street location.",
     ],
     relatedSlugs: ["flyers-leaflets", "business-stationery", "laminating-binding", "posters"],
-    locationSlugs: ["dublin-2", "drumcondra", "glasnevin", "rathmines"],
+    locationSlugs: [],
   },
   "student-services": {
     paragraphs: [
@@ -119,7 +119,7 @@ const serviceKeywordContent: Record<string, { paragraphs: string[]; relatedSlugs
       "Our student printing services include colour printing, black and white printing, A4 printing, and student laminating. With student discount printing available and same day service for urgent deadlines, Copyprint.ie on Dame Street is the trusted choice for college printing services in Dublin 2. Bring your files on USB or email them to us.",
     ],
     relatedSlugs: ["laminating-binding", "posters", "booklets", "personal-printing"],
-    locationSlugs: ["dublin-2", "ranelagh", "rathmines", "drumcondra"],
+    locationSlugs: [],
   },
   "personal-printing": {
     paragraphs: [
@@ -128,7 +128,7 @@ const serviceKeywordContent: Record<string, { paragraphs: string[]; relatedSlugs
       "For photo printing in Dublin, we offer photo prints in all sizes from 6x4 to A4 and larger. Canvas prints, mounted photos, and photo enlargements are available with professional quality. Calendar printing and personalised stationery make great gifts. Visit our Dame Street shop to see paper samples and discuss your personal printing needs.",
     ],
     relatedSlugs: ["business-cards", "stickers-labels", "booklets", "laminating-binding"],
-    locationSlugs: ["dublin-2", "donnybrook", "blackrock", "malahide"],
+    locationSlugs: [],
   },
   "laminating-binding": {
     paragraphs: [
@@ -137,7 +137,7 @@ const serviceKeywordContent: Record<string, { paragraphs: string[]; relatedSlugs
       "Our professional binding services are perfect for report binding, presentation binding, spiral binding, and thesis binding. We understand the specific binding requirements for Dublin's colleges and universities. From cheap laminating to premium hard cover binding, Copyprint.ie provides reliable document finishing services in Dublin 2.",
     ],
     relatedSlugs: ["student-services", "booklets", "business-stationery", "posters"],
-    locationSlugs: ["dublin-2", "rathmines", "drumcondra", "glasnevin"],
+    locationSlugs: [],
   },
 };
 
@@ -435,6 +435,7 @@ export default function ServicePage() {
                 </div>
               </div>
 
+              {keywordContent.locationSlugs.length > 0 && (
               <div className="mt-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-3" data-testid="text-local-areas-title">
                   {service.name} Available In
@@ -445,8 +446,12 @@ export default function ServicePage() {
                       .split("-")
                       .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
                       .join(" ");
+                    const localSlugMap: Record<string, string> = {
+                      "flyers-leaflets": "flyers-and-leaflets",
+                    };
+                    const localServiceSlug = localSlugMap[slug || ""] || slug;
                     return (
-                      <Link key={locSlug} href={`/printing/${slug}/${locSlug}`} data-testid={`link-location-${locSlug}`}>
+                      <Link key={locSlug} href={`/printing/${locSlug}/${localServiceSlug}`} data-testid={`link-location-${locSlug}`}>
                         <span className="inline-block text-sm text-primary underline underline-offset-2 cursor-pointer">
                           {service.name} {areaName}
                         </span>
@@ -455,6 +460,7 @@ export default function ServicePage() {
                   })}
                 </div>
               </div>
+              )}
             </motion.div>
           </div>
         </section>
