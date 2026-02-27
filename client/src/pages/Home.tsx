@@ -1,23 +1,8 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { SiGoogle } from "react-icons/si";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
-import { z } from "zod";
-import { insertContactSchema } from "@shared/schema";
-import { apiRequest } from "@/lib/queryClient";
-import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Form, FormControl, FormField, FormItem, FormLabel, FormMessage,
-} from "@/components/ui/form";
-import {
-  Accordion, AccordionContent, AccordionItem, AccordionTrigger,
-} from "@/components/ui/accordion";
 import { services } from "@/lib/services";
 import { getKeywordsForHome } from "@/lib/seo-keywords";
 import {
@@ -25,6 +10,9 @@ import {
   ArrowRight, CheckCircle, Phone, MessageCircle,
   ChevronLeft, ChevronRight, Printer, Package, ShoppingCart,
 } from "lucide-react";
+
+const LazyContactSection = lazy(() => import("@/components/HomeContactSection"));
+const LazyFAQSection = lazy(() => import("@/components/HomeFAQSection"));
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -620,233 +608,6 @@ function AboutSection() {
   );
 }
 
-const contactFormSchema = insertContactSchema.extend({
-  name: z.string().min(2, "Name is required"),
-  email: z.string().email("Please enter a valid email address"),
-  subject: z.string().min(2, "Subject is required"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
-});
-
-function ContactSection() {
-  const { toast } = useToast();
-
-  const form = useForm<z.infer<typeof contactFormSchema>>({
-    resolver: zodResolver(contactFormSchema),
-    defaultValues: { name: "", email: "", subject: "", message: "" },
-  });
-
-  const mutation = useMutation({
-    mutationFn: async (data: z.infer<typeof contactFormSchema>) => {
-      await apiRequest("POST", "/api/contact", data);
-    },
-    onSuccess: () => {
-      toast({ title: "Message sent!", description: "We'll get back to you as soon as possible." });
-      form.reset();
-    },
-    onError: () => {
-      toast({ title: "Something went wrong", description: "Please try again or call us directly.", variant: "destructive" });
-    },
-  });
-
-  return (
-    <section id="contact" className="py-14 md:py-20 bg-white" data-testid="section-contact">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="flex flex-col"
-          >
-            <div className="rounded-md overflow-hidden border border-gray-200 flex-1 min-h-[350px] lg:min-h-0">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1022.8297221693056!2d-6.264143140064815!3d53.34396268430213!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48670e9cce166aef%3A0xc16114d04347b935!2sCopy%20Print!5e1!3m2!1sen!2sie!4v1772067540806!5m2!1sen!2sie"
-                className="w-full h-full min-h-[350px] lg:min-h-full"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Copy Print Location - 29-30 Dame St, Dublin 2"
-                data-testid="map-contact"
-              />
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3" data-testid="text-contact-title">Get In Touch</h2>
-            <p className="text-gray-500 text-base md:text-lg mb-8">
-              Send us a message Or call{" "}
-              <a href="tel:016774234" className="text-primary font-medium">01 677 4234</a>.
-            </p>
-            <div className="bg-gray-50 border border-gray-200 rounded-md p-6 md:p-8">
-              <Form {...form}>
-                <form onSubmit={form.handleSubmit((data) => mutation.mutate(data))} className="space-y-5">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <FormField
-                      control={form.control}
-                      name="name"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="text-gray-700">Name</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Your name" {...field} className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-400" data-testid="input-contact-name" />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="email"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="text-gray-700">Email</FormLabel>
-                          <FormControl>
-                            <Input placeholder="your@email.com" type="email" {...field} className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-400" data-testid="input-contact-email" />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-                  <FormField
-                    control={form.control}
-                    name="subject"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-gray-700">Subject</FormLabel>
-                        <FormControl>
-                          <Input placeholder="What's this about?" {...field} className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-400" data-testid="input-contact-subject" />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="message"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-gray-700">Message</FormLabel>
-                        <FormControl>
-                          <Textarea
-                            placeholder="Tell us about your printing needs..."
-                            className="min-h-[130px] bg-white border-gray-300 text-gray-900 placeholder:text-gray-400"
-                            {...field}
-                            data-testid="input-contact-message"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <Button
-                    type="submit"
-                    size="lg"
-                    className="w-full"
-                    disabled={mutation.isPending}
-                    data-testid="button-submit-contact"
-                  >
-                    {mutation.isPending ? "Sending..." : "Send Message"}
-                  </Button>
-                </form>
-              </Form>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-const faqs = [
-  {
-    question: "What services do you offer?",
-    answer: "Copyprint.ie offers a comprehensive range of printing services including business cards, flyers, leaflets, posters, PVC banners, roller banners, booklets, stickers, labels, laminating, binding, and business stationery. As Dublin's leading print shop, we handle everything from personal printing to large-scale commercial jobs at our Dame Street location.",
-  },
-  {
-    question: "Where are you located?",
-    answer: "Our print shop is located at 29-30 Dame Street, Dublin 2, right in the heart of Dublin city centre. We're just minutes from Trinity College and easily accessible by public transport, making us one of the most convenient printing services in Dublin.",
-  },
-  {
-    question: "What are your opening hours?",
-    answer: "Copyprint.ie is open Monday to Friday, 9:00am to 5:30pm. Visit us at 29-30 Dame St, Dublin 2 during business hours or call us on 01 677 4234 for any enquiries about our printing services.",
-  },
-  {
-    question: "Do you offer same day printing?",
-    answer: "Yes, we offer same day printing Dublin with our click and collect service. Place your order online and collect it from our Dame Street shop the same day. We've been providing fast printing Dublin services since 1982, so you can trust us to deliver quality work quickly.",
-  },
-  {
-    question: "Can I order online?",
-    answer: "Absolutely! You can browse our full range of printing services online and place your order directly through our website. We offer same day click and collect from our print shop at 29-30 Dame St, Dublin 2, or delivery options across Ireland.",
-  },
-  {
-    question: "What file formats do you accept?",
-    answer: "We accept all major file formats including PDF, JPEG, PNG, TIFF, AI, PSD, and EPS. For the best quality printing results, we recommend supplying high-resolution PDF files. If you're unsure about file preparation, call us on 01 677 4234 and our team will be happy to help.",
-  },
-  {
-    question: "Do you offer delivery?",
-    answer: "Yes, we offer local delivery throughout Dublin as well as nationwide delivery across Ireland and international shipping. You can also use our convenient click and collect service to pick up your order from our print shop at 29-30 Dame St, Dublin 2.",
-  },
-  {
-    question: "What payment methods do you accept?",
-    answer: "We accept all major credit and debit cards, cash payments in-store, and bank transfers for larger orders. Visit our print shop Dublin at 29-30 Dame St, Dublin 2 or call 01 677 4234 to discuss payment options for your printing project.",
-  },
-  {
-    question: "Do you offer design services?",
-    answer: "Yes, our experienced team can help with graphic design and artwork preparation for your print jobs. Whether you need business cards, flyers, or banners designed from scratch, our Dublin print shop has been delivering professional design services since 1982.",
-  },
-  {
-    question: "How long have you been in business?",
-    answer: "Copyprint.ie has been proudly serving Dublin since 1982 - that's over 40 years of trusted printing expertise. Based at 29-30 Dame St, Dublin 2, we're one of the longest-established print shops in Dublin city centre. Call us on 01 677 4234 to experience our decades of quality service.",
-  },
-  {
-    question: "Can I get a quote before ordering?",
-    answer: "Of course! We're happy to provide free, no-obligation quotes for all printing services. Contact us by phone on 01 677 4234, send us a WhatsApp message, or visit our print shop at 29-30 Dame St, Dublin 2 to discuss your requirements and get a competitive quote.",
-  },
-  {
-    question: "Do you offer bulk discounts?",
-    answer: "Yes, we offer competitive bulk discounts across all our printing services. The more you order, the better the price per unit. Contact our Dublin print shop on 01 677 4234 or visit us at 29-30 Dame St, Dublin 2 for a custom quote on large orders.",
-  },
-];
-
-function FAQSection() {
-  return (
-    <section className="py-16 bg-white" data-testid="section-faq">
-      <div className="max-w-4xl mx-auto px-4">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={sectionVariants}
-        >
-          <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center" data-testid="text-faq-title">
-            Frequently Asked Questions
-          </h2>
-          <Accordion type="single" collapsible className="w-full">
-            {faqs.map((faq, i) => (
-              <AccordionItem key={i} value={`faq-${i}`} data-testid={`accordion-home-faq-${i}`}>
-                <AccordionTrigger className="text-left text-gray-900 font-medium">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-gray-600 leading-relaxed">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </motion.div>
-      </div>
-    </section>
-  );
-}
-
 function SEOKeywordSection() {
   return (
     <section className="py-12 md:py-16 bg-primary/5 border-t border-primary/10" data-testid="section-seo-content">
@@ -999,9 +760,13 @@ export default function Home() {
       <Testimonials />
       <WhyChooseUs />
       <AboutSection />
-      <FAQSection />
+      <Suspense fallback={<div className="py-16" />}>
+        <LazyFAQSection />
+      </Suspense>
       <SEOKeywordSection />
-      <ContactSection />
+      <Suspense fallback={<div className="py-14 md:py-20" />}>
+        <LazyContactSection />
+      </Suspense>
     </div>
   );
 }
