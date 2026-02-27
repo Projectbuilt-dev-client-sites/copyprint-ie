@@ -11,6 +11,7 @@ import {
   ChevronLeft, ChevronRight, Printer, Package, ShoppingCart,
 } from "lucide-react";
 
+import { faqs } from "@/components/HomeFAQSection";
 const LazyContactSection = lazy(() => import("@/components/HomeContactSection"));
 const LazyFAQSection = lazy(() => import("@/components/HomeFAQSection"));
 
