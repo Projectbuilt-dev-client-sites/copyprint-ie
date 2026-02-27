@@ -50,6 +50,7 @@ function HeroBanner() {
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${loadVideo ? "opacity-0" : "opacity-40"}`}
           width="1024"
           height="558"
+          fetchPriority="high"
         />
         {loadVideo && (
         <iframe

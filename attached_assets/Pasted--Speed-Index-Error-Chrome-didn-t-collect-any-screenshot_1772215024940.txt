@@ -1,0 +1,84 @@
+
+Speed Index
+Error!
+Chrome didn't collect any screenshots during the page load. Please make sure there is content visible on the page, and then try re-running Lighthouse. (SPEEDINDEX_OF_ZERO)
+
+    Captured at Feb 27, 2026, 5:56 PM GMT
+    Emulated Desktop with Lighthouse 13.0.1
+    Single page session
+    Initial page load
+    Custom throttling
+    Using HeadlessChromium 144.0.7559.132 with lr
+
+Show audits relevant to:
+All
+FCP
+LCP
+TBT
+CLS
+Insights
+LCP request discovery
+Optimize LCP by making the LCP image discoverable from the HTML immediately, and avoiding lazy-loadingLCPUnscored
+
+    lazy load not applied
+    fetchpriority=high should be applied
+    Request is discoverable in initial document
+
+div > section.relative > div.relative > img.absolute
+<img src="/images/hero-banner.webp" alt="" role="presentation" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-10…" width="1024" height="558">
+Network dependency tree
+Avoid chaining critical requests by reducing the length of chains, reducing the download size of resources, or deferring the download of unnecessary resources to improve page load.LCPUnscored
+Maximum critical path latency: 1,905 ms
+Initial Navigation
+https://copyprint.ie
+- 143 ms, 12.46 KiB
+…cloudflare-static/email-decode.min.js(copyprint.ie)
+- 180 ms, 1.19 KiB
+…rs=AN8SPfp0A…/m=el_main_css(www.gstatic.com)
+- 1,905 ms, 4.87 KiB
+/assets/index-vOb1LlN0.js(copyprint.ie)
+- 291 ms, 99.72 KiB
+/assets/Home-hY96nBk9.js(copyprint.ie)
+- 391 ms, 9.41 KiB
+/assets/HomeFAQSe….js(copyprint.ie)
+- 580 ms, 2.60 KiB
+/assets/accordion-JNbck3K5.js(copyprint.ie)
+- 565 ms, 3.10 KiB
+/assets/HomeConta….js(copyprint.ie)
+- 579 ms, 36.02 KiB
+/assets/useMutati….js(copyprint.ie)
+- 580 ms, 1.59 KiB
+/assets/services-Ckkhue-r.js(copyprint.ie)
+- 389 ms, 11.96 KiB
+/assets/posters-1-BiqnM6E0.js(copyprint.ie)
+- 400 ms, 0.86 KiB
+/assets/seo-keywo….js(copyprint.ie)
+- 392 ms, 3.78 KiB
+/assets/file-text-Bmb1ZFCq.js(copyprint.ie)
+- 396 ms, 0.92 KiB
+/assets/layers-CrY2zdEM.js(copyprint.ie)
+- 390 ms, 1.04 KiB
+/assets/shopping-….js(copyprint.ie)
+- 392 ms, 1.06 KiB
+/assets/proxy-Dd2S4xUx.js(copyprint.ie)
+- 415 ms, 37.42 KiB
+/assets/arrow-rig….js(copyprint.ie)
+- 408 ms, 0.86 KiB
+/assets/index-Bot0FguQ.css(copyprint.ie)
+- 217 ms, 16.34 KiB
+Preconnected origins
+preconnect hints help the browser establish a connection earlier in the page load, saving time when the first request for that origin is made. The following are the origins that the page preconnected to.
+Origin
+	
+Source
+https://fonts.googleapis.com/
+	
+head > link
+<link rel="preconnect" href="https://fonts.googleapis.com">
+https://fonts.gstatic.com/
+	
+head > link
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+Preconnect candidates
+Add preconnect hints to your most important origins, but try to use no more than 4.
+No additional origins are good candidates for preconnecting
