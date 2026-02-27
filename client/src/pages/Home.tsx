@@ -453,10 +453,12 @@ function Testimonials() {
               <button
                 key={i}
                 onClick={() => setPage(i)}
-                className={`w-3 h-3 rounded-full transition-colors ${i === page ? "bg-primary" : "bg-gray-300"}`}
+                className={`w-11 h-11 flex items-center justify-center`}
                 aria-label={`Go to testimonial page ${i + 1}`}
                 data-testid={`button-testimonial-dot-${i}`}
-              />
+              >
+                <span className={`w-2.5 h-2.5 rounded-full transition-colors ${i === page ? "bg-primary" : "bg-gray-300"}`} />
+              </button>
             ))}
           </div>
           <button

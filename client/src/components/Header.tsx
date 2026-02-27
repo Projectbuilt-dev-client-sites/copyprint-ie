@@ -63,6 +63,7 @@ export default function Header() {
             <a
               href="tel:016774234"
               className="flex items-center gap-1.5 text-gray-500 text-xs tracking-wide transition-colors hover:text-gray-900"
+              aria-label="Call 01 677 4234"
               data-testid="link-phone"
             >
               <Phone className="w-3 h-3" />
@@ -73,6 +74,7 @@ export default function Header() {
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 text-green-600 text-xs tracking-wide transition-colors hover:text-green-700"
+              aria-label="WhatsApp us"
               data-testid="link-whatsapp-top"
             >
               <MessageCircle className="w-3 h-3" />
