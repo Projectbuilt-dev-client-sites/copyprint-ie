@@ -8,7 +8,7 @@ const sectionVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
-const faqs = [
+export const faqs = [
   {
     question: "What services do you offer?",
     answer: "Copyprint.ie offers a comprehensive range of printing services including business cards, flyers, leaflets, posters, PVC banners, roller banners, booklets, stickers, labels, laminating, binding, and business stationery. As Dublin's leading print shop, we handle everything from personal printing to large-scale commercial jobs at our Dame Street location.",
