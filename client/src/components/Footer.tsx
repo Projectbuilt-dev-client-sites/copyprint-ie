@@ -24,7 +24,7 @@ const moreLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#32373c] text-gray-300">
+    <footer className="bg-[#32373c] text-gray-200">
       <div className="max-w-7xl mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           <div>
@@ -155,8 +155,8 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-gray-500">
-          <p className="text-gray-400" data-testid="text-copyright">&copy; {new Date().getFullYear()} Copyprint.ie. All rights reserved.</p>
+        <div className="max-w-7xl mx-auto px-4 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-gray-300">
+          <p className="text-gray-300" data-testid="text-copyright">&copy; {new Date().getFullYear()} Copyprint.ie. All rights reserved.</p>
           <a
             href="https://www.google.com/search?si=AL3DRZHrmvnFAVQPOO2Bzhf8AX9KZZ6raUI_dT7DG_z0kV2_x4Phr9a942m0NIuT4LKKqgon7w6EFwPA183kMjG7hN1FNCsirFu89uh8HE36CXW54WPYZi79thdNRKKCEsCdyxecJHLm&q=Copy+Print+Reviews"
             target="_blank"

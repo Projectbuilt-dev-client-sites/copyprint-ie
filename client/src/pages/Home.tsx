@@ -431,7 +431,7 @@ function Testimonials() {
                   <p className="text-gray-900 font-semibold text-sm" data-testid={`text-testimonial-name-${page * REVIEWS_PER_PAGE + i}`}>
                     {t.name}
                   </p>
-                  <p className="text-gray-400 text-xs">Google Review</p>
+                  <p className="text-gray-500 text-xs">Google Review</p>
                 </div>
               </div>
             </motion.div>
@@ -852,7 +852,7 @@ function SEOKeywordSection() {
     <section className="py-12 md:py-16 bg-primary/5 border-t border-primary/10" data-testid="section-seo-content">
       <div className="max-w-5xl mx-auto px-4">
         <div className="text-center mb-10">
-          <span className="text-primary text-xs tracking-[0.3em] uppercase font-bold mb-2 block">Since 1982</span>
+          <span className="text-primary/90 text-xs tracking-[0.3em] uppercase font-bold mb-2 block">Since 1982</span>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900" data-testid="text-seo-heading">
             Dublin's Leading Print Shop Since 1982
           </h2>
