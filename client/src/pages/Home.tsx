@@ -811,13 +811,16 @@ function SEOKeywordSection() {
 
         <div className="text-gray-700 text-base md:text-lg leading-relaxed max-w-3xl mx-auto space-y-5">
           <p>
-            Looking for a reliable business cards Dublin service? Copyprint.ie is your trusted print shop Dublin located on Dame Street in Dublin 2. We offer same day printing Dublin with click and collect, making us the go-to choice for fast printing Dublin needs. Whether you need flyers printing Dublin or poster printing Dublin, we deliver quality printing Dublin at competitive prices.
+            Copyprint.ie has been Dublin's trusted print shop for over 40 years. Based on Dame Street in Dublin 2, we specialise in everything from business cards and flyers to posters, banners, and stickers — all with same day click and collect available for those urgent jobs.
           </p>
           <p>
-            As a professional printing Dublin company established in 1982, we specialise in business printing Dublin including letterheads, compliment slips, and business stationery. Our digital printing Dublin capabilities cover everything from sticker printing Dublin and banner printing Dublin to laminating and binding services. We also provide large format printing Dublin for exhibitions and events.
+            Whether you're a business needing professional letterheads, compliment slips, or business stationery, or a restaurant looking for menus and promotional leaflets, our team delivers quality printing at competitive Dublin prices. We also handle large format work including roller banners and PVC banners for exhibitions, events, and retail displays.
           </p>
           <p>
-            Need cheap printing Dublin without sacrificing quality? Our printing services Dublin 2 location on Dame Street is just minutes from Trinity College, making us ideal for student printing Dublin. We handle roller banners, restaurant printing Dublin, booklet printing, and personal printing including wedding invitations. Contact your local Dublin city printing experts today for next day printing Dublin and online printing Ireland.
+            Just minutes from Trinity College, we're the go-to choice for student printing — from thesis binding and CVs to portfolios and course materials. And for personal projects like wedding invitations or custom stickers, we bring the same care and attention to every job no matter the size.
+          </p>
+          <p>
+            Need it fast? We offer next day printing and same day turnaround on most products, with nationwide delivery across Ireland or click and collect from our Dame Street store. Get in touch with Dublin's favourite local print shop today.
           </p>
         </div>
       </div>
