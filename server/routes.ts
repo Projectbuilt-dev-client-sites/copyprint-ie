@@ -72,7 +72,7 @@ function generateSitemapXml(): string {
   const localRoutes = dublinAreaNames.flatMap(area =>
     localServiceSlugs.map(svc => `/printing/${toSlug(area)}/${svc}`)
   );
-  const allRoutes = [...serviceRoutes, "/printing", ...localRoutes, ...blogRoutes];
+  const allRoutes = [...serviceRoutes, "/print-ready-checklist", "/printing", ...localRoutes, ...blogRoutes];
 
   const entries = allRoutes.map((route) => {
     let priority = "0.5";
@@ -81,6 +81,7 @@ function generateSitemapXml(): string {
     else if (route.startsWith("/services/")) { priority = "0.9"; changefreq = "weekly"; }
     else if (route === "/blog") { priority = "0.8"; changefreq = "weekly"; }
     else if (route.startsWith("/blog/")) { priority = "0.7"; changefreq = "monthly"; }
+    else if (route === "/print-ready-checklist") { priority = "0.7"; changefreq = "monthly"; }
     else if (route === "/printing") { priority = "0.7"; changefreq = "monthly"; }
     else if (route.startsWith("/printing/")) { priority = "0.6"; changefreq = "monthly"; }
 

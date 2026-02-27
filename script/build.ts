@@ -98,7 +98,7 @@ const blogRoutes = [
   "/blog/business-stationery-lasting-impression",
 ];
 
-const routes = [...serviceRoutes, "/printing", ...localRoutes, ...blogRoutes];
+const routes = [...serviceRoutes, "/print-ready-checklist", "/printing", ...localRoutes, ...blogRoutes];
 
 const existingMetaRegex = /<title>[\s\S]*?<\/title>\s*|<meta\s+name="description"[\s\S]*?\/>\s*|<meta\s+property="og:[\s\S]*?\/>\s*/g;
 
@@ -152,6 +152,9 @@ async function generateSitemap() {
       priority = "0.8";
       changefreq = "weekly";
     } else if (route.startsWith("/blog/")) {
+      priority = "0.7";
+      changefreq = "monthly";
+    } else if (route === "/print-ready-checklist") {
       priority = "0.7";
       changefreq = "monthly";
     } else if (route === "/printing") {

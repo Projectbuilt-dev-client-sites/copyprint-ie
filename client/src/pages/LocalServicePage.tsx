@@ -226,7 +226,7 @@ export default function LocalServicePage() {
               Delivery & Collection for {area.name}
             </h2>
             <p className="text-gray-600 leading-relaxed mb-8" data-testid="text-delivery-body">
-              Multiple ways to receive your order for {area.name} customers. Pop into our Dame St location for same or next-day collection, or we can deliver directly to {area.name}. <a href="/services/nationwide-delivery" className="text-blue-600 hover:underline" data-testid="link-nationwide-delivery">Nationwide delivery &raquo;</a> <a href="/#contact" className="text-blue-600 hover:underline" data-testid="link-contact-us">Contact us</a>
+              Multiple ways to receive your order for {area.name} customers. Pop into our Dame St location for same or next-day collection, or we can deliver directly to {area.name}. We also offer nationwide delivery across Ireland. <a href="/#contact" className="text-blue-600 hover:underline" data-testid="link-contact-us">Contact us</a> for details.
             </p>
 
             <h2 className="text-2xl font-bold text-gray-900 mb-4" data-testid="text-local-seo-heading">
