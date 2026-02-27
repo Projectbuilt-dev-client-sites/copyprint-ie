@@ -209,7 +209,7 @@ export default function Header() {
               <SheetContent side="right" className="bg-white border-gray-200 w-[300px] flex flex-col overflow-hidden">
                 <SheetHeader className="flex-shrink-0">
                   <SheetTitle className="text-left">
-                    <img src="/images/logo.webp" alt="Copyprint.ie" className="h-9" width="360" height="98" />
+                    <img src="/images/logo.webp" alt="Copyprint.ie menu" className="h-9" width="360" height="98" />
                   </SheetTitle>
                 </SheetHeader>
                 <div className="flex-1 overflow-y-auto mt-6 -mx-6 px-6">

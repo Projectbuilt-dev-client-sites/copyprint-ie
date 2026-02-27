@@ -131,6 +131,9 @@ function ServicesGrid() {
                       src={service.image}
                       alt={service.name}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      width="571"
+                      height="400"
+                      loading="lazy"
                     />
                   </div>
                   <div className="p-3 md:p-4 text-center">
@@ -201,7 +204,7 @@ function ContactBar() {
           viewport={{ once: true }}
           variants={sectionVariants}
         >
-          <img src="/images/logo.webp" alt="Copyprint.ie" className="h-10 mx-auto mb-2" width="360" height="98" />
+          <img src="/images/logo.webp" alt="Copyprint.ie logo" className="h-10 mx-auto mb-2" width="360" height="98" />
           <p className="text-gray-500 text-sm mb-6">
             Click to Call or Send WhatsApp Message
           </p>

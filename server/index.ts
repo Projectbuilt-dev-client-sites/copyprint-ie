@@ -82,6 +82,13 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type, stripe-signature');
   }
+
+  res.header('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+  res.header('X-Frame-Options', 'SAMEORIGIN');
+  res.header('X-Content-Type-Options', 'nosniff');
+  res.header('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.header('Cross-Origin-Opener-Policy', 'same-origin-allow-popups');
+
   if (req.method === 'OPTIONS') {
     return res.sendStatus(204);
   }

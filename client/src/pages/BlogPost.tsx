@@ -88,6 +88,8 @@ export default function BlogPost() {
           src={post.featuredImage}
           alt={post.title}
           className="absolute inset-0 w-full h-full object-cover"
+          width="1280"
+          height="896"
         />
         <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
         <div className="relative max-w-4xl mx-auto px-4">
@@ -130,6 +132,9 @@ export default function BlogPost() {
                 src={post.featuredImage}
                 alt={post.title}
                 className="w-full rounded-md shadow-md"
+                width="1280"
+                height="896"
+                loading="lazy"
                 data-testid="img-post-featured"
               />
             </div>
