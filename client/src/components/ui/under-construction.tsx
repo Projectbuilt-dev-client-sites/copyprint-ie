@@ -1,9 +1,7 @@
 import { Wrench } from "lucide-react";
-import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 
 export default function UnderConstruction() {
-  const [, navigate] = useLocation();
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">

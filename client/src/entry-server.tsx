@@ -1,4 +1,5 @@
 import { renderToString } from "react-dom/server";
+import UnderConstruction from "@/components/ui/under-construction";
 import { Router } from "wouter";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -181,29 +182,19 @@ function buildMetaTags(meta: RouteMeta): string {
   return tags.join("\n    ");
 }
 
-export function render(url: string) {
+export function render(_url: string) {
   const queryClient = new QueryClient();
 
   const html = renderToString(
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <Router ssrPath={url}>
-          <div className="min-h-screen flex flex-col">
-            <Header />
-            <main className="flex-1">
-              <AppRoutes />
-            </main>
-            <Footer />
-          </div>
-        </Router>
+        <UnderConstruction />
       </TooltipProvider>
     </QueryClientProvider>
   );
 
-  const meta = getRouteMeta(url);
-  const metaTags = buildMetaTags(meta);
-  const breadcrumbJsonLd = buildBreadcrumbJsonLd(url);
-  const fullMetaTags = breadcrumbJsonLd ? `${metaTags}\n    ${breadcrumbJsonLd}` : metaTags;
-
-  return { html, metaTags: fullMetaTags };
+  return {
+    html,
+    metaTags: `<title>Copyprint.ie - On Vacation</title>\n    <meta name="robots" content="noindex" />`,
+  };
 }
