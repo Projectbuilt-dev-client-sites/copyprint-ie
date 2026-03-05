@@ -276,9 +276,20 @@ async function buildAll() {
   await generateSitemap();
 
   if (VACATION_MODE) {
-    console.log("vacation mode: writing vacation files...");
-    await writeFile(path.resolve("dist/public/vacation.html"), VACATION_HTML);
-    await writeFile(path.resolve("dist/public/_redirects"), "/* /vacation.html 200!");
+    console.log("vacation mode: overwriting all pages...");
+    function overwriteDir(dir: string) {
+      const entries = fs.readdirSync(dir, { withFileTypes: true });
+      for (const entry of entries) {
+        const fullPath = path.join(dir, entry.name);
+        if (entry.isDirectory()) {
+          overwriteDir(fullPath);
+        } else if (entry.name === "index.html") {
+          fs.writeFileSync(fullPath, VACATION_HTML);
+        }
+      }
+    }
+    overwriteDir(path.resolve("dist/public"));
+    await writeFile(path.resolve("dist/public/_redirects"), "/* /index.html 200");
     console.log("vacation mode: done");
   }
 
