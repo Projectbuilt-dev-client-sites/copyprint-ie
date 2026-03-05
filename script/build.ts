@@ -182,76 +182,6 @@ ${entries.join("\n")}
   console.log(`  generated sitemap with ${routes.length} URLs`);
 }
 
-// ─── VACATION MODE ──────────────────────────────────────────────────────────
-const VACATION_MODE = true;
-
-const VACATION_HTML = `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Copyprint.ie - Back on Wednesday 11th March</title>
-  <meta name="robots" content="noindex" />
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background: #f5f5f0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-    .card {
-      background: #fff;
-      border-radius: 12px;
-      padding: 52px 44px;
-      max-width: 520px;
-      width: 100%;
-      text-align: center;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-      border: 1px solid #e8e8e0;
-    }
-    .logo { width: 200px; margin: 0 auto 32px; }
-    .logo img { width: 100%; }
-    h1 { font-size: 1.6rem; color: #1a1a1a; margin-bottom: 16px; font-weight: 700; line-height: 1.3; }
-    p { color: #555; font-size: 1rem; line-height: 1.7; margin-bottom: 12px; }
-    .date {
-      display: inline-block;
-      background: #f0f7f0;
-      color: #2a6e2a;
-      font-weight: 700;
-      font-size: 1.1rem;
-      padding: 10px 24px;
-      border-radius: 8px;
-      margin: 16px 0 28px;
-      border: 1px solid #c5e0c5;
-    }
-    .contact { margin-top: 28px; padding-top: 24px; border-top: 1px solid #eee; }
-    .contact p { font-size: 0.92rem; color: #777; margin-bottom: 8px; }
-    .contact a { color: #1a5c2e; text-decoration: none; font-weight: 600; }
-    .contact a:hover { text-decoration: underline; }
-  </style>
-</head>
-<body>
-  <div class="card">
-    <div class="logo">
-      <img src="/images/logo.webp" alt="Copyprint.ie" />
-    </div>
-    <h1>We're on Vacation!</h1>
-    <p>Our shop is currently closed for a short break. We'll be back and ready to help with all your printing needs on:</p>
-    <div class="date">Wednesday 11th March</div>
-    <p>Thank you for your patience — we look forward to serving you when we return.</p>
-    <div class="contact">
-      <p>For urgent enquiries in the meantime:</p>
-      <a href="mailto:info@copyprint.ie">info@copyprint.ie</a>
-    </div>
-  </div>
-</body>
-</html>`;
-// ────────────────────────────────────────────────────────────────────────────
-
 async function buildAll() {
   await rm("dist", { recursive: true, force: true });
 
@@ -274,24 +204,6 @@ async function buildAll() {
 
   await preRenderPages();
   await generateSitemap();
-
-  if (VACATION_MODE) {
-    console.log("vacation mode: overwriting all pages...");
-    function overwriteDir(dir: string) {
-      const entries = fs.readdirSync(dir, { withFileTypes: true });
-      for (const entry of entries) {
-        const fullPath = path.join(dir, entry.name);
-        if (entry.isDirectory()) {
-          overwriteDir(fullPath);
-        } else if (entry.name === "index.html") {
-          fs.writeFileSync(fullPath, VACATION_HTML);
-        }
-      }
-    }
-    overwriteDir(path.resolve("dist/public"));
-    await writeFile(path.resolve("dist/public/_redirects"), "/* /index.html 200");
-    console.log("vacation mode: done");
-  }
 
   console.log("building server...");
   const pkg = JSON.parse(await readFile("package.json", "utf-8"));
